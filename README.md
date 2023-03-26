@@ -21,7 +21,6 @@ git clone https://gitlab.com/opsocket/infra-gdr.git && cd infra-gdr
 terraform init
 ```
 
-
 3. Modify the `variables.tf` file to set any desired variables.
 
 4. Plan the infrastructure changes:
@@ -36,7 +35,7 @@ terraform plan -out init.plan
 terraform apply init.plan
 ```
 
-Optionnally, we can show the debug output when applying the plan
+Optionally, we can show the debug output when applying the plan
 
 ```shell
 OS_DEBUG=1 TF_LOG=DEBUG terraform apply init.plan
@@ -50,7 +49,7 @@ To delete the infrastructure created by this project, run:
 terraform destroy
 ```
 
-Optionnally, we can bypass approval using
+Optionally, we can bypass approval using
 
 ```shell
 terraform destroy -auto-approve
