@@ -1,8 +1,8 @@
 terraform {
   required_version = ">= 0.14.0"
   required_providers {
-    openstack = { 
-      source  = "terraform-provider-openstack/openstack"
+    openstack = {
+      source = "terraform-provider-openstack/openstack"
     }
   }
 }
@@ -10,8 +10,8 @@ terraform {
 provider "openstack" { cloud = var.cloud }
 
 # create a floating ip for the nginx instance
-resource "openstack_networking_floatingip_v2" "gateway" { 
-  pool = "public" 
+resource "openstack_networking_floatingip_v2" "gateway" {
+  pool = "public"
 }
 
 resource "openstack_compute_instance_v2" "gateway" {
@@ -31,52 +31,20 @@ resource "openstack_compute_instance_v2" "gateway" {
     delete_on_termination = true
   }
 
-  # user_data = data.cloudinit_config.gateway.rendered
+  user_data = data.cloudinit_config.gateway.rendered
+
+  depends_on = [
+
+  ]
 }
 
 module "teams" {
-  source = "./teams"
+  source    = "./teams"
   providers = { openstack = openstack }
-  
-  for_each = {
-    1 = { name = "epistemopratique" }
-    2 = { name = "otherteam" }
-  }
+  for_each  = { for idx, name in var.teams : idx => name }
 
-  number = each.key
-  name = each.value.name
   gateway = openstack_compute_instance_v2.gateway
+
+  name   = each.value
+  number = each.key
 }
-
-
-# data "cloudinit_config" "gateway" {
-#   gzip          = false
-#   base64_encode = false
-
-#   part {
-#     content_type = "text/cloud-config"
-#     content = jsonencode({
-#       write_files = [
-#         {
-#           content = file("cloud_init/apps/containers/gitlab.yml")
-#           path = "/opt/gitlab.yml"
-#         }
-#       ]
-#     })
-#   }
-
-#   part {
-#     filename     = "gateway.sh"
-#     content_type = "text/x-shellscript"
-#     content = file("gateway.sh")
-#   }
-
-#   # define our instance cloud-init config script
-#   part {
-#     filename     = "instance.yaml"
-#     content_type = "text/cloud-config"
-#     content = file("cloud_init/apps/init-instance.yml")
-#   }
-# }
-
-# module "teams" { source = "./teams" }

@@ -21,11 +21,8 @@ resource "openstack_compute_instance_v2" "primary-db" {
   #   : data.cloudinit_config.psql-standby.rendered
   # )
 
-  # user_data = data.cloudinit_config.gateway.rendered
+  # user_data = data.cloudinit_config.primary-db.rendered
 
-  depends_on = [
-    var.gateway
-  ]
 }
 
 resource "openstack_compute_instance_v2" "backup-db" {
@@ -51,7 +48,8 @@ resource "openstack_compute_instance_v2" "backup-db" {
   #   : data.cloudinit_config.psql-standby.rendered
   # )
   
-  # user_data = data.cloudinit_config.gateway.rendered
+  # user_data = data.cloudinit_config.backup-db.rendered
+
   depends_on = [
     openstack_compute_instance_v2.primary-db
   ]
