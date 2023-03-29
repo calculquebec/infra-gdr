@@ -57,4 +57,4 @@ terraform destroy -auto-approve
 
 ## License
 
-This project is licensed under the [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.html) - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the [LICENSE.md](LICENSE.md) file for details.
