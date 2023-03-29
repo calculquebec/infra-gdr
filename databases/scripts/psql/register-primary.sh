@@ -1,3 +1,4 @@
+#!/bin/bash
 # setup primary node for replication
 cat << REPMGR_CONFIG > /etc/repmgr.conf
 node_id=1
