@@ -12,7 +12,7 @@ resource "openstack_compute_instance_v2" "primary-db" {
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
-  security_groups     = ["default", "${var.secgroup}"]
+  security_groups     = ["default", "${var.secgroup_name}"]
   force_delete        = true
   stop_before_destroy = true
 
@@ -33,7 +33,7 @@ resource "openstack_compute_instance_v2" "standby-db" {
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
-  security_groups     = ["default", "${var.secgroup}"]
+  security_groups     = ["default", "${var.secgroup_name}"]
   force_delete        = true
   stop_before_destroy = true
 

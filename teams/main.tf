@@ -10,6 +10,8 @@ terraform {
 module "db" { 
   source = "../databases"
   providers = { openstack = openstack }
+
+  secgroup_name = openstack_networking_secgroup_v2.postgresql.name
 }
 
 resource "openstack_compute_instance_v2" "apps" {

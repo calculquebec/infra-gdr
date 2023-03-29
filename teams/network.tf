@@ -24,7 +24,7 @@ resource "openstack_networking_secgroup_rule_v2" "https" {
 }
 
 resource "openstack_networking_secgroup_v2" "postgresql" {
-  name        = "psql-${var.name}"
+  name        = "postgresql"
   description = "Security group for PostgreSQL database server"
 }
 
