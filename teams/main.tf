@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+module "db" { 
+  source = "../databases"
+  providers = { openstack = openstack }
+}
+
 resource "openstack_compute_instance_v2" "apps" {
   name                = "apps-${var.name}"
   flavor_name         = "p8-15gb"
@@ -25,7 +30,8 @@ resource "openstack_compute_instance_v2" "apps" {
   }
 
   depends_on = [
-    openstack_compute_instance_v2.backup-db
+    module.db.primary-db,
+    module.db.standby-db
   ]
   
   # user_data = data.cloudinit_config.gateway.rendered
