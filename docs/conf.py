@@ -10,7 +10,7 @@ project = 'Gestion des Données de Recherche (GDR)'
 copyright = '2023, opsocket'
 author = 'opsocket'
 
-version = '0.0.1'
+version = '0.0.2'
 release = version
 
 # -- General configuration ---------------------------------------------------

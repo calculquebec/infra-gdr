@@ -1,17 +1,11 @@
-# Summary
-
-- `apps.tf`: Terraform configuration for deploying the research data management services.
-- `databases.tf`: Terraform configuration for deploying the databases required by the services.
-- `external`: Directory containing external scripts and files required by the project.
-  - `databases/setup.sh`: Shell script for setting up the databases.
-  - `keystone.py`: Python script for authenticating with the Keystone identity service.
-- `firewall.tf`: Terraform configuration for setting up the firewall rules.
-- `outputs.tf`: Terraform configuration for defining the output variables.
-- `providers.tf`: Terraform configuration for defining the provider information.
-- `variables.tf`: Terraform configuration for defining the input variables.
-- `versions.tf`: Terraform configuration for defining the required Terraform version.
-
 # Databases
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Automatic failover
 
