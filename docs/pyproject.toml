@@ -8,10 +8,6 @@ requires-python = ">=3.10"
 authors = [{ name = "opsocket", email = "opsocket@pm.me" }]
 readme = "README.md"
 license = {file = "../LICENSE.md"}
-# dynamic = [
-#   "version",
-#   "description"
-# ]
 
 version = "0.0.1"
 description = ""
@@ -22,26 +18,5 @@ dependencies = [
   "myst-parser",
 ]
 
-[project.optional-dependencies]
-docs = [
-  "markdown-include",
-  "mkdocs",
-  "mkdocs-material",
-  "pymdown-extensions",
-  "sphinx",
-  "sphinx_rtd_theme",
-  "sphinx-autoapi"
-]
-dev = [
-  "black",
-  "flake8",
-  "flit",
-  "inotify_simple",
-  "pyinstaller",
-]
-
 [project.urls]
-Home = "https://sat-mtl.gitlab.io/tools/haptic-floor/telluriq"
-
-[project.scripts]
-telluriq = "telluriq.__main__:main"
+home = "https://opsocket.gitlab.io/infra-gdr"
