@@ -6,7 +6,7 @@ before_script:
 pages:
   stage: build
   script:
-    - sphinx-build html docs public
+    - sphinx-build docs public
   artifacts:
     paths: ['public']
 #  only:
