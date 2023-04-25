@@ -6,6 +6,5 @@ pages:
       sphinx-build html docs public
   artifacts:
     paths: ['public']
-  only:
-    - main
-
+  # only:
+  #   - main
