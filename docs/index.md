@@ -55,7 +55,6 @@ sphinx-build docs public && python3 -m http.server -d public
 - Easy data organization
 - Automatic backups
 - Highly available database cluster
-- Self-hosting ready
 
 <!-- Un instantané (snapshot) des données est pris une fois par jour et est conservé pendant 14 jours. -->
 
