@@ -28,7 +28,7 @@ Please see the [contributing section][#contributing] for more information.
 # License
 This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the [license section][#license] for details.
 
-[#contributing]: #
-[#installing]: #
-[#troubleshooting]: #
-[#license]: #
+[#contributing]: https://opsocket.gitlab.io/infra-gdr/contributin.html
+[#installing]: https://opsocket.gitlab.io/infra-gdr/installing.html
+[#troubleshooting]: https://opsocket.gitlab.io/infra-gdr/installing.html
+[#license]: https://opsocket.gitlab.io/infra-gdr/license.html
