@@ -26,8 +26,9 @@ sphinx-build docs public && python3 -m http.server -d public
 Please see the [contributing section][#contributing] for more information.
 
 # License
-This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the {doc}`license </license>` section for details.
+This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the [license section][#license] for details.
 
 [#contributing]: #
 [#installing]: #
 [#troubleshooting]: #
+[#license]: #
