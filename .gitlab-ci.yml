@@ -1,0 +1,13 @@
+image: python:3.10
+
+before_script:
+  - pip install -r docs/requirements.txt
+
+pages:
+  stage: build
+  script:
+    - sphinx-build docs public
+  artifacts:
+    paths: ['public']
+#  only:
+#    - main

@@ -1,0 +1,26 @@
+blockquote {
+  background: aliceblue;
+  padding: 0.5em 1em;
+  border-radius: .3em;
+  border: 1px solid lightgray;
+  border-left: 0.3em solid darkcyan;
+  margin-left: 0 !important;
+}
+
+.rst-content div[class^="highlight"] {
+  border-radius: .3em;
+}
+
+blockquote div *:last-child,
+blockquote div *:only-child {
+  margin: 0!important;
+}
+
+div.admonition {
+  border-radius: .3em;
+  overflow: hidden;
+}
+
+.admonition.tip .admonition-title:before {
+  content: "💡";
+}

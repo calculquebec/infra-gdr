@@ -1,60 +1,34 @@
-# Research Data Management Infrastructure (RDMI)
+# Research Data Management
 
-This is a Terraform project for creating an infrastructure in the cloud.
+## Installation
 
-## Prerequisites
+For installation instructions, please refer to the [installation section][#installing] of the documentation. This section provides detailed steps to set up and configure the software for your environment. In case you run into any issues during installation, our [troubleshooting section][#troubleshooting] might come in handy.
 
-- Terraform installed
-- Cloud provider account credentials (see [clouds.yaml](https://docs.openstack.org/python-openstackclient/pike/configuration/index.html#configuration-files))
+## Documentation
 
-## Usage
-
-1. Clone the repository:
-
-```shell
-git clone https://gitlab.com/opsocket/infra-gdr.git && cd infra-gdr
+```{tip}
+Let's give readers a helpful hint!
 ```
 
-2. Initialize the Terraform project:
 
 ```shell
-terraform init
+sphinx-build docs public && python3 -m http.server -d public
 ```
 
-3. Modify the `variables.tf` file to set any desired variables.
+## Features
 
-4. Plan the infrastructure changes:
+- Easy data organization
+- Automatic backups
+- Highly available database cluster
 
-```shell
-terraform plan -out init.plan
-```
+# Contributing
 
-5. Apply the infrastructure changes:
+Please see the [contributing section][#contributing] for more information.
 
-```shell
-terraform apply init.plan
-```
+# License
+This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the [license section][#license] for details.
 
-Optionally, we can show the debug output when applying the plan
-
-```shell
-OS_DEBUG=1 TF_LOG=DEBUG terraform apply init.plan
-```
-
-## Cleanup
-
-To delete the infrastructure created by this project, run:
-
-```shell
-terraform destroy
-```
-
-Optionally, we can bypass approval using
-
-```shell
-terraform destroy -auto-approve
-```
-
-## License
-
-This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the [LICENSE.md](LICENSE.md) file for details.
+[#contributing]: #
+[#installing]: #
+[#troubleshooting]: #
+[#license]: #

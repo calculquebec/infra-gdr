@@ -1,4 +1,4 @@
-### GNU AFFERO GENERAL PUBLIC LICENSE
+## GNU AFFERO GENERAL PUBLIC LICENSE
 
 Version 3, 19 November 2007
 
@@ -612,4 +612,3 @@ reviewing courts shall apply local law that most closely approximates
 an absolute waiver of all civil liability in connection with the
 Program, unless a warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
-
