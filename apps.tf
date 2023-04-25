@@ -1,21 +1,5 @@
-terraform {
-  required_version = ">= 0.14.0"
-  required_providers {
-    openstack = { 
-      source  = "terraform-provider-openstack/openstack"
-    }
-  }
-}
-
-module "db" { 
-  source = "../databases"
-  providers = { openstack = openstack }
-
-  secgroup_name = openstack_networking_secgroup_v2.postgresql.name
-}
-
 resource "openstack_compute_instance_v2" "apps" {
-  name                = "apps-${var.name}"
+  name                = "${var.name}-apps"
   flavor_name         = "p8-15gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef" # ubuntu:22.04
   key_pair            = "opsocket"
@@ -32,8 +16,8 @@ resource "openstack_compute_instance_v2" "apps" {
   }
 
   depends_on = [
-    module.db.primary-db,
-    module.db.standby-db
+    openstack_compute_instance_v2.primary-db,
+    openstack_compute_instance_v2.standby-db
   ]
   
   # user_data = data.cloudinit_config.gateway.rendered

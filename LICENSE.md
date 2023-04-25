@@ -1,9 +1,11 @@
-### GNU AFFERO GENERAL PUBLIC LICENSE
+## GNU AFFERO GENERAL PUBLIC LICENSE
+
+![AGPLv3](https://www.gnu.org/graphics/agplv3-155x51.png)
 
 Version 3, 19 November 2007
 
 Copyright (C) 2007 Free Software Foundation, Inc.
-<https://fsf.org>
+<https://fsf.org/>
 
 Everyone is permitted to copy and distribute verbatim copies of this
 license document, but changing it is not allowed.
@@ -612,4 +614,3 @@ reviewing courts shall apply local law that most closely approximates
 an absolute waiver of all civil liability in connection with the
 Program, unless a warranty or assumption of liability accompanies a
 copy of the Program in return for a fee.
-
