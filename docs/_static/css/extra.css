@@ -22,5 +22,5 @@ div.admonition {
 }
 
 .admonition.tip .admonition-title:before {
-  content: "\f004";
+  content: "💡";
 }
