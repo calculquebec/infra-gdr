@@ -36,6 +36,12 @@ deploy:
     name: $TF_STATE_NAME
     action: start
 
+destroy:
+  stage: cleanup
+  extends: .terraform:destroy
+  environment:
+    name: $TF_STATE_NAME
+
 pages:
   stage: deploy
   image: python:3.10
