@@ -3,44 +3,69 @@
 This project is aimed at providing an easy-to-use tool for researchers to manage their research data effectively. 
 
 ```{admonition} Notes
-:class: info
+:class: note
 
 The tool will help researchers to organize their data, create backups, and collaborate with other researchers.
 ```
 
-## Installation
+## Summary
 
-For installation instructions, please refer to the {doc}`installation <intro/installing>` section of the documentation. This section provides detailed steps to set up and configure the software for your environment. In case you run into any issues during installation, our {doc}`troubleshooting <infra/troubleshooting>` section might come in handy.
+```{toctree}
+:caption: ✨ Getting started
+:maxdepth: 3
+:hidden:
 
-## Documentation
-
-The documentation for this project is built using [Sphinx][#sphinx], a popular tool that makes it easy to create intelligent and beautiful documentation.
-
-The documentation source files can be found in the `docs` directory.
-
-````{admonition} Create a virtual environment
-:class: tip
-
-We recommend using a virtual environment for installing required dependencies to be able to generate the documentation
-
-```shell    
-python3 -m venv env && source env/bin/activate
-pip install -r docs/requirements.txt
-```
-```` 
-
-To build the documentation, simply run the follwing command:
-
-```shell
-sphinx-build docs public
+self
+intro/installing.md
 ```
 
-This will generate the HTML documentation files in the `public` directory.
+>  {doc}`✨ Getting started <intro/installing>`
+>
+> This section provides detailed steps to set up and configure the software for your environment.
+>
+>  - [Introduction](index) 
+>  - {doc}`intro/installing` 
 
-```{admonition} Expose the documentation
-:class: tip
-Use `python3 -m http.server -d public` to expose your freshly built documentation on http://0.0.0.0:8000 
+```{toctree}
+:caption: 🌌 Infrastructure
+:maxdepth: 2
+:hidden:
+
+infra/overview.md
+infra/apps.md
+infra/databases.md
+infra/backups.md
+infra/security.md
+infra/troubleshooting.md
 ```
+
+>  {doc}`🌌 Infrastructure <infra/overview>`
+>
+>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+>  tempor incididunt ut labore et dolore magna aliqua.
+>
+>  - {doc}`infra/overview`
+>  - {doc}`infra/apps`
+>  - {doc}`infra/databases`
+>  - {doc}`infra/backups`
+>  - {doc}`infra/security`
+
+```{toctree}
+:caption: 🫂 Community
+:maxdepth: 2
+:hidden:
+
+community/contributing.md
+community/license.md
+```
+
+>  {doc}`🫂Community <community/contributing>`
+>
+>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+>  tempor incididunt ut labore et dolore magna aliqua.
+>
+>  - {doc}`community/contributing`
+>  - {doc}`community/license`
 
 ## Features
 
@@ -58,36 +83,3 @@ Please see the {doc}`contributing <community/contributing>` section for more inf
 This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the {doc}`license <community/license>` section for details.
 
 [#sphinx]: https://www.sphinx-doc.org
-
-% HIDDEN TOCS
-
-```{toctree}
-:caption: ✨ Getting started
-:maxdepth: 2
-:hidden:
-
-self
-intro/installing.md
-```
-
-```{toctree}
-:caption: 🌌 Infrastructure
-:maxdepth: 2
-:hidden:
-
-infra/overview.md
-infra/apps.md
-infra/databases.md
-infra/backups.md
-infra/security.md
-infra/troubleshooting.md
-```
-
-```{toctree}
-:caption: 🫂 Community
-:maxdepth: 2
-:hidden:
-
-community/contributing.md
-community/license.md
-```
