@@ -13,7 +13,7 @@ blockquote {
 
 blockquote div *:last-child,
 blockquote div *:only-child {
-  margin: 0!important;
+  margin-bottom: 0!important;
 }
 
 div.admonition {

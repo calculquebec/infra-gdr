@@ -15,7 +15,7 @@ The [clouds.yaml][#clouds_yaml] file is used to store your OpenStack configurati
 
 Alternatively, you can configure authentication using [environment variables][#envvars]. This file is typically sourced within your shell environment.
 
-```{note}
+```{important}
 In either case, it is important to ensure that authentication is properly configured so that the OpenStack provider is accessible and secure.
 ```
 
@@ -25,8 +25,8 @@ Find up-to-date instructions for your operating system on [Install Terraform][#i
 
 #### Workspaces
 
-```{attention}
-This is section requires attention
+```{note}
+This section requires attention
 ```
 
 ```shell
@@ -41,8 +41,8 @@ terraform workspace new myworkspace
 
 #### Deployments
 
-```{attention}
-This is section requires attention
+```{note}
+This section requires attention
 ```
 
 ```shell

@@ -21,6 +21,7 @@ extensions = [
   'sphinx.ext.intersphinx',
   'sphinx.ext.autosectionlabel',
   'sphinx_rtd_theme',
+  'sphinx_copybutton',
   'myst_parser',
 ]
 
