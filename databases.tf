@@ -1,4 +1,4 @@
-data "cloudinit_config" "primary-db" {
+data "cloudinit_config" "primary_db" {
   gzip          = true
   base64_encode = true
 
@@ -25,7 +25,7 @@ data "cloudinit_config" "primary-db" {
   }
 }
 
-resource "openstack_compute_instance_v2" "primary-db" {
+resource "openstack_compute_instance_v2" "primary_db" {
   name                = "psql-1"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
@@ -46,10 +46,10 @@ resource "openstack_compute_instance_v2" "primary-db" {
     openstack_networking_secgroup_v2.databases
   ]
 
-  user_data = data.cloudinit_config.primary-db.rendered
+  user_data = data.cloudinit_config.primary_db.rendered
 }
 
-data "cloudinit_config" "standby-db" {
+data "cloudinit_config" "standby_db" {
   gzip          = true
   base64_encode = true
 
@@ -85,7 +85,7 @@ data "cloudinit_config" "standby-db" {
   }
 }
 
-resource "openstack_compute_instance_v2" "standby-db" {
+resource "openstack_compute_instance_v2" "standby_db" {
   name                = "psql-2"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
@@ -95,7 +95,7 @@ resource "openstack_compute_instance_v2" "standby-db" {
   stop_before_destroy = true
 
   depends_on = [
-    openstack_compute_instance_v2.primary-db,
+    openstack_compute_instance_v2.primary_db,
     openstack_networking_secgroup_v2.databases
   ]
 
@@ -107,6 +107,6 @@ resource "openstack_compute_instance_v2" "standby-db" {
     delete_on_termination = true
   }
 
-  user_data = data.cloudinit_config.standby-db.rendered
+  user_data = data.cloudinit_config.standby_db.rendered
 
 }

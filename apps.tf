@@ -3,7 +3,7 @@ resource "openstack_compute_instance_v2" "apps" {
   flavor_name         = "p8-15gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef" # ubuntu:22.04
   key_pair            = "opsocket"
-  security_groups     = ["default", "apps-${var.name}"]
+  security_groups     = ["default", openstack_networking_secgroup_v2.apps.name]
   force_delete        = true
   stop_before_destroy = true
 
@@ -16,8 +16,8 @@ resource "openstack_compute_instance_v2" "apps" {
   }
 
   depends_on = [
-    openstack_compute_instance_v2.primary-db,
-    openstack_compute_instance_v2.standby-db
+    openstack_compute_instance_v2.primary_db,
+    openstack_compute_instance_v2.standby_db
   ]
 
   # user_data = data.cloudinit_config.gateway.rendered
