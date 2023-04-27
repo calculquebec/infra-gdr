@@ -1,4 +1,4 @@
-# Overview
+  # Overview
 
 - `apps.tf`: Terraform configuration for deploying the research data management services.
 - `databases.tf`: Terraform configuration for deploying the databases required by the services.
@@ -19,7 +19,8 @@
 
 Deploying a single instance of the cluster requires at least having these resources available up front in the target Openstack project:
 
-|:Resource|:Amount|
+|Resource|Amount|
+|:-------|:----:|
 |instances|5|
 |vcpus|12|
 |ram|23Go|
@@ -28,7 +29,8 @@ Deploying a single instance of the cluster requires at least having these resour
 
 Here's the breakdown:
 
-|:Server|:VCPUs:|:RAM:|:SSD:|:HDD:|
+|Server|VCPUs|RAM|SSD|HDD|
+|:-----|:---:|:-:|:-:|:-:|
 |apps|8|15Gb|32Gb (+32Gb snapshot)|150Gb|
 |psql-0|1|2Gb|16gb|0|
 |psql-1|1|2Gb|16gb|0|
