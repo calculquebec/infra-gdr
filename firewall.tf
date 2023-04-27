@@ -40,7 +40,7 @@ resource "openstack_networking_secgroup_rule_v2" "psql_apps_ingress" {
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "psql_stan_by-ingress" {
+resource "openstack_networking_secgroup_rule_v2" "psql_standby_ingress" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
@@ -50,7 +50,7 @@ resource "openstack_networking_secgroup_rule_v2" "psql_stan_by-ingress" {
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "psql_prim_ry-ingress" {
+resource "openstack_networking_secgroup_rule_v2" "psql_primary_ingress" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
