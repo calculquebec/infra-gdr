@@ -19,6 +19,6 @@ resource "openstack_compute_instance_v2" "apps" {
     openstack_compute_instance_v2.primary-db,
     openstack_compute_instance_v2.standby-db
   ]
-  
+
   # user_data = data.cloudinit_config.gateway.rendered
 }

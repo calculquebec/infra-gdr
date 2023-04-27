@@ -3,15 +3,15 @@ data "cloudinit_config" "primary-db" {
   base64_encode = true
 
   part {
-    filename = "setup.sh"
+    filename     = "setup.sh"
     content_type = "text/x-shellscript"
-    content = file("${path.module}/external/databases/setup.sh")
+    content      = file("${path.module}/external/databases/setup.sh")
   }
 
   part {
     filename     = "register-primary.sh"
     content_type = "text/x-shellscript"
-    content = <<-REGISTER_PRIMARY
+    content      = <<-REGISTER_PRIMARY
       #!/usr/bin/env bash
       cat << REPMGR_CONFIG > /etc/repmgr.conf
       node_id=1
@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "primary-db" {
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
-  security_groups     = ["default", openstack_networking_secgroup_v2.databases.name ]
+  security_groups     = ["default", openstack_networking_secgroup_v2.databases.name]
   force_delete        = true
   stop_before_destroy = true
 
@@ -54,15 +54,15 @@ data "cloudinit_config" "standby-db" {
   base64_encode = true
 
   part {
-    filename = "setup.sh"
+    filename     = "setup.sh"
     content_type = "text/x-shellscript"
-    content = file("${path.module}/external/databases/setup.sh")
+    content      = file("${path.module}/external/databases/setup.sh")
   }
 
   part {
     filename     = "register-standby.sh"
     content_type = "text/x-shellscript"
-    content = <<-REGISTER_PRIMARY
+    content      = <<-REGISTER_PRIMARY
       #!/bin/bash
       # setup backup node for replication
       cat << REPMGR_CONFIG > /etc/repmgr.conf
@@ -90,7 +90,7 @@ resource "openstack_compute_instance_v2" "standby-db" {
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
-  security_groups     = ["default", openstack_networking_secgroup_v2.databases.name ]
+  security_groups     = ["default", openstack_networking_secgroup_v2.databases.name]
   force_delete        = true
   stop_before_destroy = true
 
@@ -98,7 +98,7 @@ resource "openstack_compute_instance_v2" "standby-db" {
     openstack_compute_instance_v2.primary-db,
     openstack_networking_secgroup_v2.databases
   ]
-  
+
   block_device {
     uuid                  = "db73980e-1f9c-441e-8268-c1881f99c8ef"
     source_type           = "image"
@@ -106,7 +106,7 @@ resource "openstack_compute_instance_v2" "standby-db" {
     volume_size           = "16"
     delete_on_termination = true
   }
-  
+
   user_data = data.cloudinit_config.standby-db.rendered
 
 }

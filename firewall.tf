@@ -31,31 +31,31 @@ resource "openstack_networking_secgroup_v2" "databases" {
 }
 
 resource "openstack_networking_secgroup_rule_v2" "psql-apps-ingress" {
-  direction     = "ingress"
-  ethertype     = "IPv4"
-  protocol      = "tcp"
-  port_range_min = 5432
-  port_range_max = 5432
-  remote_ip_prefix = openstack_compute_instance_v2.apps.access_ip_v4
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 5432
+  port_range_max    = 5432
+  remote_ip_prefix  = openstack_compute_instance_v2.apps.access_ip_v4
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
 resource "openstack_networking_secgroup_rule_v2" "psql-standby-ingress" {
-  direction     = "ingress"
-  ethertype     = "IPv4"
-  protocol      = "tcp"
-  port_range_min = 5432
-  port_range_max = 5432
-  remote_ip_prefix = openstack_compute_instance_v2.standby-db.access_ip_v4
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 5432
+  port_range_max    = 5432
+  remote_ip_prefix  = openstack_compute_instance_v2.standby-db.access_ip_v4
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
 resource "openstack_networking_secgroup_rule_v2" "psql-primary-ingress" {
-  direction     = "ingress"
-  ethertype     = "IPv4"
-  protocol      = "tcp"
-  port_range_min = 5432
-  port_range_max = 5432
-  remote_ip_prefix = openstack_compute_instance_v2.primary-db.access_ip_v4
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 5432
+  port_range_max    = 5432
+  remote_ip_prefix  = openstack_compute_instance_v2.primary-db.access_ip_v4
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
