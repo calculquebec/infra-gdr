@@ -11,8 +11,7 @@ stages:
   - validate
   - test
   - build
-  - pages
-  # - deploy
+  - deploy
   # - cleanup
 
 fmt:
@@ -29,15 +28,17 @@ build:
     name: $TF_STATE_NAME
     action: prepare
 
-# deploy:
-#   extends: .terraform:deploy
-#   dependencies:
-#     - build
-#   environment:
-#     name: $TF_STATE_NAME
-#     action: start
+deploy:
+  extends: .terraform:deploy
+  dependencies:
+    - build
+  environment:
+    name: $TF_STATE_NAME
+    action: start
+  when: manual
 
 pages:
+  stage: deploy
   image: python:3.10
   before_script:
     - pip install -r docs/requirements.txt

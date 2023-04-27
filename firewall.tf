@@ -30,7 +30,7 @@ resource "openstack_networking_secgroup_v2" "databases" {
   description = "Security group for PostgreSQL Highly Available Cluster (PHAC)"
 }
 
-resource "openstack_networking_secgroup_rule_v2" "psql_apps_ingress" {
+resource "openstack_networking_secgroup_rule_v2" "databases_psql_ingress_from_apps" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
@@ -40,7 +40,7 @@ resource "openstack_networking_secgroup_rule_v2" "psql_apps_ingress" {
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "psql_standby_ingress" {
+resource "openstack_networking_secgroup_rule_v2" "databases_psql_ingress_from_standby" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
@@ -50,7 +50,7 @@ resource "openstack_networking_secgroup_rule_v2" "psql_standby_ingress" {
   security_group_id = openstack_networking_secgroup_v2.databases.id
 }
 
-resource "openstack_networking_secgroup_rule_v2" "psql_primary_ingress" {
+resource "openstack_networking_secgroup_rule_v2" "databases_psql_ingress_from_primary" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
