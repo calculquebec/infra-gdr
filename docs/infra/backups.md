@@ -44,15 +44,15 @@ This protects against potential data loss and enable disaster recovery.
 In summary, this procedure consists of using `repmgr standby pause`, performing a backup from the paused **standby** server and resuming replication.
 
 ```shell
-repmgr standby pause
+systemctl stop repmgrd
 sudo -u postgres /usr/bin/pg_dumpall --clean \
     | gzip --rsyncable \
     | restic backup --host $1 --stdin \
         --stdin-filename postgres-$1.sql.gz
-repmgr standby resume
+systemctl start repmgrd
 ``` 
 
-This will temporarily stop the **standby** server from replaying WAL records from the primary server, allowing us to perform *risks-free* backups and/or other maintenance tasks.
+This will stop the **standby** server from replaying the backlog of WAL records from the primary server, allowing us to perform *risks-free* backups and/or other maintenance tasks.
 
 ```{tip}
 An extra **standby** server would allow a server to be promoted in case of a primary server failure during the backup job. 
@@ -61,4 +61,3 @@ An extra **standby** server would allow a server to be promoted in case of a pri
 [#restic]: https://restic.net
 [#systemd]: https://systemd.io
 [#restic-systemd]: https://git.computecanada.ca/opsocket/restic-systemd
-
