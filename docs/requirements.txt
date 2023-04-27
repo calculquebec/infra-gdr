@@ -2,4 +2,5 @@ myst-parser[linkify]
 sphinx
 sphinx-autobuild
 sphinx-copybutton
-furo
+sphinx_rtd_theme
+
