@@ -1,5 +1,5 @@
 resource "openstack_compute_instance_v2" "apps" {
-  name                = "${var.name}-apps"
+  name                = "${local.workspace}-apps"
   flavor_name         = "p8-15gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef" # ubuntu:22.04
   key_pair            = "opsocket"

@@ -7,3 +7,4 @@ run.py
 terraform.tfstate*
 tf.plan
 docs/_templates/_page.html
+plan

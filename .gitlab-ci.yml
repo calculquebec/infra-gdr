@@ -23,23 +23,22 @@ validate:
   extends: .terraform:validate
   needs: []
 
-# build:
-  # extends: .terraform:build
-  # environment:
-    # name: $TF_STATE_NAME
-    # action: prepare
-# 
+build:
+  extends: .terraform:build
+  environment:
+    name: $TF_STATE_NAME
+    action: prepare
+
 # deploy:
-  # extends: .terraform:deploy
-  # dependencies:
-    # - build
-  # environment:
-    # name: $TF_STATE_NAME
-    # action: start
+#   extends: .terraform:deploy
+#   dependencies:
+#     - build
+#   environment:
+#     name: $TF_STATE_NAME
+#     action: start
 
 pages:
   image: python:3.10
-  stage: build
   before_script:
     - pip install -r docs/requirements.txt
   script:

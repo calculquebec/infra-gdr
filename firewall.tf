@@ -1,6 +1,6 @@
 # gateway
 resource "openstack_networking_secgroup_v2" "apps" {
-  name        = "${var.name}-apps"
+  name        = "${local.workspace}-apps"
   description = "Allow HTTP(S) traffic from any host and interfaces"
 }
 
@@ -26,7 +26,7 @@ resource "openstack_networking_secgroup_v2" "apps" {
 
 # databases
 resource "openstack_networking_secgroup_v2" "databases" {
-  name        = "${var.name}-databases"
+  name        = "${local.workspace}-databases"
   description = "Security group for PostgreSQL Highly Available Cluster (PHAC)"
 }
 

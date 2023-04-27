@@ -26,7 +26,7 @@ data "cloudinit_config" "primary_db" {
 }
 
 resource "openstack_compute_instance_v2" "primary_db" {
-  name                = "psql-1"
+  name                = "${local.workspace}-psql-1"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
@@ -86,7 +86,7 @@ data "cloudinit_config" "standby_db" {
 }
 
 resource "openstack_compute_instance_v2" "standby_db" {
-  name                = "psql-2"
+  name                = "${local.workspace}-psql-2"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
