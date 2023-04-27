@@ -10,8 +10,8 @@ include:
 stages:
   - validate
   - test
+  - build
   - pages
-  # - build
   # - deploy
   # - cleanup
 
