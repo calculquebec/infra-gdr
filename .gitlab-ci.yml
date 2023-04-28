@@ -29,6 +29,7 @@ build:
   environment:
     name: production/$RESEARCH_GROUP
     action: prepare
+  resource_group: production/$RESEARCH_GROUP
 
 deploy:
   extends: 
@@ -39,6 +40,7 @@ deploy:
   environment:
     name: production/$RESEARCH_GROUP
     action: start
+  resource_group: production/$RESEARCH_GROUP
 
 pages:
   stage: deploy
