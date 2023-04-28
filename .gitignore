@@ -9,3 +9,4 @@ tf.plan
 docs/_templates/_page.html
 plan
 tmp
+errored.tfstate
