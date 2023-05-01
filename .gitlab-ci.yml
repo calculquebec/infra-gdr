@@ -42,7 +42,7 @@ deploy:
     action: start
   resource_group: production/$RESEARCH_GROUP
   only:
-    - main
+    - "main"
 
 pages:
   stage: deploy
@@ -54,4 +54,4 @@ pages:
   artifacts:
     paths: ['public']
   only:
-    - main
+    - "main"
