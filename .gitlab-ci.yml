@@ -2,11 +2,12 @@ include:
   - template: Terraform/Base.latest.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.latest.gitlab-ci.yml
   - template: Jobs/SAST-IaC.latest.gitlab-ci.yml   # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/SAST-IaC.latest.gitlab-ci.yml
 
-parallel:
-  matrix:
-    - RESEARCH_GROUP:
-      # - epistemopratique
-      - reso-t
+.infra-gdr:envs:
+  parallel:
+    matrix:
+      - RESEARCH_GROUP:
+        # - epistemopratique
+        - reso-t
 
 cache:
   key: "${RESEARCH_GROUP}"
@@ -27,7 +28,8 @@ validate:
   extends: .terraform:validate
 
 build:
-  extends: 
+  extends:
+    - .infra-gdr:envs 
     - .terraform:build
   environment:
     name: $RESEARCH_GROUP
@@ -35,7 +37,8 @@ build:
   resource_group: $RESEARCH_GROUP
 
 deploy:
-  extends: 
+  extends:
+    - .infra-gdr:envs 
     - .terraform:deploy
   dependencies:
     - build
@@ -46,6 +49,7 @@ deploy:
 
 destroy:
   extends:
+    - .infra-gdr:envs
     - .terraform:destroy
   dependencies:
     - deploy
