@@ -27,9 +27,9 @@ build:
     - .infra-gdr:envs
     - .terraform:build
   environment:
-    name: production/$RESEARCH_GROUP
+    name: $RESEARCH_GROUP
     action: prepare
-  resource_group: production/$RESEARCH_GROUP
+  resource_group: $RESEARCH_GROUP
 
 deploy:
   extends: 
@@ -38,9 +38,9 @@ deploy:
   dependencies:
     - build
   environment:
-    name: production/$RESEARCH_GROUP
+    name: $RESEARCH_GROUP
     action: start
-  resource_group: production/$RESEARCH_GROUP
+  resource_group: $RESEARCH_GROUP
 
 pages:
   stage: deploy
