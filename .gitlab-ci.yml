@@ -46,7 +46,7 @@ deploy:
 
 destroy:
   extends:
-    - .terraform:cleanup
+    - .terraform:destroy
   dependencies:
     - deploy
   environment:
