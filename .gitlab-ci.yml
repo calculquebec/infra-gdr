@@ -8,6 +8,10 @@ include:
       - RESEARCH_GROUP:
         # - epistemopratique
         - reso-t
+  cache:
+    key: "${RESEARCH_GROUP}"
+    paths:
+      - .terraform
 
 stages:
   - validate
@@ -30,10 +34,6 @@ build:
     name: $RESEARCH_GROUP
     action: prepare
   resource_group: $RESEARCH_GROUP
-  cache:
-    key: "${RESEARCH_GROUP}"
-    paths:
-      - .terraform
 
 deploy:
   extends:
@@ -45,10 +45,6 @@ deploy:
     name: $RESEARCH_GROUP
     action: start
   resource_group: $RESEARCH_GROUP
-  cache:
-    key: "${RESEARCH_GROUP}"
-    paths:
-      - .terraform
 
 destroy:
   extends:
@@ -60,10 +56,6 @@ destroy:
     name: $RESEARCH_GROUP
     action: stop  
   resource_group: $RESEARCH_GROUP
-  cache:
-    key: "${RESEARCH_GROUP}"
-    paths:
-      - .terraform
 
 pages:
   stage: deploy
