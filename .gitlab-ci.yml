@@ -1,14 +1,68 @@
-image: python:3.10
+include:
+  - template: Terraform/Base.latest.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.latest.gitlab-ci.yml
+  - template: Jobs/SAST-IaC.latest.gitlab-ci.yml   # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/SAST-IaC.latest.gitlab-ci.yml
 
-before_script:
-  - pip install -r docs/requirements.txt
+.infra-gdr:envs:
+  parallel:
+    matrix:
+      - RESEARCH_GROUP:
+        # - epistemopratique
+        - reso-t
+  cache:
+    key: $RESEARCH_GROUP
+    paths:
+      - .terraform
+  resource_group: $RESEARCH_GROUP
+
+stages:
+  - validate
+  - test
+  - build
+  - deploy
+  - cleanup
+
+fmt:
+  extends: .terraform:fmt
+
+validate:
+  extends: .terraform:validate
+
+build:
+  extends:
+    - .infra-gdr:envs 
+    - .terraform:build
+  environment:
+    name: $RESEARCH_GROUP
+    action: prepare
+
+deploy:
+  extends:
+    - .infra-gdr:envs 
+    - .terraform:deploy
+  dependencies:
+    - build
+  environment:
+    name: $RESEARCH_GROUP
+    action: start
+
+# destroy:
+#   extends:
+#     - .infra-gdr:envs
+#     - .terraform:destroy
+#   dependencies:
+#     - deploy
+#   environment:
+#     name: $RESEARCH_GROUP
+#     action: stop  
 
 pages:
-  stage: build
+  stage: deploy
+  image: python:3.10
+  before_script:
+    - pip install -r docs/requirements.txt
   script:
     - sphinx-build docs public
   artifacts:
     paths: ['public']
   only:
     - main
-

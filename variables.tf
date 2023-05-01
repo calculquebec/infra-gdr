@@ -1,17 +1,14 @@
-variable "cloud" {
+variable "INTERNAL_GATEWAY_IPV4" {
   type        = string
-  description = "The name of the OpenStack cloud to use from the `clouds.yaml` file.\nIf not provided, falls back to the `OS_CLOUD` environment variable.\nIf neither is set, attempts to retrieve the variables from the OpenStack `rc` file."
+  description = "The internal gateway for HTTP(S) traffic"
 }
 
-data "external" "keystone" {
-  program = ["python3", "${path.module}/external/keystone.py"]
-}
-
-variable "name" {
+variable "ENVIRONMENT_NAME" {
   type        = string
-  description = "The research group name.\nMust start with a letter or number, and can contain letters, numbers, hyphens, and underscores.\nRead more at https://www.rfc-editor.org/rfc/rfc3986"
+  description = "The name that identifies the cluster.\nMust start with a letter or number, and can contain letters, numbers, hyphens, and underscores.\nRead more at https://www.rfc-editor.org/rfc/rfc3986"
   validation {
-    condition     = can(regex("^([a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9])$", var.name))
-    error_message = "Research group name must start with a letter or number, and can contain letters, numbers, hyphens, and underscores."
+    condition     = can(regex("^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$", var.ENVIRONMENT_NAME))
+    error_message = "The cluster name must start with a letter or number, and can contain letters, numbers, hyphens, and underscores."
   }
 }
+

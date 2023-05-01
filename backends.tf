@@ -1,8 +1,10 @@
 terraform {
-  required_version = ">= 1.4.5"
+  backend "http" {}
   required_providers {
     openstack = {
       source = "terraform-provider-openstack/openstack"
     }
   }
 }
+
+provider "openstack" {}

@@ -4,15 +4,12 @@
 
 Our [📚 documentation][#documentation] provides detailed steps to set up and configure the software for your environment.
 
-## Installation
+## Usage
 
-For installation instructions, please refer to the [installation section][#installing] of the documentation. This section provides detailed steps to set up and configure the software for your environment. In case you run into any issues during installation, our [troubleshooting section][#troubleshooting] might come in handy.
-
-## Features
-
-- Easy data organization
-- Automatic backups
-- Highly available database cluster
+source openstack rc file
+terraform init
+terraform plan --out plan
+terraform apply plan
 
 # Contributing
 
