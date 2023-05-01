@@ -41,8 +41,6 @@ deploy:
     name: production/$RESEARCH_GROUP
     action: start
   resource_group: production/$RESEARCH_GROUP
-  only:
-    - "main"
 
 pages:
   stage: deploy
@@ -54,4 +52,4 @@ pages:
   artifacts:
     paths: ['public']
   only:
-    - "main"
+    - main
