@@ -1,3 +1,4 @@
-locals {
-  workspace = regex("^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$", terraform.workspace)
-}
+# locals {
+#   workspace = regex("^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$", terraform.workspace)
+# }
+

@@ -26,7 +26,7 @@ data "cloudinit_config" "primary_db" {
 }
 
 resource "openstack_compute_instance_v2" "primary_db" {
-  name                = "${local.workspace}-psql-1"
+  name                = "${var.ENVIRONMENT_NAME}-psql-1"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
@@ -68,7 +68,7 @@ data "cloudinit_config" "standby_db" {
       cat << REPMGR_CONFIG > /etc/repmgr.conf
       node_id=2
       node_name='node2'
-      conninfo='host=psql-2.local user=repmgr dbname=repmgr'
+      conninfo='host=`hostname`.local user=repmgr dbname=repmgr'
       data_directory='/var/lib/postgresql/14/main'
       REPMGR_CONFIG
 
@@ -86,7 +86,7 @@ data "cloudinit_config" "standby_db" {
 }
 
 resource "openstack_compute_instance_v2" "standby_db" {
-  name                = "${local.workspace}-psql-2"
+  name                = "${var.ENVIRONMENT_NAME}-psql-2"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = "opsocket"
