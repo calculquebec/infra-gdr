@@ -16,8 +16,8 @@ stages:
   - deploy
   - cleanup
 
-fmt:
-  extends: .terraform:fmt
+# fmt:
+#   extends: .terraform:fmt
 
 validate:
   extends: .terraform:validate
