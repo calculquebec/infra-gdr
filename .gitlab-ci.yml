@@ -15,6 +15,7 @@ stages:
   - validate
   - test
   - build
+  - documentation
   - deploy
   - destroy
 
@@ -104,7 +105,8 @@ build:
   variables:
     TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
   before_script:
-    - source $RUNNER_ENV_FILE $RUNNER_OS_APPLICATION_CREDENTIALS
+    - source $RUNNER_ENV_FILE 
+    - source $RUNNER_OS_APPLICATION_CREDENTIALS
     - chmod 400 $RUNNER_SSH_PRIVATE_KEY_FILE
 
 deploy:
@@ -137,7 +139,7 @@ destroy:
 ## documentation
 
 documentation:
-  stage: deploy
+  stage: documentation
   image: python:3.10
   before_script:
     - pip install -r docs/requirements.txt
