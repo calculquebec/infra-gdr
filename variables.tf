@@ -11,3 +11,11 @@ variable "ENVIRONMENT_NAME" {
     error_message = "The cluster name must start with a letter or number, and can contain letters, numbers, hyphens, and underscores."
   }
 }
+
+variable "key_pair" {
+  type = string
+}
+
+variable "SSH_PRIVATE_KEY_FILE" {
+  type = string
+}
