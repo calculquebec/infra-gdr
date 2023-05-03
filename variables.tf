@@ -11,4 +11,3 @@ variable "ENVIRONMENT_NAME" {
     error_message = "The cluster name must start with a letter or number, and can contain letters, numbers, hyphens, and underscores."
   }
 }
-

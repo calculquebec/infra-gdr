@@ -1,6 +1,6 @@
 data "cloudinit_config" "primary_db" {
-  gzip          = true
-  base64_encode = true
+  gzip          = false
+  base64_encode = false
 
   part {
     filename     = "setup.sh"
@@ -50,8 +50,8 @@ resource "openstack_compute_instance_v2" "primary_db" {
 }
 
 data "cloudinit_config" "standby_db" {
-  gzip          = true
-  base64_encode = true
+  gzip          = false
+  base64_encode = false
 
   part {
     filename     = "setup.sh"
