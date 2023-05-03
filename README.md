@@ -4,12 +4,15 @@
 
 Our [📚 documentation][#documentation] provides detailed steps to set up and configure the software for your environment.
 
-## Usage
+## Continuous Integration / Continuous Delivery 
 
-source openstack rc file
-terraform init
-terraform plan --out plan
-terraform apply plan
+The `.gitlab-ci.yml` file is used to manage terraform state files.
+
+When a **merge request** is created, the pipeline is triggered, which includes formatting and validating the code.
+
+Parallelized `build` jobs are then run to *plan* the infrastructure using terraform for any specified **TF_STATE_NAMES**.
+
+If planning succeeds, the `deploy` and `destroy` jobs can be manually executed. These jobs require access to the repository as a Developer or higher.   
 
 # Contributing
 

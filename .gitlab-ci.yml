@@ -1,61 +1,144 @@
-include:
-  - template: Terraform/Base.latest.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.latest.gitlab-ci.yml
-  - template: Jobs/SAST-IaC.latest.gitlab-ci.yml   # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/SAST-IaC.latest.gitlab-ci.yml
+# include:
+  # - template: Terraform/Base.latest.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Terraform/Base.latest.gitlab-ci.yml
+  # - template: Jobs/SAST-IaC.latest.gitlab-ci.yml   # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/SAST-IaC.latest.gitlab-ci.yml
+
+image:
+  name: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/stable:latest"
+
+variables:
+  TF_ROOT: ${CI_PROJECT_DIR}  # The relative path to the root directory of the Terraform project
+  TF_STATE_NAME: default      # The name of the state file used by the GitLab Managed Terraform state backend
+
+## templates
 
 .infra-gdr:envs:
   parallel:
     matrix:
-      - RESEARCH_GROUP:
-        # - epistemopratique
+      - TF_STATE_NAME:
         - reso-t
   cache:
-    key: $RESEARCH_GROUP
+    key: $TF_STATE_NAME
     paths:
-      - .terraform
-  resource_group: $RESEARCH_GROUP
+      - ${TF_ROOT}/.terraform
+      - ${TF_ROOT}/plan.cache
+  resource_group: $TF_STATE_NAME
+
+.infra-gdr:merge-request-always:
+  rules:
+    # ensures the job runs only in merge request pipelines.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+    # ensures the job never runs in branch pipelines.
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: never
+    # ensures the job never runs in merge request pipelines for merged or closed merge requests.
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
+
+.infra-gdr:merge-request-manual:
+  rules:
+    # ensures the job runs only in merge request pipelines.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+      when: manual
+    # ensures the job never runs in branch pipelines.
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: never
+    # ensures the job never runs in merge request pipelines for merged or closed merge requests.
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
+
+## stages
 
 stages:
   - validate
   - test
   - build
   - deploy
-  - cleanup
+  - destroy
+
+## common jobs
 
 fmt:
-  extends: .terraform:fmt
+  stage: validate
+  extends: .infra-gdr:merge-request-always
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform fmt
+  allow_failure: true
 
 validate:
-  extends: .terraform:validate
+  stage: validate
+  extends: .infra-gdr:merge-request-always
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform validate
+
+## parallel jobs
 
 build:
+  stage: build
   extends:
-    - .infra-gdr:envs 
-    - .terraform:build
-  environment:
-    name: $RESEARCH_GROUP
-    action: prepare
+    - .infra-gdr:envs
+    - .infra-gdr:merge-request-always 
+  before_script:
+    - source $RUNNER_ENV_FILE
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
+  artifacts:
+    # The next line, which disables public access to pipeline artifacts, may not be available everywhere.
+    # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
+    public: false
+    paths:
+      - ${TF_ROOT}/plan.cache
+    reports:
+      terraform: ${TF_ROOT}/plan.json
+  # rules:
+  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  #     when: always
 
 deploy:
+  stage: deploy
   extends:
     - .infra-gdr:envs 
-    - .terraform:deploy
-  dependencies:
-    - build
-  environment:
-    name: $RESEARCH_GROUP
-    action: start
+    - .infra-gdr:merge-request-manual
+  variables:
+    TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
+  before_script:
+    - source $RUNNER_ENV_FILE $RUNNER_OS_APPLICATION_CREDENTIALS
+    - chmod 400 "$RUNNER_SSH_PRIVATE_KEY_FILE"
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform apply
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+      when: manual
+  # https://docs.gitlab.com/ee/ci/jobs/job_control.html#run-a-manual-job
+  # > To run a manual job, you must have permission to merge to the assigned branch
+  # https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html
+  # > Do not have access to protected variables or protected runners.
 
-# destroy:
-#   extends:
-#     - .infra-gdr:envs
-#     - .terraform:destroy
-#   dependencies:
-#     - deploy
-#   environment:
-#     name: $RESEARCH_GROUP
-#     action: stop  
+destroy:
+  stage: destroy
+  extends:
+    - .infra-gdr:envs
+    - .infra-gdr:merge-request-manual
+  variables:
+    TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
+  before_script:
+    - source $RUNNER_ENV_FILE $RUNNER_OS_APPLICATION_CREDENTIALS
+    - chmod 600 $RUNNER_SSH_PRIVATE_KEY_FILE
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform destroy -auto-approve
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+      when: manual
 
-pages:
+## documentation
+
+documentation:
   stage: deploy
   image: python:3.10
   before_script:
