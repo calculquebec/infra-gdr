@@ -40,8 +40,7 @@ resource "openstack_compute_instance_v2" "apps" {
   }
 
   depends_on = [
-    module.phac[0].databases,
-    module.phac[1].databases
+    module.phac.databases
   ]
 
   # user_data = data.cloudinit_config.apps.rendered
@@ -72,16 +71,19 @@ resource "openstack_compute_instance_v2" "apps" {
 module "phac" {
   source    = "./modules/phac"
   providers = { openstack = openstack }
-  count     = 2
 
-  client_ip_v4          = openstack_compute_instance_v2.apps.access_ip_v4
-  db_name_prefix        = "${var.ENVIRONMENT_NAME}-phac-${count.index}"
-  key_pair              = var.key_pair
+  client_ip_v4   = openstack_compute_instance_v2.apps.access_ip_v4
+  db_name_prefix = "${var.ENVIRONMENT_NAME}-phac"
+  key_pair       = var.key_pair
 }
 
 variable "ansible_inventory_file" {
-  type = string
+  type    = string
   default = "ansible/inventory.ini"
+}
+
+output "databases" {
+  value = zipmap(module.phac.databases.*.name, module.phac.databases.*.access_ip_v4)
 }
 
 # resource "null_resource" "generate_ansible_hosts" {

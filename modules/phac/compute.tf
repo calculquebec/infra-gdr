@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "databases" {
   security_groups     = [openstack_networking_secgroup_v2.databases.name]
   force_delete        = true
   stop_before_destroy = true
-  count = 2
+  count = 3
 
   block_device {
     uuid                  = "db73980e-1f9c-441e-8268-c1881f99c8ef"
@@ -17,9 +17,13 @@ resource "openstack_compute_instance_v2" "databases" {
   }
 
   depends_on = [
-    openstack_compute_instance_v2.databases[0],
+    openstack_compute_instance_v2.databases[0], # repmgr primary database
     openstack_networking_secgroup_v2.databases
   ]
 
   # user_data = count.index == 1 ? data.cloudinit_config.primary-db.rendered : data.cloudinit_config.standby-db.rendered
+}
+
+output "databases" { 
+  value = openstack_compute_instance_v2.databases 
 }
