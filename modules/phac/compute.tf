@@ -20,4 +20,6 @@ resource "openstack_compute_instance_v2" "databases" {
     openstack_compute_instance_v2.databases[0],
     openstack_networking_secgroup_v2.databases
   ]
+
+  # user_data = count.index == 1 ? data.cloudinit_config.primary-db.rendered : data.cloudinit_config.standby-db.rendered
 }

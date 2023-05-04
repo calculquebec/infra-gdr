@@ -44,27 +44,31 @@ resource "openstack_compute_instance_v2" "apps" {
     module.phac[1].databases
   ]
 
-  user_data = data.cloudinit_config.apps.rendered
-
-  # connection {
-  #   type         = "ssh"
-  #   proxy_scheme = "https"
-  #   proxy_host   = "<PUBLIC_IP>"
-  #   proxy_port   = 8001
-  #   user         = "ubuntu"
-  #   host         = self.access_ip_v4
-  #   private_key  = file(var.SSH_PRIVATE_KEY_FILE)
-  #   timeout      = "1m"
-  # }
-
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "touch remote_exec_success"
-  #   ]
-  # }
+  # user_data = data.cloudinit_config.apps.rendered
 
 }
 
+# resource "null_resource" "provision_apps" {
+#   triggers = { on_apply = timestamp() }
+#   connection {
+#     type         = "ssh"
+#     proxy_host   = var.proxy_host
+#     proxy_port   = var.proxy_port
+#     user         = "ubuntu"
+#     host         = openstack_compute_instance_v2.apps.access_ip_v4
+#     private_key  = file(var.SSH_PRIVATE_KEY_FILE)
+#     timeout      = "1m"
+#   }
+#   provisioner "remote-exec" {
+#     on_failure = continue
+#     inline = [
+#       "echo hello from `hostname`"
+#     ]
+#   }
+# }
+
+
+# @TODO: single primary and many standbys for many apps instead of per-app pha clusters
 module "phac" {
   source    = "./modules/phac"
   providers = { openstack = openstack }
@@ -72,6 +76,21 @@ module "phac" {
 
   client_ip_v4          = openstack_compute_instance_v2.apps.access_ip_v4
   db_name_prefix        = "${var.ENVIRONMENT_NAME}-phac-${count.index}"
-  secgroup_name         = "${var.ENVIRONMENT_NAME}-phac-${count.index}"
   key_pair              = var.key_pair
 }
+
+variable "ansible_inventory_file" {
+  type = string
+  default = "ansible/inventory.ini"
+}
+
+# resource "null_resource" "generate_ansible_hosts" {
+#   provisioner "local-exec" {
+#     command = <<-GENERATE_ANSIBLE_HOSTS
+#       echo '${openstack_compute_instance_v2.apps.name} ansible_host=${openstack_compute_instance_v2.apps.access_ip_v4} ansible_port' >> ${var.ansible_inventory_file}
+#       cat << ANSIBLE_HOSTS > ansible/inventory.ini
+
+#       ANSIBLE_HOSTS
+#     GENERATE_ANSIBLE_HOSTS
+#   }
+# }

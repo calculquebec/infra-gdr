@@ -1,4 +1,4 @@
-variable "INTERNAL_GATEWAY_IPV4" {
+variable "gateway_ip_v4" {
   type        = string
   description = "The internal gateway for HTTP(S) traffic"
 }
@@ -13,6 +13,14 @@ variable "ENVIRONMENT_NAME" {
 }
 
 variable "key_pair" {
+  type = string
+}
+
+variable "proxy_host" {
+  type = string
+}
+
+variable "proxy_port" {
   type = string
 }
 

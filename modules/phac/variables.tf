@@ -5,10 +5,7 @@ variable "client_ip_v4" {
 
 variable "db_name_prefix" {
   type = string
-}
-
-variable "secgroup_name" {
-  type = string
+  description = "The name of the PostgreSQL Highly Available Cluster (PHAC)"
 }
 
 variable "key_pair" {
