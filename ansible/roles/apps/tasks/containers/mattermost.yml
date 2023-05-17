@@ -133,48 +133,8 @@
   shell: |
     lxc exec mattermost -- mmctl --local config patch /opt/mattermost/config/patch.json
     lxc exec mattermost -- systemctl restart mattermost
-    
 
-# - name: render `patch.json` on container
-#   when: system_status_check.rc != 0
-#   block:
-#     - name: set ownership of {{ mattermost.mount_point }}
-#       shell: "chown -R 1000106:1000113 {{ mattermost.mount_point }}"
-
-#     - name: add device to container for access to {{ mattermost.mount_point }}
-#       shell: lxc config device add mattermost datadir \
-#         disk source={{ mattermost.mount_point }} path={{ mattermost.mount_point }}
-#       failed_when: false
-
-#     - name: copy `patch.json` to target host
-#       template:
-#         src: containers/mattermost/patch.json
-#         dest: /root/patch.json
-#         mode: 640
-#       changed_when: false
-
-#     - name: push file to container at /opt/mattermost/config/patch.json
-#       shell: |
-#         lxc file push /root/patch.json
-#           mattermost/opt/mattermost/config/patch.json \
-#           --uid `lxc exec mattermost -- id mattermost --user`  \
-#           --gid `lxc exec mattermost -- id mattermost --group` \
-#           --mode 640
-#         rm /root/patch.json
-#       changed_when: false
-
-#     - name: merge json configuration with patch
-#       shell: |
-#         lxc exec mattermost -- sudo -u mattermost jq -s '.[0] * .[1]' /opt/mattermost/config/{config.defaults,patch}.json > /opt/mattermost/config/config.json
-#         lxc exec mattermost -- chmod 660 /opt/mattermost/config/config.json
-
-#     - name: start mattermost service
-#       shell: lxc exec mattermost -- systemctl enable --now mattermost
-#       register: start_service
-
-
-## 
-
+# @NOTE: Default permissions to prevent 
 # update roles set permissions = 'create_custom_group create_direct_channel create_group_channel delete_custom_group edit_custom_group get_public_link join_public_teams list_public_teams manage_custom_group_members restore_custom_group view_members' where name = 'system_user';
 
 # then reload mattermost
