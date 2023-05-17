@@ -1,0 +1,184 @@
+# https://docs.mattermost.com/install/install-ubuntu.html
+- name: ensure mattermost container is running
+  community.general.lxd_container:
+    name: mattermost
+    source:
+      type: image
+      mode: pull
+      server: "{{ lxc_remote_url }}"
+      protocol: lxd
+      alias: mattermost
+    profiles: ["default"]
+    state: started
+    wait_for_ipv4_addresses: true
+    timeout: 600
+  register: check_container
+
+- name: find container ip address
+  shell: lxc list mattermost -f compact | awk 'NR > 1 {print $3}'
+  changed_when: false
+  register: container_ip
+
+- name: nginx virtual host setup tasks
+  block:
+    - name: render nginx virtual host for mattermost
+      vars:
+        server_name: "{{ mattermost.server_name }}"
+        proxy_pass: "http://{{ container_ip.stdout }}:8065"
+      template:
+        src: nginx/vhost.chat.j2
+        dest: "/etc/nginx/sites-available/{{ mattermost.server_name }}"
+    
+    - name: enable vhost with symlink
+      file:
+        src: /etc/nginx/sites-available/{{ mattermost.server_name }}
+        dest: /etc/nginx/sites-enabled/{{ mattermost.server_name }}
+        state: link
+    
+    - name: reload nginx configuration
+      systemd:
+        name: nginx
+        state: reloaded
+      changed_when: false
+
+- name: postgresql setup tasks for mattermost
+  delegate_to: "{{ primary.name }}"
+  block:
+    - name: ensure packages are present
+      apt:
+        name:
+          - acl
+          - libpq-dev
+          - python3-psycopg2
+        state: present
+    - name: ensure database and user exists
+      become_user: postgres
+      block:
+        - name: ensure database user exists
+          environment:
+            PGOPTIONS: "-c password_encryption=scram-sha-256"
+          postgresql_user:
+            db: postgres
+            name: "{{ mattermost.dbuser }}"
+            password: "{{ mattermost.dbpass }}"
+            state: present
+            encrypted: yes
+        - name: ensure database owned by user exists
+          postgresql_db:
+            name: "{{ mattermost.dbname }}"
+            owner: "{{ mattermost.dbuser }}"
+            state: present
+
+##
+
+- name: check if device is mounted on container
+  shell: lxc config device list mattermost
+  register: container_device_check
+
+- name: ensure device is mounted on container
+  when: container_device_check.stdout | length == 0
+  block:
+    - name: set ownership of {{ mattermost.mount_point }}
+      shell: "chown -R 1000106:1000113 {{ mattermost.mount_point }}"
+
+    - name: add device to container for access to {{ mattermost.mount_point }}
+      shell: lxc config device add mattermost datadir \
+        disk source={{ mattermost.mount_point }} path={{ mattermost.mount_point }}
+      failed_when: false
+
+- name: render patch.json on container
+  block:
+    - name: copy `patch.json` to target host
+      template:
+        src: containers/mattermost/patch.json
+        dest: /root/patch.json
+        mode: 640
+      changed_when: false
+
+    - name: push file to container at /opt/mattermost/config/patch.json
+      shell: |
+        lxc file push /root/patch.json                         \
+          mattermost/opt/mattermost/config/patch.json          \
+          --uid `lxc exec mattermost -- id mattermost --user`  \
+          --gid `lxc exec mattermost -- id mattermost --group` \
+          --mode 640
+        rm /root/patch.json
+      changed_when: false
+
+##
+
+- name: check mattermost installation state --json
+  shell: lxc exec mattermost -- mmctl --local system status --json
+  failed_when: false
+  changed_when: false
+  register: system_status_check
+
+- name: generate initial configuration
+  when: system_status_check.rc != 0
+  vars:
+    mm_config_dir: /opt/mattermost/config
+  block:
+    - name: generate initial configuration
+      shell: |
+        lxc exec mattermost -- bash -c "jq -s '.[0] * .[1]' {{ mm_config_dir }}/{config.defaults,patch}.json > {{ mm_config_dir }}/config.json"
+        lxc exec mattermost -- chmod 600 {{ mm_config_dir }}/config.json
+        lxc exec mattermost -- chown mattermost:mattermost {{ mm_config_dir }}/config.json
+
+    - name: ensure mattermost service is enabled and started
+      shell: |
+        lxc exec mattermost -- systemctl enable --now mattermost
+
+- name: patch configuration
+  when: system_status_check.rc == 0
+  shell: |
+    lxc exec mattermost -- mmctl --local config patch /opt/mattermost/config/patch.json
+    lxc exec mattermost -- systemctl restart mattermost
+    
+
+# - name: render `patch.json` on container
+#   when: system_status_check.rc != 0
+#   block:
+#     - name: set ownership of {{ mattermost.mount_point }}
+#       shell: "chown -R 1000106:1000113 {{ mattermost.mount_point }}"
+
+#     - name: add device to container for access to {{ mattermost.mount_point }}
+#       shell: lxc config device add mattermost datadir \
+#         disk source={{ mattermost.mount_point }} path={{ mattermost.mount_point }}
+#       failed_when: false
+
+#     - name: copy `patch.json` to target host
+#       template:
+#         src: containers/mattermost/patch.json
+#         dest: /root/patch.json
+#         mode: 640
+#       changed_when: false
+
+#     - name: push file to container at /opt/mattermost/config/patch.json
+#       shell: |
+#         lxc file push /root/patch.json
+#           mattermost/opt/mattermost/config/patch.json \
+#           --uid `lxc exec mattermost -- id mattermost --user`  \
+#           --gid `lxc exec mattermost -- id mattermost --group` \
+#           --mode 640
+#         rm /root/patch.json
+#       changed_when: false
+
+#     - name: merge json configuration with patch
+#       shell: |
+#         lxc exec mattermost -- sudo -u mattermost jq -s '.[0] * .[1]' /opt/mattermost/config/{config.defaults,patch}.json > /opt/mattermost/config/config.json
+#         lxc exec mattermost -- chmod 660 /opt/mattermost/config/config.json
+
+#     - name: start mattermost service
+#       shell: lxc exec mattermost -- systemctl enable --now mattermost
+#       register: start_service
+
+
+## 
+
+# update roles set permissions = 'create_custom_group create_direct_channel create_group_channel delete_custom_group edit_custom_group get_public_link join_public_teams list_public_teams manage_custom_group_members restore_custom_group view_members' where name = 'system_user';
+
+# then reload mattermost
+
+
+# lxc exec mattermost -- rm /opt/mattermost/config/patch.json
+# lxc exec mattermost -- systemctl start mattermost

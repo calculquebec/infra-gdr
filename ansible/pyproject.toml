@@ -1,0 +1,2 @@
+[tool.ansible.collection_install]
+requirements = [ "cloud.terraform" ]

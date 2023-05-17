@@ -1,9 +1,9 @@
 resource "openstack_compute_instance_v2" "databases" {
-  name                = "${var.db_name_prefix}-db-${count.index}"
+  name                = "${var.cluster_name}-phac-db-${count.index}"
   flavor_name         = "p1-2gb"
   image_name          = "db73980e-1f9c-441e-8268-c1881f99c8ef"
   key_pair            = var.key_pair
-  security_groups     = [openstack_networking_secgroup_v2.databases.name]
+  security_groups     = [ var.cluster_secgroup.name ]
   force_delete        = true
   stop_before_destroy = true
   count = 3
@@ -16,12 +16,7 @@ resource "openstack_compute_instance_v2" "databases" {
     delete_on_termination = true
   }
 
-  depends_on = [
-    openstack_compute_instance_v2.databases[0], # repmgr primary database
-    openstack_networking_secgroup_v2.databases
-  ]
-
-  # user_data = count.index == 1 ? data.cloudinit_config.primary-db.rendered : data.cloudinit_config.standby-db.rendered
+  depends_on = [ var.cluster_secgroup ]
 }
 
 output "databases" { 

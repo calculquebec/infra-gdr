@@ -1,0 +1,45 @@
+{
+  "ServiceSettings": {
+    "SiteURL": "https://{{ mattermost.server_name }}",
+    "EnableEmailInvitations": true,
+    "EnableSVGs": true,
+    "EnableLatex": true,
+    "EnableInlineLatex": true,
+    "EnableLocalMode": true
+  },
+  "SqlSettings": {
+    "DriverName": "postgres",
+    "DataSource": "postgres://{{ mattermost.dbuser }}:{{ mattermost.dbpass }}@{{ mattermost.dbhost }}:5432/{{ mattermost.dbname }}?connect_timeout=10"
+  },
+  "EmailSettings": {
+    "EnableSignUpWithEmail": false,
+    "EnableSignInWithEmail": true,
+    "EnableSignInWithUsername": true
+  },
+  "GitLabSettings": {
+    "Enable": true,
+    "Secret": "{{ gitlab.app_secret }}",
+    "Id": "{{ gitlab.app_id }}",
+    "Scope": "read_user",
+    "AuthEndpoint": "https://{{ gitlab.host }}/oauth/authorize",
+    "TokenEndpoint": "https://{{ gitlab.host }}/oauth/token",
+    "UserAPIEndpoint": "https://{{ gitlab.host }}/api/v4/user",
+    "DiscoveryEndpoint": "",
+    "ButtonText": "",
+    "ButtonColor": ""
+  },
+  "FileSettings": {
+    "DriverName": "local",
+    "Directory": "{{ mattermost.mount_point }}"
+  },
+  "PluginSettings": {
+    "Enable": true,
+    "EnableUploads": false,
+    "AllowInsecureDownloadURL": false,
+    "EnableMarketplace": true,
+    "EnableRemoteMarketplace": true,
+    "AutomaticPrepackagedPlugins": true,
+    "RequirePluginSignature": false,
+    "MarketplaceURL": "https://api.integrations.mattermost.com"
+  }
+}

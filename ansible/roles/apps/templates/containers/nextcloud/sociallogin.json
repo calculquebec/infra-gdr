@@ -1,0 +1,20 @@
+{
+  "apps": {
+    "sociallogin": {
+        "enabled": "yes",
+        "update_profile_on_login": "1",
+        "disable_notify_admins": "1",
+        "hide_default_login": "1",
+        "custom_providers": {{ custom_providers }},
+        "disable_registration": "",
+        "create_disabled_users": "",
+        "allow_login_connect": "",
+        "prevent_create_email_exists": "1",
+        "no_prune_user_groups": "",
+        "auto_create_groups": "",
+        "restrict_users_wo_mapped_groups": "",
+        "restrict_users_wo_assigned_groups": "",
+        "button_text_wo_prefix": ""
+    }
+  }
+}

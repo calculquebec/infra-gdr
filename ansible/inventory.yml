@@ -1,0 +1,11 @@
+plugin: cloud.terraform.terraform_provider
+project_path: ..
+
+# ---
+#
+# https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory
+# plugin: terraform
+
+# all:
+#   vars:
+#     test: 0

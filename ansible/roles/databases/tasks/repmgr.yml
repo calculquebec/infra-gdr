@@ -1,0 +1,62 @@
+- name: render `/etc/repmgr.conf`
+  template:
+    src: repmgr/repmgr.conf
+    dest: "/etc/repmgr.conf"
+    owner: postgres
+    group: postgres
+
+- name: set REPMGRD_ENABLED to `yes`
+  lineinfile:
+    path: /etc/default/repmgrd
+    regexp: '^REPMGRD_ENABLED='
+    line: 'REPMGRD_ENABLED=yes'
+
+- name: check node has expected role
+  become: no
+  shell: repmgr node check --role
+  register: check_node_role
+  failed_when: false
+  changed_when: false
+
+- name: register primary node
+  shell: sudo -u postgres repmgr primary register
+  register: register_primary
+  changed_when: register_primary.rc == 0
+  failed_when: false
+  when:
+    - check_node_role.rc != 0
+    - database == primary
+
+- name: debug
+  debug:
+    msg: "{{ item }}"
+  loop:
+    - "{{ check_node_role }}"
+    - "{{ database in standbys }}"
+
+- name: standby registration tasks
+  when: 
+    - check_node_role.rc != 0
+    - database in standbys
+  block: 
+    - name: stop `postgresql` to clone primary
+      systemd:
+        name: postgresql
+        state: stopped
+      register: systemctl_stop_postgresql
+
+    - name: clone primary database
+      shell: sudo -u postgres repmgr -h {{ primary.access_ip_v4 }} -U {{ repmgr_dbuser }} -d {{ repmgr_dbname }} standby clone --force --fast-checkpoint
+      register: clone_primary
+      when: "systemctl_stop_postgresql.state == 'stopped'"
+
+    - name: start `postgresql`
+      systemd:
+        name: postgresql
+        state: started
+      register: systemctl_start_postgresql
+
+    - name: register standby
+      shell: sudo -u postgres repmgr standby register --force
+      when: clone_primary.rc == 0
+

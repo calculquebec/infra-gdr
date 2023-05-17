@@ -10,4 +10,5 @@ docs/_templates/_page.html
 plan
 tmp
 errored.tfstate
-ansible
+__pycache__
+# ansible

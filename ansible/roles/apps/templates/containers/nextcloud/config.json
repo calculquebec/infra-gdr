@@ -1,0 +1,39 @@
+{
+  "system": {
+    "default_phone_region": "CA",
+    "htaccess.RewriteBase": "/",
+    "memcache.local": "\\OC\\Memcache\\APCu",
+    "overwrite.cli.url": "https://{{ nextcloud.server_name }}",
+    "overwriteprotocol": "https",
+    "simpleSignUpLink.shown": false,
+    "trusted_domains": [
+      "{{ nextcloud.server_name }}"
+    ],
+    "trusted_proxies": [
+      "{{ ansible_host }}"
+    ]
+  },
+  "apps": {
+    "richdocuments": {
+      "enabled": "yes",
+      "public_wopi_url": "https://{{ nextcloud.server_name }}/collabora",
+      "wopi_allowlist": "{{ wopi_allowlist }}",
+      "wopi_url": "https://{{ nextcloud.server_name }}/collabora"
+    },
+    "sociallogin": {
+      "enabled": "yes",
+      "allow_login_connect": "",
+      "auto_create_groups": "",
+      "button_text_wo_prefix": "",
+      "create_disabled_users": "",
+      "disable_notify_admins": "1",
+      "disable_registration": "",
+      "hide_default_login": "1",
+      "no_prune_user_groups": "",
+      "prevent_create_email_exists": "1",
+      "restrict_users_wo_assigned_groups": "",
+      "restrict_users_wo_mapped_groups": "",
+      "update_profile_on_login": "1"
+    }
+  }
+}

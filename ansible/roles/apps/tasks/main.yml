@@ -1,0 +1,58 @@
+- name: install packages
+  apt:
+    name:
+      - nginx
+      - jq
+    state: present
+
+##
+
+- name: volumes setup tasks
+  loop: "{{ volumes }}"
+  loop_control:
+    loop_var: volume
+  include_tasks: tasks/volumes.yml
+
+# lxc/lxd setup tasks
+
+- name: check lxd daemon init state
+  shell: lxc list -f compact
+  register: lxc_check
+  ignore_errors: true
+  changed_when: lxc_check.rc != 0
+
+- name: init lxd daemon
+  command: lxd init --auto
+  when: lxc_check.rc != 0
+
+- name: nextcloud container setup tasks
+  vars:
+    gitlab:
+      host: gitlab.cirst.ca
+      app_id: "{{ lookup('env', 'NEXTCLOUD_GITLAB_APP_ID') }}"
+      app_secret: "{{ lookup('env', 'NEXTCLOUD_GITLAB_APP_SECRET') }}"
+    nextcloud:
+      adminpass: "admin"
+      adminuser: "admin"
+      dbhost: "{{ primary.access_ip_v4 }}"
+      dbname: "nextcloud"
+      dbpass: "{{ lookup('file', lookup('env', 'NEXTCLOUD_DBPASS_FILE')) }}"
+      dbuser: "nextcloud_user"
+      mount_point: "/media/nextcloud"
+      server_name: "{{ cluster_name }}.cloud.cirst.ca"
+  include_tasks: tasks/containers/nextcloud.yml
+
+- name: mattermost container setup tasks
+  vars:
+    gitlab:
+      host: gitlab.cirst.ca
+      app_id: "{{ lookup('env', 'MATTERMOST_GITLAB_APP_ID') }}"
+      app_secret: "{{ lookup('env', 'MATTERMOST_GITLAB_APP_SECRET') }}"
+    mattermost:
+      dbhost: "{{ primary.access_ip_v4 }}"
+      dbname: "mattermost"
+      dbpass: "{{ lookup('file', lookup('env', 'MATTERMOST_DBPASS_FILE')) }}"
+      dbuser: "mattermost_user"
+      mount_point: "/media/mattermost"
+      server_name: "{{ cluster_name }}.chat.cirst.ca"
+  include_tasks: tasks/containers/mattermost.yml
