@@ -14,7 +14,7 @@ variables:
 stages:
   - validate
   - test
-  - build
+  - plan
   - documentation
   - deploy
   - destroy
@@ -63,10 +63,10 @@ validate:
     - cd "${TF_ROOT}"
     - gitlab-terraform validate
 
-## build jobs
+## plan jobs
 
-build:
-  stage: build
+plan:
+  stage: plan
   extends:
     - .infra-gdr:parallel
   before_script:
