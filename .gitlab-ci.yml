@@ -88,6 +88,7 @@ build:
     # ensures the job runs in merge request pipelines.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+      allow_failure: true
     # ensures the job never runs in merge request pipelines for merged or closed merge requests
     - if: $CI_OPEN_MERGE_REQUESTS
       when: never
