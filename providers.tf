@@ -10,7 +10,7 @@ terraform {
     }
     gitlab = {
       version = "~> 15.11.0"
-      source = "gitlabhq/gitlab"
+      source  = "gitlabhq/gitlab"
     }
   }
 }
@@ -18,7 +18,7 @@ terraform {
 provider "openstack" {}
 
 provider "gitlab" {
-  token = var.gitlab_token
+  token    = var.gitlab_token
   base_url = "https://${var.gitlab_host}/api/v4"
 }
 
@@ -35,9 +35,9 @@ data "gitlab_user" "main" {
 }
 
 resource "gitlab_group_membership" "main" {
- group_id     = gitlab_group.main.id
- user_id      = data.gitlab_user.main.user_id
- access_level = "owner"
+  group_id     = gitlab_group.main.id
+  user_id      = data.gitlab_user.main.user_id
+  access_level = "owner"
 }
 
 output "gitlab_group_applications" {

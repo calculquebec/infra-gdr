@@ -8,13 +8,13 @@ variable "cluster_name" {
 }
 
 variable "gateway_instance_id" {
-  type        = string
-  default     = "c4014c5b-04ed-41f1-ae0c-7364c4e1e26e"
-  sensitive   = true
+  type      = string
+  default   = "c4014c5b-04ed-41f1-ae0c-7364c4e1e26e"
+  sensitive = true
 }
 
 variable "gitlab_token" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -23,8 +23,8 @@ variable "gitlab_host" {
 }
 
 variable "gitlab_group_parent_id" {
-  type = number
-  default = null
+  type      = number
+  default   = null
   sensitive = true
 }
 
