@@ -106,7 +106,7 @@ apply:
   stage: apply
   environment:
     name: $TF_STATE_NAME
-  artifacts: false
+  dependencies: []
   extends:
     - .infra-gdr:parallel
   script:
