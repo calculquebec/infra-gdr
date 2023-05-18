@@ -72,6 +72,7 @@ plan:
   before_script:
     - source $RUNNER_COMMON_ENV
     - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
+    - source $RUNNER_OS_APPLICATION_CREDENTIALS
   script:
     - cd "${TF_ROOT}"
     - gitlab-terraform plan
