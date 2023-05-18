@@ -70,6 +70,8 @@ plan:
   extends:
     - .infra-gdr:parallel
   before_script:
+    - echo $RUNNER_TEST
+    - cat $RUNNER_TEST
     - source $RUNNER_COMMON_ENV
     - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
   script:
@@ -79,15 +81,15 @@ plan:
   environment:
     name: $TF_STATE_NAME
     action: prepare
-  # artifacts:
-  #   # The next line, which disables public access to pipeline artifacts, may not be available everywhere
-  #   # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
-  #   public: false
-  #   expire_in: 1 week
-  #   paths:
-  #     - ${TF_ROOT}/plan.cache
-  #   reports:
-  #     terraform: ${TF_ROOT}/plan.json
+  artifacts:
+    # The next line, which disables public access to pipeline artifacts, may not be available everywhere
+    # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
+    public: false
+    expire_in: 1 week
+    paths:
+      - ${TF_ROOT}/plan.cache
+    reports:
+      terraform: ${TF_ROOT}/plan.json
   rules:
     # ensures the job runs in merge request pipelines.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
