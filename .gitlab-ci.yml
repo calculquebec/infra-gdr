@@ -70,8 +70,6 @@ plan:
   extends:
     - .infra-gdr:parallel
   before_script:
-    - echo $RUNNER_TEST
-    - cat $RUNNER_TEST
     - source $RUNNER_COMMON_ENV
     - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
   script:
