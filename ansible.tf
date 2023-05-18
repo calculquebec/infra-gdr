@@ -33,7 +33,7 @@ resource "ansible_host" "apps" {
   variables = {
     ansible_user                 = "ubuntu",
     ansible_host                 = openstack_compute_instance_v2.apps.access_ip_v4,
-    ansible_ssh_private_key_file = var.ssh_identity_file,
+    # ansible_ssh_private_key_file = "{{ ssh_identity_file }}",
     ansible_ssh_common_args      = "-J {{ ansible_user }}@${data.openstack_networking_floatingip_v2.gateway.address}:${var.ssh_proxy_port} -o StrictHostKeyChecking=no"
   }
 }
@@ -47,7 +47,7 @@ resource "ansible_host" "databases" {
   variables = {
     ansible_user                 = "ubuntu",
     ansible_host                 = module.phac.databases[count.index].access_ip_v4,
-    ansible_ssh_private_key_file = var.ssh_identity_file,
+    # ansible_ssh_private_key_file = "{{ ssh_identity_file }}",
     ansible_ssh_common_args      = "-J {{ ansible_user }}@${data.openstack_networking_floatingip_v2.gateway.address}:${var.ssh_proxy_port} -o StrictHostKeyChecking=no"
     repmgr_node_id               = "${count.index + 1}"
     repmgr_node_name             = "node{{ repmgr_node_id }}"

@@ -42,10 +42,10 @@ variable "ssh_proxy_port" {
   sensitive = true
 }
 
-variable "ssh_identity_file" {
-  type      = string
-  sensitive = true
-}
+# variable "ssh_identity_file" {
+#   type      = string
+#   sensitive = true
+# }
 
 
 variable "apps" {

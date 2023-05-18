@@ -109,11 +109,11 @@ plan:
   # https://docs.gitlab.com/ee/ci/jobs/job_control.html#run-a-manual-job
   # > To run a manual job, you must have permission to merge to the assigned branch
   variables:
-    TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
+    TF_VAR_ssh_identity_file: $SSH_IDENTITY_FILE
   before_script:
     - source $RUNNER_COMMON_ENV 
     - source $RUNNER_OS_APPLICATION_CREDENTIALS
-    - chmod 400 $RUNNER_SSH_PRIVATE_KEY_FILE
+    - chmod 400 $SSH_IDENTITY_FILE
 
 deploy:
   stage: deploy
