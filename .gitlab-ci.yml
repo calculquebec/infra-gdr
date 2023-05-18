@@ -85,8 +85,8 @@ plan:
     # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
     public: false
     expire_in: 1 week
-    paths:
-      - ${TF_ROOT}/plan.cache
+    # paths:
+    #   - ${TF_ROOT}/plan.cache
     reports:
       terraform: ${TF_ROOT}/plan.json
   rules:
