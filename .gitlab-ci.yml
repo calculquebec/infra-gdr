@@ -65,21 +65,35 @@ validate:
 
 ## plan jobs
 
+prepare_env:
+  extends:
+    - .infra-gdr:parallel
+  stage: plan
+  environment:
+    name: $TF_STATE_NAME
+    action: prepare
+  rules:
+    # ensures the job runs in merge request pipelines.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: always
+    # ensures the job never runs in merge request pipelines for merged or closed merge requests
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
+
 plan:
   stage: plan
   extends:
     - .infra-gdr:parallel
-  before_script: |
-    export TF_VAR_ssh_proxy_port="$(($CI_NODE_INDEX + 2200))"
-    echo $TF_VAR_ssh_proxy_port
-    source $RUNNER_COMMON_ENV
-  script: |
-    cd "${TF_ROOT}"
-    gitlab-terraform plan
-    gitlab-terraform plan-json
+  before_script:
+    - source $RUNNER_COMMON_ENV
+    - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
+    - echo $TF_VAR_ssh_proxy_port
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
   environment:
     name: $TF_STATE_NAME
-    action: prepare
   artifacts:
     # The next line, which disables public access to pipeline artifacts, may not be available everywhere
     # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
