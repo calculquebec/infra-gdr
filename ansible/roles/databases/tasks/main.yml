@@ -1,0 +1,92 @@
+- name: install packages
+  apt:
+    name:
+      - postgresql
+      - repmgr
+    state: present
+  register: install_packages
+
+- name: ensure `postgresql` service is started
+  systemd:
+    name: postgresql
+    state: started
+
+## directories
+
+- name: find `postgresql.conf`
+  find:
+    paths: /etc/postgresql
+    patterns: postgresql.conf
+    recurse: yes
+  register: pg_conf_dir
+
+- name: set `pg_config_dir` variable
+  set_fact:
+    pg_config_dir: "{{ pg_conf_dir.files | map(attribute='path') | map('dirname') | unique | first }}"
+  when: "pg_conf_dir.files|length > 0"
+
+- name: find postgresql data directory
+  shell: sudo -u postgres psql -tc 'show data_directory;'
+  register: pg_data_dir_check
+  changed_when: false
+
+- name: set `pg_data_dir` variable
+  set_fact:
+    pg_data_dir: "{{ pg_data_dir_check.stdout | trim }}"
+  when: pg_data_dir_check.rc == 0
+
+## override postgresql.conf
+
+- name: render `{{ pg_config_dir }}/conf.d/replication.conf`
+  template:
+    src: psql/replication.conf
+    dest: "{{ pg_config_dir }}/conf.d/replication.conf"
+  register: pg_replica_check
+
+## create user and database
+
+- name: create `{{ repmgr_dbuser }}` database user
+  shell: sudo -u postgres createuser -s {{ repmgr_dbuser }}
+  changed_when: false
+  failed_when: false
+
+- name: create `{{ repmgr_dbname }}` database
+  shell: sudo -u postgres createdb {{ repmgr_dbname }} -O {{ repmgr_dbuser }}
+  changed_when: false
+  failed_when: false
+
+## configure host-based authentication
+
+# - name: Remove lines after "# BEGIN ANSIBLE MANAGED BLOCK"
+#   ansible.builtin.replace:
+#     path: "{{ pg_config_dir }}/pg_hba.conf"
+#     regexp: "^# BEGIN ANSIBLE MANAGED BLOCK.*\n(.|\n)*$"
+#     replace: ""
+
+- name: configure `{{ pg_config_dir }}/pg_hba.conf`
+  vars:
+    pg_hba_rules: |
+      {% for instance in databases %}
+      # allow from `{{ instance.name }}`
+      host replication,{{ repmgr_dbname }} {{ repmgr_dbuser }} {{ instance.access_ip_v4 }}/32 trust
+      {% endfor %}
+  ansible.builtin.blockinfile:
+    path: "{{ pg_config_dir }}/pg_hba.conf"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: |
+      # Allow connections to replication and {{ repmgr_dbname }} databases
+      # from other databases on the same local network
+      {{ pg_hba_rules }}
+    state: present
+  register: pg_hba_result
+
+- name: restart postgresql with new configuration
+  systemd:
+    name: postgresql
+    state: restarted
+  when: pg_hba_result is changed or pg_replica_check is changed
+
+## repmgr setup
+
+- name: repmgr setup tasks
+  include_tasks: tasks/repmgr.yml

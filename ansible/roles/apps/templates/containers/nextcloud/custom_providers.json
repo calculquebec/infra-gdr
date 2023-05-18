@@ -1,0 +1,19 @@
+{
+  "custom_oidc": [
+    {
+      "name": "gitlab",
+      "title": "Gitlab SSO",
+      "authorizeUrl": "https://{{ gitlab.host }}/oauth/authorize",
+      "tokenUrl": "https://{{ gitlab.host }}/oauth/token",
+      "displayNameClaim": "",
+      "userInfoUrl": "https://{{ gitlab.host }}/oauth/userinfo",
+      "logoutUrl": "",
+      "clientId": "{{ gitlab.app_id }}",
+      "clientSecret": "{{ gitlab.app_secret }}",
+      "scope": "openid",
+      "groupsClaim": "",
+      "style": "gitlab",
+      "defaultGroup": ""
+    }
+  ]
+}

@@ -14,9 +14,9 @@ variables:
 stages:
   - validate
   - test
-  - build
+  - plan
   - documentation
-  - deploy
+  - apply
   - destroy
 
 ## common templates
@@ -26,12 +26,17 @@ stages:
     matrix:
       - TF_STATE_NAME:
         - reso-t
+        - pspn
   resource_group: $TF_STATE_NAME
   cache:
     key: $TF_STATE_NAME
     paths:
       - ${TF_ROOT}/.terraform
       - ${TF_ROOT}/plan.cache
+  before_script:
+    - source $RUNNER_COMMON_ENV
+    - source $RUNNER_OS_APPLICATION_CREDENTIALS
+    - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
 
 .infra-gdr:merge-request-pipeline-rules:
   rules:
@@ -62,18 +67,19 @@ validate:
     - cd "${TF_ROOT}"
     - gitlab-terraform validate
 
-## build jobs
+## plan jobs
 
-build:
-  stage: build
+plan:
+  stage: plan
   extends:
     - .infra-gdr:parallel
-  before_script:
-    - source $RUNNER_ENV_FILE
   script:
     - cd "${TF_ROOT}"
     - gitlab-terraform plan
     - gitlab-terraform plan-json
+  environment:
+    name: $TF_STATE_NAME
+    action: prepare
   artifacts:
     # The next line, which disables public access to pipeline artifacts, may not be available everywhere
     # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
@@ -94,39 +100,35 @@ build:
     - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED
       when: always
 
-## deploy jobs
+## apply jobs
 
-## template for protected branch pipelines
-.infra-gdr:protected:
-  # https://docs.gitlab.com/ee/ci/pipelines/merge_request_pipelines.html
-  # > Merge request pipelines do not have access to protected variables or protected runners
-  # https://docs.gitlab.com/ee/ci/jobs/job_control.html#run-a-manual-job
-  # > To run a manual job, you must have permission to merge to the assigned branch
-  variables:
-    TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
-  before_script:
-    - source $RUNNER_ENV_FILE 
-    - source $RUNNER_OS_APPLICATION_CREDENTIALS
-    - chmod 400 $RUNNER_SSH_PRIVATE_KEY_FILE
-
-deploy:
-  stage: deploy
+apply:
+  stage: apply
+  environment:
+    name: $TF_STATE_NAME
+  dependencies: []
   extends:
     - .infra-gdr:parallel
-    - .infra-gdr:protected
   script:
     - cd "${TF_ROOT}"
     - gitlab-terraform apply
   rules:
+    # ensures the job can run manually in merge request pipelines.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+    # ensures the job never runs in merge request pipelines for merged or closed merge requests
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
     # ensures the job runs in branch pipelines for the default protected branch
     - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED
-      when: manual
+      when: always
 
 destroy:
   stage: destroy
+  environment:
+    name: $TF_STATE_NAME
   extends:
     - .infra-gdr:parallel
-    - .infra-gdr:protected
   script:
     - cd "${TF_ROOT}"
     - gitlab-terraform destroy -auto-approve

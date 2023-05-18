@@ -1,0 +1,41 @@
+map $http_x_forwarded_host $the_host {
+    default $http_x_forwarded_host;
+    "" $http_host;
+}
+
+map $http_upgrade $proxy_connection {
+  default upgrade;
+  "" close;
+}
+
+server {
+    server_name {{ server_name }};
+
+    client_max_body_size 50M;
+    client_body_buffer_size 50M;
+    add_header Strict-Transport-Security "max-age=15552000";
+    server_tokens off;
+    tcp_nodelay on;
+
+    # The redirects for CalDAV or CardDAV does not work if Nextcloud is running behind a reverse proxy.
+    # The recommended solution is that your reverse proxy does the redirects.
+    # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/reverse_proxy_configuration.html#service-discovery
+    rewrite ^/\.well-known/carddav https://$server_name/remote.php/dav/ redirect;
+    rewrite ^/\.well-known/caldav https://$server_name/remote.php/dav/ redirect;
+
+    location /collabora/ {
+      proxy_set_header           Host $http_host;
+      client_max_body_size       0;
+      proxy_pass                 {{ collabora_proxy_pass }};
+      # websocket support
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+    }
+
+    location / {
+      include /etc/nginx/proxy_params;
+      proxy_set_header X-Forwarded-Host $server_name;
+      proxy_pass {{ proxy_pass }};
+    }
+}

@@ -1,0 +1,59 @@
+proxy_cache_path /var/cache/nginx levels=1:2 keys_zone={{ cluster_name }}_mattermost_cache:10m max_size=3g inactive=120m use_temp_path=off;
+
+## assigns the value of the X-Forwarded-Proto header to the $forwarded_proto
+## variable if it is set. If the header is not set or empty, it assigns the
+## value of the $scheme variable.
+map $http_x_forwarded_proto $forwarded_proto {
+    ## This mapping is required for the upstream to know the protocol that the
+    ## client used to connect to the  public-facing proxy. This is useless when
+    ## using `mattermost-omnibus` because TLS termination occurs on upstream. Here,
+    ## we used a technique called TLS-offloading and therefore upstream should be
+    ## informed when initial traffic was using the "https" protocol. If absent, it
+    ## breaks login / signup using the gitlab oauth2 group application.
+     default $http_x_forwarded_proto;
+     "" $scheme;
+}
+
+server {
+  server_name {{ server_name }};
+
+  client_max_body_size 50M;
+  
+  location ~ /api/v[0-9]+/(users/)?websocket$ {
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $forwarded_proto;
+      proxy_set_header X-Frame-Options SAMEORIGIN;
+      proxy_buffers 256 16k;
+      proxy_buffer_size 16k;
+      client_body_timeout 60;
+      send_timeout 300;
+      lingering_timeout 5;
+      proxy_connect_timeout 90;
+      proxy_send_timeout 300;
+      proxy_read_timeout 90s;
+      proxy_pass {{ proxy_pass }};
+  }
+
+  location / {
+      proxy_set_header Connection "";
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $forwarded_proto;
+      proxy_set_header X-Frame-Options SAMEORIGIN;
+      proxy_buffers 256 16k;
+      proxy_buffer_size 16k;
+      proxy_read_timeout 600s;
+      proxy_cache {{ cluster_name }}_mattermost_cache;
+      proxy_cache_revalidate on;
+      proxy_cache_min_uses 2;
+      proxy_cache_use_stale timeout;
+      proxy_cache_lock on;
+      proxy_http_version 1.1;
+      proxy_pass {{ proxy_pass }};
+  }
+}

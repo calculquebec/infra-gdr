@@ -1,0 +1,70 @@
+- name: COMMON
+  hosts: all
+  become: true
+  tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: upgrade packages
+      apt:
+        upgrade: yes
+        autoremove: yes
+
+    - name: install packages
+      apt:
+        name:
+          - unattended-upgrades
+        state: present
+
+- name: DATABASES
+  hosts: databases
+  become: true
+  gather_facts: no
+  vars:
+    repmgr_dbname: "repmgr"
+    repmgr_dbuser: "repmgr"
+    standbys: "{{ databases[1:] }}"
+    database: "{{ databases | selectattr('access_ip_v4', 'eq', ansible_host) | first }}"
+  roles:
+    - databases
+
+- name: APPS
+  hosts: apps
+  become: true
+  gather_facts: no
+  vars:
+    lxc_remote_url: https://images.opsocket.com
+  roles:
+    - apps
+
+# - name: LAST
+#   hosts: all
+#   become: true
+#   gather_facts: no
+#   vars:
+#     wait_for_reboot_timeout: 300
+#   tasks:
+#     - name: reboot check
+#       stat:
+#         path: /var/run/reboot-required
+#       register: reboot_check
+
+#     - name: reboot
+#       reboot:
+#         msg: "rebooting now for package upgrades completion"
+#         connect_timeout: 30
+#         reboot_timeout: 600
+#         pre_reboot_delay: 0
+#         post_reboot_delay: 30
+#       register: reboot_result
+#       when: reboot_check.stat.exists
+
+#     - name: await system
+#       wait_for_connection:
+#         connect_timeout: "{{ wait_for_reboot_timeout }}"
+#         sleep: 5
+#         delay: 5
+#         timeout: "{{ wait_for_reboot_timeout }}"
+#       when: reboot_result.rebooted is defined and reboot_result.rebooted == false

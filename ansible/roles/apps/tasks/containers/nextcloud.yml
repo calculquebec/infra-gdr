@@ -1,0 +1,190 @@
+- name: ensure nextcloud container is running
+  community.general.lxd_container:
+    name: nextcloud
+    source:
+      type: image
+      mode: pull
+      server: "{{ lxc_remote_url }}"
+      protocol: lxd
+      alias: nextcloud
+    profiles: ["default"]
+    state: started
+    wait_for_ipv4_addresses: true
+    timeout: 600
+  register: check_nextcloud_container
+
+- name: find container ip address
+  shell: lxc list nextcloud -f compact | awk 'NR > 1 {print $3}'
+  changed_when: false
+  register: container_ip
+
+- name: nginx virtual host setup tasks
+  block:
+    - name: render nginx virtual host for nextcloud
+      vars:
+        server_name: "{{ nextcloud.server_name }}"
+        collabora_proxy_pass: "http://{{ container_ip.stdout }}:9980"
+        proxy_pass: "http://{{ container_ip.stdout }}"
+      template:
+        src: nginx/vhost.cloud.j2
+        dest: "/etc/nginx/sites-available/{{ nextcloud.server_name }}"
+    
+    - name: enable vhost with symlink
+      file:
+        src: /etc/nginx/sites-available/{{ nextcloud.server_name }}
+        dest: /etc/nginx/sites-enabled/{{ nextcloud.server_name }}
+        state: link
+    
+    - name: reload nginx configuration
+      systemd:
+        name: nginx
+        state: reloaded
+      changed_when: false
+
+- name: ensure database and user exists for nextcloud
+  delegate_to: "{{ primary.name }}"
+  block:
+    - name: ensure packages are present
+      apt:
+        name:
+          - acl
+          - libpq-dev
+          - python3-psycopg2
+        state: present
+
+    - name: ensure database user exists
+      become_user: postgres
+      environment:
+        PGOPTIONS: "-c password_encryption=scram-sha-256"
+      postgresql_user:
+        db: postgres
+        name: "{{ nextcloud.dbuser }}"
+        password: "{{ nextcloud.dbpass }}"
+        state: present
+        encrypted: yes
+
+    - name: ensure database owned by user exists
+      become_user: postgres
+      postgresql_db:
+        name: "{{ nextcloud.dbname }}"
+        owner: "{{ nextcloud.dbuser }}"
+        state: present
+
+- name: check nextcloud installation state
+  shell: lxc exec nextcloud -- nextcloud.occ config:system:get installed
+  failed_when: false
+  changed_when: false
+  register: install_check
+
+- name: render `autoconfig.php` on container
+  # @NOTE: this allows to auto-install nextcloud without leaking any secret in the
+  # command-line such as when using `nextcloud.occ maintenance:install`
+  when: install_check.rc != 0 or install_check.stdout != 'true'
+  block:
+    # @NOTE: 1000033 is the user `www-data` in the container
+    - name: set ownership of /media/nextcloud
+      shell: "chown -R 1000033:1000033 /media/nextcloud"
+
+    - name: add device to container for access to /media/nextcloud
+      shell: lxc config device add nextcloud datadir \
+        disk source=/media/nextcloud path=/media/nextcloud
+      failed_when: false
+
+    - name: copy `autoconfig.php` to target host
+      template:
+        src: containers/nextcloud/autoconfig.php
+        dest: /root/autoconfig.php
+        mode: 640
+      changed_when: false
+
+    - name: push file to container at /var/www/nextcloud/config/autoconfig.php
+      shell: |
+        lxc exec nextcloud -- sudo -u www-data touch /var/www/nextcloud/config/CAN_INSTALL
+        lxc file push /root/autoconfig.php                  \
+          nextcloud/var/www/nextcloud/config/autoconfig.php \
+          --uid `lxc exec nextcloud -- id www-data --user`  \
+          --gid `lxc exec nextcloud -- id www-data --group` \
+          --mode 640
+        rm /root/autoconfig.php
+      changed_when: false
+
+    # @TODO: autoconfigure from localhost to avoid an external user being
+    # granted admin access on first connection
+    - name: install nextcloud using autoconfig.php
+      shell: curl https://{{ nextcloud.server_name }}
+      register: install_nextcloud
+
+    - name: enable pre-installed apps
+      shell: |
+        lxc exec nextcloud -- nextcloud.occ app:enable admin_audit bruteforcesettings deck files_external forms groupfolders richdocuments suspicious_login tasks
+        lxc exec nextcloud -- nextcloud.occ app:install sociallogin
+      failed_when: false
+
+# configure nextcloud container
+
+- name: enforce configuration
+  block:
+    - name: get network gateway ip for container
+      shell: "ip route list dev lxdbr0 | awk '{print $NF}'"
+      register: container_gateway_ip
+
+    - name: generate config.json
+      vars:
+        wopi_allowlist: "{{ container_gateway_ip.stdout }}"
+      template:
+        src: containers/nextcloud/config.json
+        dest: /root/config.json
+        mode: 640
+
+    - name: push file to container and remove it from host
+      shell: |
+          lxc file push /root/config.json nextcloud/var/www/nextcloud/config/config.json --mode 640
+          rm -f /root/config.json
+
+    - name: enforce base configuration
+      shell: |
+        lxc exec nextcloud -- nextcloud.occ config:import /var/www/nextcloud/config/config.json
+        rm -f /var/www/nextcloud/config/config.json
+
+    - name: configure collabora websocket daemon for nextcloud office
+      shell: |
+        lxc exec nextcloud -- sed -i 's/\(<termination.*>\)false\(<\/termination>\)/\1true\2/' /etc/coolwsd/coolwsd.xml;
+        lxc exec nextcloud -- systemctl restart coolwsd;
+
+    # @NOTE: While it would be very handy to automatically create gitlab group
+    # applications, there is very low support for this at the moment. We can
+    # still pre-configure some `sociallogin` options but we are unable to
+    # auto-generate a dedicated gitlab group application for a given cluster,
+    # which prevents us from auto-configuring the custom openid provider
+    # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/55152
+
+    - name: ensure sociallogin is installed and configured
+      block:
+        - name: generate sociallogin custom openid provider
+          template:
+            src: containers/nextcloud/custom_providers.json
+            dest: custom_providers.json
+            mode: 660
+
+        - name: encode custom openid provider as json string
+          shell: jq -c 'tojson' custom_providers.json
+          register: custom_providers_json_string
+
+        - name: generate sociallogin with custom openid provider
+          vars:
+            custom_providers: "{{ custom_providers_json_string.stdout }}"
+          template:
+            src: containers/nextcloud/sociallogin.json
+            dest: sociallogin.json
+            mode: 660
+
+        - name: generate pre-configuration (without custom openid provider)
+          vars:
+            custom_providers: ""
+          template:
+            src: containers/nextcloud/sociallogin.json
+            dest: sociallogin.json
+            mode: 660
+
+        # - name: 
+          # shell: lxc exec nextcloud -- nextcloud.occ config:import sociallogin.json

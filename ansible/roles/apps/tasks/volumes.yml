@@ -1,0 +1,42 @@
+- name: ensure filesystem is mounted for {{ volume.device }}
+  command: mountpoint /media/{{ volume.name }} -q
+  register: mount_check
+  changed_when: false
+
+- name: mount filesystem filesystem
+  when: mount_check.rc != 0
+  block:
+    - name: "ensure primary partition is present"
+      parted:
+        device: "{{ volume.device }}"
+        number: 1
+        state: present
+    
+    - name: "ensure ext4 filesystem is present on partition"
+      filesystem:
+        dev: "{{ volume.device }}1"
+        fstype: ext4
+        state: present
+     
+    - name: retrieve primary partition uuid
+      shell: "blkid -s UUID -o value {{ volume.device }}1"
+      register: get_part_uuid
+      changed_when: false
+    
+    - name: ensure mount point directory exists
+      file:
+        path: "/media/{{ volume.name }}"
+        state: directory
+        mode: "0755"
+    
+    - name: "ensure filesystem is mounted at /media/{{ volume.name }}"
+      mount:
+        src: "UUID='{{ get_part_uuid.stdout }}'"
+        path: "/media/{{ volume.name }}"
+        fstype: ext4
+        state: mounted
+        opts: defaults,nofail
+        passno: 2
+      register: mount_fs
+      when: get_part_uuid.rc == 0
+

@@ -12,7 +12,24 @@ When a **merge request** is created, the pipeline is triggered, which includes f
 
 Parallelized `build` jobs are then run to *plan* the infrastructure using terraform for any specified **TF_STATE_NAMES**.
 
-If planning succeeds, the `deploy` and `destroy` jobs can be manually executed. These jobs require access to the repository as a Developer or higher.   
+If planning succeeds, the `deploy` and `destroy` jobs can be manually executed. These jobs require access to the repository as a Developer or higher.
+
+# Quickstart
+
+Generate a key pair locally using:
+
+````shell
+ssh-keygen -b 2048 -t rsa -N "" -f /path/to/key
+```
+
+This will generate a private and public key pair:
+- /path/to/key
+- /path/to/key.pub
+
+```shell
+SSH_PRIVATE_KEY_FILE = "/path/to/key"
+key_pair = "OS_KEY_PAIR_NAME"
+``` 
 
 # Contributing
 
