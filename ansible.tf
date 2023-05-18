@@ -6,9 +6,9 @@ locals {
     }
   ]
   volumes = [
-    for app, volume in openstack_blockstorage_volume_v3.volumes : {
+    for app, attachment in openstack_compute_volume_attach_v2.attachments : {
       name   = app
-      device = tolist(volume.attachment)[0].device
+      device = attachment.device
     }
   ]
 }
