@@ -70,11 +70,16 @@ plan:
   extends:
     - .infra-gdr:parallel
   before_script:
-    - source $RUNNER_ENV_FILE
+    - source $RUNNER_COMMON_ENV
+    # @HACK: temporary convention for ssh access
+    - export TF_VAR_ssh_proxy_port=$(($CI_NODE_INDEX + 2200))
   script:
     - cd "${TF_ROOT}"
     - gitlab-terraform plan
     - gitlab-terraform plan-json
+  environment:
+    name: $TF_STATE_NAME
+    action: prepare
   artifacts:
     # The next line, which disables public access to pipeline artifacts, may not be available everywhere
     # See: https://docs.gitlab.com/ee/ci/yaml/#artifactspublic
@@ -107,12 +112,14 @@ plan:
   variables:
     TF_VAR_SSH_PRIVATE_KEY_FILE: $RUNNER_SSH_PRIVATE_KEY_FILE
   before_script:
-    - source $RUNNER_ENV_FILE 
+    - source $RUNNER_COMMON_ENV 
     - source $RUNNER_OS_APPLICATION_CREDENTIALS
     - chmod 400 $RUNNER_SSH_PRIVATE_KEY_FILE
 
 deploy:
   stage: deploy
+  environment:
+    name: $TF_STATE_NAME
   extends:
     - .infra-gdr:parallel
     - .infra-gdr:protected
@@ -126,6 +133,8 @@ deploy:
 
 destroy:
   stage: destroy
+  environment:
+    name: $TF_STATE_NAME
   extends:
     - .infra-gdr:parallel
     - .infra-gdr:protected

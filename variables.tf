@@ -28,9 +28,9 @@ variable "gitlab_group_parent_id" {
   sensitive = true
 }
 
-variable "gitlab_group_admin" {
-  type = string
-}
+# variable "gitlab_group_admin" {
+#   type = string
+# }
 
 variable "key_pair" {
   type        = string

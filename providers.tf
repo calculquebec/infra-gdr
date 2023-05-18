@@ -30,15 +30,15 @@ resource "gitlab_group" "main" {
   request_access_enabled = false
 }
 
-data "gitlab_user" "main" {
-  username = var.gitlab_group_admin
-}
+# data "gitlab_user" "main" {
+#   username = var.gitlab_group_admin
+# }
 
-resource "gitlab_group_membership" "main" {
-  group_id     = gitlab_group.main.id
-  user_id      = data.gitlab_user.main.user_id
-  access_level = "owner"
-}
+# resource "gitlab_group_membership" "main" {
+#   group_id     = gitlab_group.main.id
+#   user_id      = data.gitlab_user.main.user_id
+#   access_level = "owner"
+# }
 
 output "gitlab_group_applications" {
   value = <<-GROUP_APPLICATIONS
