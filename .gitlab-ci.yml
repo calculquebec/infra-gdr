@@ -93,6 +93,7 @@ plan:
     # ensures the job runs in merge request pipelines.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+      allow_failure: true
     # ensures the job never runs in merge request pipelines for merged or closed merge requests
     - if: $CI_OPEN_MERGE_REQUESTS
       when: never
@@ -116,12 +117,14 @@ apply:
     # ensures the job can run manually in merge request pipelines.
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: manual
+      allow_failure: true
     # ensures the job never runs in merge request pipelines for merged or closed merge requests
     - if: $CI_OPEN_MERGE_REQUESTS
       when: never
     # ensures the job runs in branch pipelines for the default protected branch
     - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED
-      when: always
+      when: manual
+      allow_failure: true
 
 destroy:
   stage: destroy
