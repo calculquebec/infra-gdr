@@ -139,11 +139,21 @@
 
     - name: push file to container and remove it from host
       shell: |
-          lxc file push /root/config.json nextcloud/var/www/nextcloud/config/config.json \
-            --uid `lxc exec nextcloud -- id www-data --user`                             \
-            --gid `lxc exec nextcloud -- id www-data --group`                            \
-            --mode 640
-          rm -f /root/config.json
+        lxc file push /root/config.json nextcloud/var/www/nextcloud/config/config.json --uid `lxc exec nextcloud -- id www-data --user` --gid `lxc exec nextcloud -- id www-data --group` --mode 640
+        rm -f /root/config.json
+      changed_when: false
+
+    - name: enforce base configuration
+      shell: |
+        lxc exec nextcloud -- nextcloud.occ config:import /var/www/nextcloud/config/config.json
+        rm -f /var/www/nextcloud/config/config.json
+      changed_when: false
+
+    - name: configure collabora websocket daemon for nextcloud office
+      shell: |
+        lxc exec nextcloud -- sed -i 's/\(<termination.*>\)false\(<\/termination>\)/\1true\2/' /etc/coolwsd/coolwsd.xml;
+        lxc exec nextcloud -- systemctl restart coolwsd;
+      changed_when: false
 
     # @NOTE: While it would be very handy to automatically create gitlab group
     # applications, there is very low support for this at the moment. We can
@@ -151,13 +161,3 @@
     # auto-generate a dedicated gitlab group application for a given cluster,
     # which prevents us from auto-configuring the custom openid provider
     # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/55152
-
-    - name: enforce base configuration
-      shell: |
-        lxc exec nextcloud -- nextcloud.occ config:import /var/www/nextcloud/config/config.json
-        rm -f /var/www/nextcloud/config/config.json
-
-    - name: configure collabora websocket daemon for nextcloud office
-      shell: |
-        lxc exec nextcloud -- sed -i 's/\(<termination.*>\)false\(<\/termination>\)/\1true\2/' /etc/coolwsd/coolwsd.xml;
-        lxc exec nextcloud -- systemctl restart coolwsd;
