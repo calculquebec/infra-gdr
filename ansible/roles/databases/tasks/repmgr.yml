@@ -27,13 +27,6 @@
     - check_node_role.rc != 0
     - database == primary
 
-- name: debug
-  debug:
-    msg: "{{ item }}"
-  loop:
-    - "{{ check_node_role }}"
-    - "{{ database in standbys }}"
-
 - name: standby registration tasks
   when: 
     - check_node_role.rc != 0

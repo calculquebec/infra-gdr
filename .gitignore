@@ -1,14 +1,14 @@
 .bkp
 .terraform
-external/databases/register*
+__pycache__
+docs/_templates/_page.html
+env
+errored.tfstate
+external
 mkdocs
+plan
 public
 run.py
 terraform.tfstate*
 tf.plan
-docs/_templates/_page.html
-plan
 tmp
-errored.tfstate
-__pycache__
-# ansible

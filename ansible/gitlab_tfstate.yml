@@ -1,0 +1,24 @@
+# https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory
+plugin: gitlab_tfstate
+
+# We can either export `GITLAB_STATE_URL` and `GITLAB_ACCESS_TOKEN` environmnent
+# variables using:
+#
+# ```shell
+# export GITLAB_STATE_URL=
+# export GITLAB_ACCESS_TOKEN=
+# ```
+#
+# or we can define plugin options inside this file (at the risk of exposing
+# sensitive information when we push changes to gitlab) such as:
+#
+# ```yaml
+# gitlab:
+#   state_url: <GITLAB_STATE_URL>
+#   token: <GITLAB_ACCESS_TOKEN>
+# ```
+
+# @NOTE: supports extra group variables
+# all:
+#   vars:
+#     test: 0
