@@ -15,15 +15,9 @@
 
 # lxc/lxd setup tasks
 
-- name: check lxd daemon init state
-  shell: lxc list -f compact
-  register: lxc_check
-  ignore_errors: true
-  changed_when: lxc_check.rc != 0
-
-- name: init lxd daemon
+- name: ensure lxd daemon is initialized
   command: lxd init --auto
-  when: lxc_check.rc != 0
+  changed_when: false
 
 - name: nextcloud container setup tasks
   vars:

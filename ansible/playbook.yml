@@ -39,32 +39,32 @@
   roles:
     - apps
 
-# - name: LAST
-#   hosts: all
-#   become: true
-#   gather_facts: no
-#   vars:
-#     wait_for_reboot_timeout: 300
-#   tasks:
-#     - name: reboot check
-#       stat:
-#         path: /var/run/reboot-required
-#       register: reboot_check
+- name: LAST
+  hosts: all
+  become: true
+  gather_facts: no
+  vars:
+    wait_for_reboot_timeout: 300
+  tasks:
+    - name: reboot check
+      stat:
+        path: /var/run/reboot-required
+      register: reboot_check
 
-#     - name: reboot
-#       reboot:
-#         msg: "rebooting now for package upgrades completion"
-#         connect_timeout: 30
-#         reboot_timeout: 600
-#         pre_reboot_delay: 0
-#         post_reboot_delay: 30
-#       register: reboot_result
-#       when: reboot_check.stat.exists
+    - name: reboot
+      reboot:
+        msg: "rebooting now for package upgrades completion"
+        connect_timeout: 30
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+      register: reboot_result
+      when: reboot_check.stat.exists
 
-#     - name: await system
-#       wait_for_connection:
-#         connect_timeout: "{{ wait_for_reboot_timeout }}"
-#         sleep: 5
-#         delay: 5
-#         timeout: "{{ wait_for_reboot_timeout }}"
-#       when: reboot_result.rebooted is defined and reboot_result.rebooted == false
+    - name: await system
+      wait_for_connection:
+        connect_timeout: "{{ wait_for_reboot_timeout }}"
+        sleep: 5
+        delay: 5
+        timeout: "{{ wait_for_reboot_timeout }}"
+      when: reboot_result.rebooted is defined and reboot_result.rebooted == false

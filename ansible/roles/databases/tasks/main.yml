@@ -80,11 +80,29 @@
     state: present
   register: pg_hba_result
 
+- name: add rules for apps
+  vars:
+    apps_key: "{{ cluster_name }}-apps"
+    pg_hba_rules: 
+      nextcloud: "host nextcloud nextcloud_user {{ hostvars[apps_key].ansible_host }}/32 scram-sha-256"
+      mattermost: "host mattermost mattermost_user {{ hostvars[apps_key].ansible_host }}/32 scram-sha-256"
+  block:
+    - name: add rules for nextcloud
+      lineinfile:
+        path: "{{ pg_config_dir }}/pg_hba.conf"
+        regexp: "^host nextcloud.*$"
+        line: "{{ pg_hba_rules.nextcloud }}"
+    - name: add rules for mattermost
+      lineinfile:
+        path: "{{ pg_config_dir }}/pg_hba.conf"
+        regexp: "^host mattermost.*$"
+        line: "{{ pg_hba_rules.mattermost }}"
+
 - name: restart postgresql with new configuration
   systemd:
     name: postgresql
     state: restarted
-  when: pg_hba_result is changed or pg_replica_check is changed
+  # when: pg_hba_result is changed or pg_replica_check is changed
 
 ## repmgr setup
 

@@ -1,6 +1,7 @@
 - name: ensure filesystem is mounted for {{ volume.device }}
-  command: mountpoint /media/{{ volume.name }} -q
+  command: mountpoint /media/{{ volume.name }}
   register: mount_check
+  failed_when: false
   changed_when: false
 
 - name: mount filesystem filesystem

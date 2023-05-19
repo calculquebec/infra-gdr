@@ -131,6 +131,7 @@
     - name: generate config.json
       vars:
         wopi_allowlist: "{{ container_gateway_ip.stdout }}"
+        custom_providers: "{{ lookup('template','containers/nextcloud/custom_providers.json') | to_json | tojson }}"
       template:
         src: containers/nextcloud/config.json
         dest: /root/config.json
@@ -138,8 +139,18 @@
 
     - name: push file to container and remove it from host
       shell: |
-          lxc file push /root/config.json nextcloud/var/www/nextcloud/config/config.json --mode 640
+          lxc file push /root/config.json nextcloud/var/www/nextcloud/config/config.json \
+            --uid `lxc exec nextcloud -- id www-data --user`                             \
+            --gid `lxc exec nextcloud -- id www-data --group`                            \
+            --mode 640
           rm -f /root/config.json
+
+    # @NOTE: While it would be very handy to automatically create gitlab group
+    # applications, there is very low support for this at the moment. We can
+    # still pre-configure some `sociallogin` options but we are unable to
+    # auto-generate a dedicated gitlab group application for a given cluster,
+    # which prevents us from auto-configuring the custom openid provider
+    # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/55152
 
     - name: enforce base configuration
       shell: |
@@ -150,41 +161,3 @@
       shell: |
         lxc exec nextcloud -- sed -i 's/\(<termination.*>\)false\(<\/termination>\)/\1true\2/' /etc/coolwsd/coolwsd.xml;
         lxc exec nextcloud -- systemctl restart coolwsd;
-
-    # @NOTE: While it would be very handy to automatically create gitlab group
-    # applications, there is very low support for this at the moment. We can
-    # still pre-configure some `sociallogin` options but we are unable to
-    # auto-generate a dedicated gitlab group application for a given cluster,
-    # which prevents us from auto-configuring the custom openid provider
-    # https://gitlab.com/gitlab-org/gitlab/-/merge_requests/55152
-
-    - name: ensure sociallogin is installed and configured
-      block:
-        - name: generate sociallogin custom openid provider
-          template:
-            src: containers/nextcloud/custom_providers.json
-            dest: custom_providers.json
-            mode: 660
-
-        - name: encode custom openid provider as json string
-          shell: jq -c 'tojson' custom_providers.json
-          register: custom_providers_json_string
-
-        - name: generate sociallogin with custom openid provider
-          vars:
-            custom_providers: "{{ custom_providers_json_string.stdout }}"
-          template:
-            src: containers/nextcloud/sociallogin.json
-            dest: sociallogin.json
-            mode: 660
-
-        - name: generate pre-configuration (without custom openid provider)
-          vars:
-            custom_providers: ""
-          template:
-            src: containers/nextcloud/sociallogin.json
-            dest: sociallogin.json
-            mode: 660
-
-        # - name: 
-          # shell: lxc exec nextcloud -- nextcloud.occ config:import sociallogin.json
