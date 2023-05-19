@@ -139,6 +139,7 @@ destroy:
     # ensures the job runs in branch pipelines for the default protected branch
     - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED
       when: manual
+      allow_failure: true
 
 
 ## documentation
