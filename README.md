@@ -4,32 +4,29 @@
 
 Our [📚 documentation][#documentation] provides detailed steps to set up and configure the software for your environment.
 
-## Continuous Integration / Continuous Delivery 
+## Continuous Integration / Continuous Delivery
 
 The `.gitlab-ci.yml` file is used to manage terraform state files.
 
 When a **merge request** is created, the pipeline is triggered, which includes formatting and validating the code.
 
-Parallelized `build` jobs are then run to *plan* the infrastructure using terraform for any specified **TF_STATE_NAMES**.
+Parallelized **plan** jobs are then executed using terraform for each **TF_STATE_NAMES** specified.
 
-If planning succeeds, the `deploy` and `destroy` jobs can be manually executed. These jobs require access to the repository as a Developer or higher.
+If planning succeeds, the **apply** job can be manually executed. 
+
+To trigger manual jobs, access to the repository as a Developer or higher is required.
 
 # Quickstart
 
 Generate a key pair locally using:
 
-````shell
+```shell
 ssh-keygen -b 2048 -t rsa -N "" -f /path/to/key
 ```
 
 This will generate a private and public key pair:
 - /path/to/key
 - /path/to/key.pub
-
-```shell
-SSH_PRIVATE_KEY_FILE = "/path/to/key"
-key_pair = "OS_KEY_PAIR_NAME"
-``` 
 
 # Contributing
 
