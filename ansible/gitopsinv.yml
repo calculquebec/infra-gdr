@@ -1,5 +1,5 @@
 # https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory
-plugin: gitlab_tfstate
+plugin: gitops
 
 # We can either export `GITLAB_STATE_URL` and `GITLAB_ACCESS_TOKEN` environmnent
 # variables using:

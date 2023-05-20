@@ -12,7 +12,7 @@ class InventoryModule(BaseInventoryPlugin):
   """
 
   # used internally by Ansible, it should match the file name but not required
-  NAME = 'gitlab_tfstate'
+  NAME = 'gitops'
 
   def parse(self, inventory, loader, path, cache=True):
     # call base method to ensure properties are available for use with other
@@ -74,8 +74,8 @@ class InventoryModule(BaseInventoryPlugin):
                 self.inventory.add_child(group, hostname)
 
     # @NOTE: supports for extra group variables at inventory level
-    config.pop('plugin')
-    config.pop('gitlab')
+    config.pop('plugin', None)
+    config.pop('gitlab', None)
     for group in config:
       self.inventory.add_group(group)
       for key, value in config[group].get('vars', {}).items():
