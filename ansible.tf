@@ -24,7 +24,6 @@ resource "ansible_group" "all" {
     databases      = "{{ '${jsonencode(local.databases)}' | from_json }}"
     primary        = "{{ '${jsonencode(local.databases[0])}' | from_json }}"
   }
-
 }
 
 ##
