@@ -16,13 +16,13 @@ locals {
 resource "ansible_group" "all" {
   name = "all"
   variables = {
-    remote_tmp   = "/tmp/ansible"
-    cluster_name = var.cluster_name
-    public_ip    = data.openstack_networking_floatingip_v2.gateway.address
+    remote_tmp     = "/tmp/ansible"
+    cluster_name   = var.cluster_name
+    public_ip      = data.openstack_networking_floatingip_v2.gateway.address
     ssh_proxy_port = var.ssh_proxy_port
-    volumes      = "{{ '${jsonencode(local.volumes)}' | from_json }}"
-    databases    = "{{ '${jsonencode(local.databases)}' | from_json }}"
-    primary      = "{{ '${jsonencode(local.databases[0])}' | from_json }}"
+    volumes        = "{{ '${jsonencode(local.volumes)}' | from_json }}"
+    databases      = "{{ '${jsonencode(local.databases)}' | from_json }}"
+    primary        = "{{ '${jsonencode(local.databases[0])}' | from_json }}"
   }
 
 }
