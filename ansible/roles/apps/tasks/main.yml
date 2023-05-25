@@ -5,15 +5,16 @@
       - jq
     state: present
 
-##
+- name: render `log_format.conf` for nginx
+  template:
+    src: nginx/conf.d/log_format.conf
+    dest: /etc/nginx/conf.d/log_format.conf
 
 - name: volumes setup tasks
   loop: "{{ volumes }}"
   loop_control:
     loop_var: volume
   include_tasks: tasks/volumes.yml
-
-# lxc/lxd setup tasks
 
 - name: ensure lxd daemon is initialized
   command: lxd init --auto

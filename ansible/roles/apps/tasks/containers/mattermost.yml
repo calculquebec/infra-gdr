@@ -139,6 +139,5 @@
 
 # then reload mattermost
 
-
 # lxc exec mattermost -- rm /opt/mattermost/config/patch.json
 # lxc exec mattermost -- systemctl start mattermost
