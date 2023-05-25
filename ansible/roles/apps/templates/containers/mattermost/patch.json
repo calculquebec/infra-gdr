@@ -40,6 +40,25 @@
     "EnableRemoteMarketplace": true,
     "AutomaticPrepackagedPlugins": true,
     "RequirePluginSignature": false,
-    "MarketplaceURL": "https://api.integrations.mattermost.com"
+    "MarketplaceURL": "https://api.integrations.mattermost.com",
+    "Plugins": {
+      "com.mattermost.calls": {
+        "allowscreensharing": true,
+        "defaultenabled": true,
+        "enablerecordings": false,
+        "icehostoverride": "{{ public_ip }}",
+        "iceserversconfigs": "[{\"urls\":[\"stun:stun.global.calls.mattermost.com:3478\"]}]",
+        "jobserviceurl": null,
+        "maxcallparticipants": 0,
+        "maxrecordingduration": 60,
+        "recordingquality": "medium",
+        "rtcdserviceurl": null,
+        "serversideturn": false,
+        "turncredentialsexpirationminutes": 1440,
+        "turnstaticauthsecret": "",
+        "udpserveraddress": "",
+        "udpserverport": "{{ ssh_proxy_port + 100 }}"
+      }
+    }
   }
 }

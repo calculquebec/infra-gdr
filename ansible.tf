@@ -19,6 +19,7 @@ resource "ansible_group" "all" {
     remote_tmp   = "/tmp/ansible"
     cluster_name = var.cluster_name
     public_ip    = data.openstack_networking_floatingip_v2.gateway.address
+    ssh_proxy_port = var.ssh_proxy_port
     volumes      = "{{ '${jsonencode(local.volumes)}' | from_json }}"
     databases    = "{{ '${jsonencode(local.databases)}' | from_json }}"
     primary      = "{{ '${jsonencode(local.databases[0])}' | from_json }}"
@@ -34,7 +35,7 @@ resource "ansible_host" "apps" {
   variables = {
     ansible_user            = "ubuntu",
     ansible_host            = openstack_compute_instance_v2.apps.access_ip_v4,
-    ansible_ssh_common_args = "-J {{ ansible_user }}@{{ public_ip }}:${var.ssh_proxy_port} -o StrictHostKeyChecking=no"
+    ansible_ssh_common_args = "-J {{ ansible_user }}@{{ public_ip }}:{{ ssh_proxy_port }} -o StrictHostKeyChecking=no"
   }
 }
 
@@ -47,7 +48,7 @@ resource "ansible_host" "databases" {
   variables = {
     ansible_user            = "ubuntu",
     ansible_host            = module.phac.databases[count.index].access_ip_v4,
-    ansible_ssh_common_args = "-J {{ ansible_user }}@{{ public_ip }}:${var.ssh_proxy_port} -o StrictHostKeyChecking=no"
+    ansible_ssh_common_args = "-J {{ ansible_user }}@{{ public_ip }}:{{ ssh_proxy_port }} -o StrictHostKeyChecking=no"
     repmgr_node_id          = "${count.index + 1}"
     repmgr_node_name        = "node{{ repmgr_node_id }}"
   }
