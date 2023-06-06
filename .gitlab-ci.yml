@@ -18,6 +18,7 @@ stages:
   - documentation
   - apply
   - destroy
+  - provision
 
 ## common templates
 
@@ -142,6 +143,29 @@ destroy:
       when: manual
       allow_failure: true
 
+provision:
+  image: registry.gitlab.com/opsocket/infra-gdr/ansible:latest
+  stage: provision
+  cache: []
+  environment:
+    name: $TF_STATE_NAME
+  extends:
+    - .infra-gdr:parallel
+  script:
+    - cd "${TF_ROOT}/ansible"
+    - ansible-inventory -i gitopsinv.yml --graph --playbook-dir .
+  rules:
+    # ensures the job can run manually in merge request pipelines.
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+    # ensures the job never runs in merge request pipelines for merged or closed merge requests
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
+    # ensures the job runs in branch pipelines for the default protected branch
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED
+      when: manual
+      allow_failure: true
 
 ## documentation
 

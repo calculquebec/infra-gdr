@@ -57,7 +57,7 @@
         "turncredentialsexpirationminutes": 1440,
         "turnstaticauthsecret": "",
         "udpserveraddress": "",
-        "udpserverport": {{ ssh_proxy_port | int + 100 }}
+        "udpserverport": {{ mmost_rtc_port }}
       }
     }
   }

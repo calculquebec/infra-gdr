@@ -20,6 +20,7 @@ resource "ansible_group" "all" {
     cluster_name   = var.cluster_name
     public_ip      = data.openstack_networking_floatingip_v2.gateway.address
     ssh_proxy_port = var.ssh_proxy_port
+    mmost_rtc_port = var.ssh_proxy_port + 100
     volumes        = "{{ '${jsonencode(local.volumes)}' | from_json }}"
     databases      = "{{ '${jsonencode(local.databases)}' | from_json }}"
     primary        = "{{ '${jsonencode(local.databases[0])}' | from_json }}"

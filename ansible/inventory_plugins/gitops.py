@@ -14,37 +14,46 @@ class InventoryModule(BaseInventoryPlugin):
   # used internally by Ansible, it should match the file name but not required
   NAME = 'gitops'
 
+  def get_state(self):
+    state_url, kwargs = None, {}
+    
+    if os.environ.get('GITLAB_CI', False):
+      # running in gitlab ci
+      state_url = os.path.expandvars("$CI_API_V4_URL/projects/$CI_PROJECT_ID/terraform/state/$TF_STATE_NAME")
+      token = os.environ.get('CI_JOB_TOKEN', None)
+      # https://gitlab.com/gitlab-org/gitlab/-/blob/v16.0.1-ee/lib/api/terraform/state.rb?ref_type=tags#L73
+      # According to the terraform state api, we can authenticate using ci job
+      # token by performing basic auth as follows
+      kwargs = dict(auth=('gitlab-ci-token', token))
+    else:
+      # running elsewhere
+      state_url = os.environ.get('GITLAB_STATE_URL', None)
+      if not state_url:
+        raise AnsibleError("The `GITLAB_STATE_URL` environment variable is not set")
+      
+      token = os.environ.get('GITLAB_ACCESS_TOKEN', None)
+      if not token:
+        raise AnsibleError("The `GITLAB_ACCESS_TOKEN` environment variable is not set")
+
+      # authenticate using token as http header
+      kwargs = dict(headers={'Private-Token': token})
+  
+    # query state
+    res = requests.get(state_url, **kwargs)
+    res.raise_for_status()
+    state = res.json()
+    return state
+
   def parse(self, inventory, loader, path, cache=True):
     # call base method to ensure properties are available for use with other
     # helper methods
     super().parse(inventory, loader, path, cache)
-
     # this method will parse 'common format' inventory sources and update any
     # options declared in DOCUMENTATION as needed
     config = self._read_config_data(path)
 
-    state_url, token = None, None
-    state = {}
-
-    if gitlab := config.get('gitlab', None):
-      state_url = gitlab.get('state_url', None)
-      token = gitlab.get('token', None)
-    
-    if not state_url:
-      state_url = os.environ.get('GITLAB_STATE_URL', None)
-      if not state_url:
-        raise AnsibleError("Either `gitlab.state_url` inventory plugin option or `GITLAB_STATE_URL` environment variable is not set")
-
-    if not token:
-      token = os.environ.get('GITLAB_ACCESS_TOKEN', None)
-      if not token:
-        raise AnsibleError("Either `gitlab.token` inventory plugin option or `GITLAB_ACCESS_TOKEN` environment variable is not set")
-
-    if state_url and token:
-      headers = {'PRIVATE-TOKEN': token}
-      res = requests.get(state_url, headers=headers)
-      res.raise_for_status()
-      state = res.json()
+    # query terraform state
+    state = self.get_state()
 
     # process terraform state and populate the inventory
     for resource in state.get('resources', {}):
@@ -73,11 +82,9 @@ class InventoryModule(BaseInventoryPlugin):
                 self.inventory.add_group(group)
                 self.inventory.add_child(group, hostname)
 
-    # @NOTE: supports for extra group variables at inventory level
+    # extra group variables at inventory level
     config.pop('plugin', None)
-    config.pop('gitlab', None)
     for group in config:
       self.inventory.add_group(group)
       for key, value in config[group].get('vars', {}).items():
         self.inventory.set_variable(group, key, value)
-
