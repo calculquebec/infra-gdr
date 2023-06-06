@@ -28,10 +28,6 @@ variable "gitlab_group_parent_id" {
   sensitive = true
 }
 
-# variable "gitlab_group_admin" {
-#   type = string
-# }
-
 variable "key_pair" {
   type        = string
   description = "The name of the ssh key pair registered on openstack"
@@ -40,6 +36,10 @@ variable "key_pair" {
 variable "ssh_proxy_port" {
   type      = string
   sensitive = true
+}
+
+locals {
+  mattermost_rtc_port = var.ssh_proxy_port + 100
 }
 
 variable "apps" {

@@ -57,8 +57,8 @@ resource "openstack_networking_secgroup_rule_v2" "ingress_mattermost_rtc" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "udp"
-  port_range_min    = var.ssh_proxy_port + 100
-  port_range_max    = var.ssh_proxy_port + 100
+  port_range_min    = local.mattermost_rtc_port
+  port_range_max    = local.mattermost_rtc_port
   remote_ip_prefix  = "${data.openstack_compute_instance_v2.gateway.access_ip_v4}/32"
   security_group_id = openstack_networking_secgroup_v2.cluster.id
 }
