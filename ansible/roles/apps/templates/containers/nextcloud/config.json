@@ -6,6 +6,7 @@
     "overwrite.cli.url": "https://{{ nextcloud.server_name }}",
     "overwriteprotocol": "https",
     "simpleSignUpLink.shown": false,
+    "updatedirectory": "/var/lib/nextcloud-updates",
     "trusted_domains": [
       "{{ nextcloud.server_name }}"
     ],

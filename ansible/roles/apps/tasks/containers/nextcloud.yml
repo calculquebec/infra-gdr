@@ -122,6 +122,15 @@
 
 # configure nextcloud container
 
+- name: ensure `/var/lib/nextcloud-updates` exists
+  become: yes
+  file:
+    path: /var/lib/nextcloud-updates
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0750'
+
 - name: enforce configuration
   block:
     - name: get network gateway ip for container
