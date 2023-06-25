@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 20:37-0400\n"
+"POT-Creation-Date: 2023-06-25 18:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr "✨ Pour commencer"
 msgid "🌌 Infrastructure"
 msgstr "🌌 Infrastructure"
 
-#: ../../index.md:47
+#: ../../index.md:46
 msgid "🫂 Community"
 msgstr "🫂 Communauté"
 
@@ -72,67 +72,87 @@ msgstr "{doc}`Installation <intro/installing>`"
 msgid "{doc}`🌌 Infrastructure <infra/overview>`"
 msgstr "{doc}`🌌 Infrastructure <infra/overview>`"
 
-#: ../../index.md:38 ../../index.md:58
+#: ../../index.md:38
 msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-"  tempor incididunt ut labore et dolore magna aliqua."
+"This section acts as a comprehensive knowledge base providing in-depth "
+"information and resources for various aspects of the system architecture."
 msgstr ""
-"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-"  tempor incididunt ut labore et dolore magna aliqua."
+"Cette section constitue une base de connaissances complète fournissant "
+"des informations approfondies et des ressources sur différents aspects de"
+" l'architecture système."
 
-#: ../../index.md:41
+#: ../../index.md:40
 msgid "{doc}`infra/overview`"
 msgstr "{doc}`Aperçu <infra/overview>`"
 
-#: ../../index.md:42
+#: ../../index.md:41
 msgid "{doc}`infra/apps`"
 msgstr "{doc}`infra/apps`"
 
-#: ../../index.md:43
+#: ../../index.md:42
 msgid "{doc}`infra/databases`"
 msgstr "{doc}`Bases de données <infra/databases>`"
 
-#: ../../index.md:44
+#: ../../index.md:43
 msgid "{doc}`infra/backups`"
 msgstr "{doc}`Sauvegardes <infra/backups>`"
 
-#: ../../index.md:45
+#: ../../index.md:44
 msgid "{doc}`infra/security`"
 msgstr "{doc}`Sécurité <infra/security>`"
 
-#: ../../index.md:56
+#: ../../index.md:55
 msgid "{doc}`🫂Community <community/contributing>`"
 msgstr "{doc}`🫂Communauté <community/contributing>`"
 
-#: ../../index.md:61
+#: ../../index.md:57
+msgid ""
+"Join our diverse community of passionate individuals thriving to make a "
+"difference !"
+msgstr ""
+"Rejoignez notre communauté diversifiée de passionnés qui cherchent à "
+"faire la différence !"
+
+#: ../../index.md:59
+msgid ""
+"Learn how you can contribute to the project and make a meaningful impact "
+"or gain insights into the open-source nature of our work and the "
+"permissions / restrictions associated with our project's license."
+msgstr ""
+"Découvrez comment vous pouvez contribuer au projet et avoir un impact "
+"significatif ou acquérir une compréhension de la nature ouverte de notre "
+"travail ainsi que des permissions / restrictions associées à la licence "
+"de notre projet."
+
+#: ../../index.md:63
 msgid "{doc}`community/contributing`"
 msgstr "{doc}`Contribuer <community/contributing>`"
 
-#: ../../index.md:62
+#: ../../index.md:64
 msgid "{doc}`community/license`"
 msgstr "{doc}`community/license`"
 
-#: ../../index.md:64
+#: ../../index.md:66
 msgid "Features"
 msgstr "Fonctionnalités"
 
-#: ../../index.md:66
+#: ../../index.md:68
 msgid "Easy data organization"
 msgstr "Organisation facile des données"
 
-#: ../../index.md:67
+#: ../../index.md:69
 msgid "Automatic backups"
 msgstr "Sauvegardes automatiques"
 
-#: ../../index.md:68
+#: ../../index.md:70
 msgid "Highly available database cluster"
 msgstr "Agrégat de base de données hautement disponible"
 
-#: ../../index.md:72
+#: ../../index.md:74
 msgid "Contributing"
 msgstr "Contribuer"
 
-#: ../../index.md:74
+#: ../../index.md:76
 msgid ""
 "Please see the {doc}`contributing <community/contributing>` section for "
 "more information."
@@ -140,11 +160,11 @@ msgstr ""
 "Veuillez consulter la section {doc}`contribuer <community/contributing>` "
 "pour plus d'informations."
 
-#: ../../index.md:76
+#: ../../index.md:78
 msgid "License"
 msgstr "Licence"
 
-#: ../../index.md:77
+#: ../../index.md:79
 msgid ""
 "This project is licensed under the [AGPLv3 "
 "License](https://www.gnu.org/licenses/agpl-3.0.html) - see the "
@@ -153,17 +173,4 @@ msgstr ""
 "Ce projet est sous licence "
 "[AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html) - consultez la "
 "section {doc}`license <community/license>` pour plus de détails."
-
-#~ msgid "Notes"
-#~ msgstr "Notes"
-
-#~ msgid ""
-#~ "The tool will help researchers to "
-#~ "organize their data, create backups, and"
-#~ " collaborate with other researchers."
-#~ msgstr ""
-#~ "Cet outil aide les chercheurs à "
-#~ "organiser leurs données, créer des "
-#~ "sauvegardes et à collaborer avec "
-#~ "d'autres chercheurs."
 

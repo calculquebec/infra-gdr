@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"POT-Creation-Date: 2023-06-25 17:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -25,70 +25,18 @@ msgid "Overview"
 msgstr ""
 
 #: ../../infra/overview.md:3
-msgid ""
-"`apps.tf`: Terraform configuration for deploying the research data "
-"management services."
-msgstr ""
-
-#: ../../infra/overview.md:4
-msgid ""
-"`databases.tf`: Terraform configuration for deploying the databases "
-"required by the services."
-msgstr ""
-
-#: ../../infra/overview.md:5
-msgid ""
-"`external`: Directory containing external scripts and files required by "
-"the project."
-msgstr ""
-
-#: ../../infra/overview.md:6
-msgid "`databases/setup.sh`: Shell script for setting up the databases."
-msgstr ""
-
-#: ../../infra/overview.md:7
-msgid ""
-"`keystone.py`: Python script for authenticating with the Keystone "
-"identity service."
-msgstr ""
-
-#: ../../infra/overview.md:8
-msgid "`firewall.tf`: Terraform configuration for setting up the firewall rules."
-msgstr ""
-
-#: ../../infra/overview.md:9
-msgid "`outputs.tf`: Terraform configuration for defining the output variables."
-msgstr ""
-
-#: ../../infra/overview.md:10
-msgid ""
-"`providers.tf`: Terraform configuration for defining the provider "
-"information."
-msgstr ""
-
-#: ../../infra/overview.md:11
-msgid "`variables.tf`: Terraform configuration for defining the input variables."
-msgstr ""
-
-#: ../../infra/overview.md:12
-msgid ""
-"`versions.tf`: Terraform configuration for defining the required "
-"Terraform version."
-msgstr ""
-
-#: ../../infra/overview.md:14
 msgid "Providers"
 msgstr ""
 
-#: ../../infra/overview.md:16
+#: ../../infra/overview.md:5
 msgid "Openstack"
 msgstr ""
 
-#: ../../infra/overview.md:18
+#: ../../infra/overview.md:7
 msgid "Quotas"
 msgstr ""
 
-#: ../../infra/overview.md:20
+#: ../../infra/overview.md:9
 msgid ""
 "Deploying a single instance of the cluster requires at least having these"
 " resources available up front in the target Openstack project:"
@@ -142,7 +90,7 @@ msgstr ""
 msgid "🤔"
 msgstr ""
 
-#: ../../infra/overview.md:30
+#: ../../infra/overview.md:19
 msgid "Here's the breakdown:"
 msgstr ""
 
@@ -218,42 +166,42 @@ msgstr ""
 msgid "psql-3"
 msgstr ""
 
-#: ../../infra/overview.md:40
+#: ../../infra/overview.md:29
 msgid "LXD Containers"
 msgstr ""
 
-#: ../../infra/overview.md:42
+#: ../../infra/overview.md:31
 msgid ""
-"LXD stands for [Linux Container Daemon][#lxd]. It is an open-source "
-"container management system that provides a user-friendly interface and "
-"command-line tools to manage Linux containers."
+"LXD stands for [Linux Container Daemon](https://linuxcontainers.org). It "
+"is an open-source container management system that provides a user-"
+"friendly interface and command-line tools to manage Linux containers."
 msgstr ""
 
-#: ../../infra/overview.md:44
+#: ../../infra/overview.md:33
 msgid ""
 "LXD allows users to create and manage lightweight, secure, and fast "
 "virtualized environments that can be used for a wide range of purposes, "
 "such as development, testing, and production workloads."
 msgstr ""
 
-#: ../../infra/overview.md:46
+#: ../../infra/overview.md:35
 msgid "Images"
 msgstr ""
 
-#: ../../infra/overview.md:48
+#: ../../infra/overview.md:37
 msgid ""
 "A container image registry is a centralized location where container "
 "images can be stored, managed, and distributed."
 msgstr ""
 
-#: ../../infra/overview.md:50
+#: ../../infra/overview.md:39
 msgid ""
 "In this case, a publicly available container image registry is hosted at "
 "https://images.opsocket.com. Users can access this registry to download "
 "and launch public container images that are stored on it."
 msgstr ""
 
-#: ../../infra/overview.md:52
+#: ../../infra/overview.md:41
 msgid ""
 "These public images are maintained by the registry owners and are "
 "available for anyone to use. To launch a public image, users can simply "
@@ -261,9 +209,8 @@ msgid ""
 "environment."
 msgstr ""
 
-#: ../../infra/overview.md:54
+#: ../../infra/overview.md:43
 msgid ""
 "For example, we might use these commands to start an instance of "
-"[nextcloud][#nextcloud]:"
+"[nextcloud](https://nextcloud.com):"
 msgstr ""
-

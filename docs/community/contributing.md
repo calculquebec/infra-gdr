@@ -2,9 +2,7 @@
 
 ## Documentation
 
-This repository uses Sphinx, a powerful documentation generator, to create
-high-quality documentation. Sphinx enables you to write documentation in
-reStructuredText (reST) format or markdown (MyST) and provides tools for complex documentation and publishing workflows.
+This repository uses [Sphinx](https://www.sphinx-doc.org), a powerful documentation generator, to create high-quality documentation. It enables you to write documentation in reStructuredText (reST) format or markdown (MyST) and provides tools for complex documentation and publishing workflows.
 
 ### Prerequisities
 
@@ -39,13 +37,11 @@ Therefore, building the documentation is as simple as:
 python3 docs/build.py
 ```
 
-Which will produce an **HTML** output in `public/latest`
+Which will produce an **HTML** output in the `public` folder.
 
 ## Internationalization (i18n)
 
 https://github.com/sphinx-doc/sphinx-intl
 
 > `sphinx-intl` is a utility tool that provides several features that make it
-> easy to translate and to apply translation to Sphinx_ generated document.
-> Optional: support the Transifex service for translation with Sphinx.
-
+> easy to translate and to apply translation to **Sphinx** generated document.

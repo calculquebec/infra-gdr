@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 20:37-0400\n"
+"POT-Creation-Date: 2023-06-25 18:01-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "🌌 Infrastructure"
 msgstr ""
 
-#: ../../index.md:47
+#: ../../index.md:46
 msgid "🫂 Community"
 msgstr ""
 
@@ -68,87 +68,90 @@ msgstr ""
 msgid "{doc}`🌌 Infrastructure <infra/overview>`"
 msgstr ""
 
-#: ../../index.md:38 ../../index.md:58
+#: ../../index.md:38
 msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
-"  tempor incididunt ut labore et dolore magna aliqua."
+"This section acts as a comprehensive knowledge base providing in-depth "
+"information and resources for various aspects of the system architecture."
 msgstr ""
 
-#: ../../index.md:41
+#: ../../index.md:40
 msgid "{doc}`infra/overview`"
 msgstr ""
 
-#: ../../index.md:42
+#: ../../index.md:41
 msgid "{doc}`infra/apps`"
 msgstr ""
 
-#: ../../index.md:43
+#: ../../index.md:42
 msgid "{doc}`infra/databases`"
 msgstr ""
 
-#: ../../index.md:44
+#: ../../index.md:43
 msgid "{doc}`infra/backups`"
 msgstr ""
 
-#: ../../index.md:45
+#: ../../index.md:44
 msgid "{doc}`infra/security`"
 msgstr ""
 
-#: ../../index.md:56
+#: ../../index.md:55
 msgid "{doc}`🫂Community <community/contributing>`"
 msgstr ""
 
-#: ../../index.md:61
+#: ../../index.md:57
+msgid ""
+"Join our diverse community of passionate individuals thriving to make a "
+"difference !"
+msgstr ""
+
+#: ../../index.md:59
+msgid ""
+"Learn how you can contribute to the project and make a meaningful impact "
+"or gain insights into the open-source nature of our work and the "
+"permissions / restrictions associated with our project's license."
+msgstr ""
+
+#: ../../index.md:63
 msgid "{doc}`community/contributing`"
 msgstr ""
 
-#: ../../index.md:62
+#: ../../index.md:64
 msgid "{doc}`community/license`"
 msgstr ""
 
-#: ../../index.md:64
+#: ../../index.md:67
 msgid "Features"
 msgstr ""
 
-#: ../../index.md:66
+#: ../../index.md:69
 msgid "Easy data organization"
 msgstr ""
 
-#: ../../index.md:67
+#: ../../index.md:70
 msgid "Automatic backups"
 msgstr ""
 
-#: ../../index.md:68
+#: ../../index.md:71
 msgid "Highly available database cluster"
 msgstr ""
 
-#: ../../index.md:72
+#: ../../index.md:75
 msgid "Contributing"
 msgstr ""
 
-#: ../../index.md:74
+#: ../../index.md:77
 msgid ""
 "Please see the {doc}`contributing <community/contributing>` section for "
 "more information."
 msgstr ""
 
-#: ../../index.md:76
+#: ../../index.md:79
 msgid "License"
 msgstr ""
 
-#: ../../index.md:77
+#: ../../index.md:80
 msgid ""
 "This project is licensed under the [AGPLv3 "
 "License](https://www.gnu.org/licenses/agpl-3.0.html) - see the "
 "{doc}`license <community/license>` section for details."
 msgstr ""
-
-#~ msgid "Notes"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The tool will help researchers to "
-#~ "organize their data, create backups, and"
-#~ " collaborate with other researchers."
-#~ msgstr ""
-

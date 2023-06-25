@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"POT-Creation-Date: 2023-06-25 17:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -41,11 +41,17 @@ msgid "Authentication"
 msgstr "Authentification"
 
 #: ../../intro/installing.md:12
+#, fuzzy
 msgid ""
 "To authenticate with an OpenStack provider, you should configure your "
-"authentication using [Keystone][#keystone]. We can configure "
-"authentication with [Keystone credentials][#keystone_creds] using either "
-"the [clouds.yaml][#clouds_yaml] or [environment variables][#envvars]."
+"authentication using "
+"[Keystone](https://docs.openstack.org/keystone/latest). We can configure "
+"authentication with [Keystone "
+"credentials](https://docs.openstack.org/keystone/latest/user/application_credentials.html)"
+" using either the [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) or "
+"[environment variables](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables)."
 msgstr ""
 "Pour vous authentifier avec un fournisseur OpenStack, vous devez "
 "configurer votre authentification en utilisant [Keystone][#keystone]. "
@@ -55,10 +61,12 @@ msgstr ""
 "d'environnement][#envvars]."
 
 #: ../../intro/installing.md:14
+#, fuzzy
 msgid ""
-"The [clouds.yaml][#clouds_yaml] file is used to store your OpenStack "
-"configuration information. This file should be located in your home "
-"directory under the .config/openstack directory."
+"The [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) file is used "
+"to store your OpenStack configuration information. This file should be "
+"located in your home directory under the .config/openstack directory."
 msgstr ""
 "Le fichier [clouds.yaml][#clouds_yaml] est utilisé pour stocker les "
 "informations de configuration de votre OpenStack. Ce fichier doit être "
@@ -66,10 +74,12 @@ msgstr ""
 ".config/openstack."
 
 #: ../../intro/installing.md:16
+#, fuzzy
 msgid ""
 "Alternatively, you can configure authentication using [environment "
-"variables][#envvars]. This file is typically sourced within your shell "
-"environment."
+"variables](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables). This "
+"file is typically sourced within your shell environment."
 msgstr ""
 "Alternativement, vous pouvez configurer l'authentification en utilisant "
 "[les variables d'environnement][#envvars]. Ce fichier est généralement "
@@ -89,36 +99,18 @@ msgid "Terraform"
 msgstr "Terraform"
 
 #: ../../intro/installing.md:24
+#, fuzzy
 msgid ""
 "Find up-to-date instructions for your operating system on [Install "
-"Terraform][#install_terraform]"
+"Terraform](https://developer.hashicorp.com/terraform/downloads)"
 msgstr ""
 "Trouvez des instructions à jour pour votre système d'exploitation sur "
 "[Install Terraform][#install_terraform]"
 
 #: ../../intro/installing.md:26
-msgid "Workspaces"
-msgstr "Espaces de travail"
-
-#: ../../intro/installing.md:29 ../../intro/installing.md:45
-msgid "This section requires attention"
-msgstr "Cette section nécessite une attention particulière"
-
-#: ../../intro/installing.md:36
-msgid "Created and switched to workspace \"myworkspace\"!"
-msgstr "Espace de travail \"myworkspace\" créé et activé !"
-
-#: ../../intro/installing.md:38
-msgid ""
-"You're now on a new, empty workspace. Workspaces isolate their state, so "
-"if you run \"terraform plan\" Terraform will not see any existing state "
-"for this configuration."
-msgstr ""
-"Vous êtes maintenant dans un nouvel espace de travail vide. Les espaces "
-"de travail isolent leur état, donc si vous exécutez \"terraform plan\", "
-"Terraform ne verra aucun état existant pour cette configuration."
-
-#: ../../intro/installing.md:42
 msgid "Deployments"
 msgstr "Déploiements"
 
+#: ../../intro/installing.md:29
+msgid "This section requires attention"
+msgstr "Cette section nécessite une attention particulière"

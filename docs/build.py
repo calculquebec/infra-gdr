@@ -65,12 +65,12 @@ def worker(params):
     app = Sphinx(**params)
     app.build()
 
-# ======================
+# GENERATE DOCUMENTATION
 # ======================
 
 if __name__ == '__main__':
     # run the sphinx `gettext` builder to extract translation messages from
-    # sources to generate related .pot files
+    # sources for generating related .pot files
     proc = multiprocessing.Process(target=worker, args=(gettext_params,))
     proc.start()
     proc.join()

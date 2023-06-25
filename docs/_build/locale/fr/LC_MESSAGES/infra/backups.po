@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"POT-Creation-Date: 2023-06-25 17:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -35,11 +35,12 @@ msgstr ""
 "cas de perte de données, de panne matériel ou d'autres catastrophes."
 
 #: ../../infra/backups.md:5
+#, fuzzy
 msgid ""
-"For that purpose, we use [Restic][#restic] which is a fast and secure "
-"backup program that allows you to easily backup and restore files from "
-"various sources, including local directories, remote servers, and cloud "
-"storage platforms."
+"For that purpose, we use [Restic](https://restic.net) which is a fast and"
+" secure backup program that allows you to easily backup and restore files"
+" from various sources, including local directories, remote servers, and "
+"cloud storage platforms."
 msgstr ""
 "À cette fin, nous utilisons [Restic][#restic], qui est un programme de "
 "sauvegarde rapide et sécurisé qui vous permet de sauvegarder et de "
@@ -48,10 +49,11 @@ msgstr ""
 "de stockage en nuage."
 
 #: ../../infra/backups.md:7
+#, fuzzy
 msgid ""
 "In this section, we will explore how to create data backups, manage "
 "multiple backup repositories, and automate backup tasks using "
-"[systemd][#systemd]."
+"[systemd](https://systemd.io)."
 msgstr ""
 "Dans cette section, nous explorerons comment créer des sauvegardes de "
 "données, gérer plusieurs référentiels de sauvegarde et automatiser les "
@@ -75,9 +77,10 @@ msgid "Scheduling"
 msgstr "Planification"
 
 #: ../../infra/backups.md:13
+#, fuzzy
 msgid ""
-"Scheduling backup jobs with [systemd][#systemd] is a convenient and "
-"reliable way to automate your backup process."
+"Scheduling backup jobs with [systemd](https://systemd.io) is a convenient"
+" and reliable way to automate your backup process."
 msgstr ""
 "La planification des tâches de sauvegarde avec [systemd][#systemd] est un"
 " moyen pratique et fiable d'automatiser votre processus de sauvegarde."
@@ -94,9 +97,10 @@ msgstr ""
 " tâches planifiées."
 
 #: ../../infra/backups.md:17
+#, fuzzy
 msgid ""
 "Let's say a volume is mounted on `/media/myconf`, then we could use "
-"[restic-systemd][#restic-systemd] as follows:"
+"[restic-systemd](https://gitlab.com/opsocket/restic-systemd) as follows:"
 msgstr ""
 "Supposons qu'un volume soit monté sur `/media/myconf`, alors nous "
 "pourrions utiliser [restic-systemd][#restic-systemd] de la manière "
@@ -123,7 +127,7 @@ msgstr ""
 " moyen robuste et efficace de garantir que vos données sont toujours "
 "sauvegardées et protégées."
 
-#: ../../infra/backups.md:36 ../../infra/databases.md:1
+#: ../../infra/backups.md:36
 msgid "Databases"
 msgstr "Bases de données"
 
@@ -169,3 +173,4 @@ msgid ""
 msgstr ""
 "Un serveur **standby** supplémentaire permettrait à un serveur d'être "
 "promu en cas d'une défaillance du serveur primaire pendant la sauvegarde."
+

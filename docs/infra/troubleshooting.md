@@ -14,10 +14,6 @@ Terraform providers have their own versioning and compatibility requirements. En
 
 If the input variables and provider versions have been correctly defined, the next step is to verify that the required infrastructure resources have been correctly defined in `apps.tf`, `databases.tf`, and `firewall.tf`. Check each resource definition and ensure that the configuration is correct.
 
-## Verify External Scripts and Files
-
-If any external scripts or files are required by the project, ensure that they have been correctly configured and placed in the `external` directory. Verify that the permissions and ownerships of any files in this directory are correctly set.
-
 ## Check Logs and Error Messages
 
 If you are still experiencing issues after trying the above troubleshooting steps, check the logs and error messages for any specific issues or errors that need to be addressed. You can use the `terraform plan` and `terraform apply` commands with the `-debug` flag to get more detailed logging information.

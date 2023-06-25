@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-24 11:55-0400\n"
+"POT-Creation-Date: 2023-06-25 18:16-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -30,82 +30,65 @@ msgstr ""
 
 #: ../../community/contributing.md:5
 msgid ""
-"This repository uses Sphinx, a powerful documentation generator, to "
-"create high-quality documentation. Sphinx enables you to write "
-"documentation in reStructuredText (reST) format or markdown (MyST) and "
-"provides tools for complex documentation and publishing workflows."
+"This repository uses [Sphinx](https://www.sphinx-doc.org), a powerful "
+"documentation generator, to create high-quality documentation. It enables"
+" you to write documentation in reStructuredText (reST) format or markdown"
+" (MyST) and provides tools for complex documentation and publishing "
+"workflows."
 msgstr ""
 
-#: ../../community/contributing.md:9
+#: ../../community/contributing.md:7
 msgid "Prerequisities"
 msgstr ""
 
-#: ../../community/contributing.md:11
+#: ../../community/contributing.md:9
 msgid ""
 "To set up the development environment and build the documentation, follow"
 " these steps inside the cloned repository:"
 msgstr ""
 
-#: ../../community/contributing.md:14
+#: ../../community/contributing.md:12
 msgid "Create a virtual environment"
 msgstr ""
 
-#: ../../community/contributing.md:20
+#: ../../community/contributing.md:18
 msgid "Activate the virtual environment"
 msgstr ""
 
-#: ../../community/contributing.md:26
+#: ../../community/contributing.md:24
 msgid "Install the required dependencies"
 msgstr ""
 
-#: ../../community/contributing.md:32
+#: ../../community/contributing.md:30
 msgid "Building the Documentation"
 msgstr ""
 
-#: ../../community/contributing.md:34
+#: ../../community/contributing.md:32
 msgid ""
 "Since we have to support many languages, a meta build system "
 "`docs/build.py` has been added to support internationalized builds for "
 "any configured language."
 msgstr ""
 
-#: ../../community/contributing.md:36
+#: ../../community/contributing.md:34
 msgid "Therefore, building the documentation is as simple as:"
 msgstr ""
 
-#: ../../community/contributing.md:42
-msgid "Which will produce an **HTML** output in `public/latest`"
+#: ../../community/contributing.md:40
+msgid "Which will produce an **HTML** output in the `public` folder."
 msgstr ""
 
-#: ../../community/contributing.md:44
+#: ../../community/contributing.md:42
 msgid "Internationalization (i18n)"
 msgstr ""
 
-#: ../../community/contributing.md:46
+#: ../../community/contributing.md:44
 msgid "https://github.com/sphinx-doc/sphinx-intl"
 msgstr ""
 
-#: ../../community/contributing.md:48
+#: ../../community/contributing.md:46
 msgid ""
 "`sphinx-intl` is a utility tool that provides several features that make "
-"it easy to translate and to apply translation to Sphinx_ generated "
-"document. Optional: support the Transifex service for translation with "
-"Sphinx."
+"it easy to translate and to apply translation to **Sphinx** generated "
+"document."
 msgstr ""
-
-#~ msgid ""
-#~ "Lorem ipsum dolor sit amet, consectetur"
-#~ " adipisicing elit, sed do eiusmod "
-#~ "tempor incididunt ut labore et dolore"
-#~ " magna aliqua. Ut enim ad minim "
-#~ "veniam, quis nostrud exercitation ullamco "
-#~ "laboris nisi ut aliquip ex ea "
-#~ "commodo consequat. Duis aute irure dolor"
-#~ " in reprehenderit in voluptate velit "
-#~ "esse cillum dolore eu fugiat nulla "
-#~ "pariatur. Excepteur sint occaecat cupidatat"
-#~ " non proident, sunt in culpa qui "
-#~ "officia deserunt mollit anim id est "
-#~ "laborum."
-#~ msgstr ""
-

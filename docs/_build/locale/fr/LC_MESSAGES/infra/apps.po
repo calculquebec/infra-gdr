@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"POT-Creation-Date: 2023-06-25 17:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -20,13 +20,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-##: ../../infra/apps.md:1
+# #: ../../infra/apps.md:1
+#: ../../infra/apps.md:1
 msgid "Applications"
 msgstr "Applications"
 
 #: ../../infra/apps.md:3 ../../infra/apps.md:12 ../../infra/apps.md:32
-#: ../../infra/databases.md:3 ../../infra/security.md:3
-#: ../../infra/security.md:12
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
 "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
@@ -71,7 +70,8 @@ msgid "Database: PostgreSQL v11+"
 msgstr "Base de données : PostgreSQL v11+"
 
 #: ../../infra/apps.md:25
-msgid "[-] Network ports required:"
+#, fuzzy
+msgid "Network ports required:"
 msgstr "[-] Ports réseau requis :"
 
 #: ../../infra/apps.md:26
@@ -89,3 +89,4 @@ msgstr "Port SMTP 10025, TCP/UDP sortant"
 #: ../../infra/apps.md:30
 msgid "Nextcloud"
 msgstr "Nextcloud"
+
