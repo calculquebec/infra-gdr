@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../infra/troubleshooting.md:1
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:3
+msgid ""
+"If you encounter issues with deploying the research data management "
+"services, please try the following troubleshooting steps:"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:5
+msgid "Verify Input Variables"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:7
+msgid ""
+"If you are experiencing issues with deploying the services, it may be "
+"because of incorrectly defined input variables. Ensure that all the "
+"required input variables have been correctly defined in `variables.tf`. "
+"Review the documentation for each input variable and verify that the "
+"values provided for them are correct."
+msgstr ""
+
+#: ../../infra/troubleshooting.md:9
+msgid "Check Provider Versions"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:11
+msgid ""
+"Terraform providers have their own versioning and compatibility "
+"requirements. Ensure that the required provider versions have been "
+"correctly defined in `providers.tf` and `versions.tf`. You can check the "
+"documentation for each provider to verify the specific versions required."
+msgstr ""
+
+#: ../../infra/troubleshooting.md:13
+msgid "Verify Infrastructure Resources"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:15
+msgid ""
+"If the input variables and provider versions have been correctly defined,"
+" the next step is to verify that the required infrastructure resources "
+"have been correctly defined in `apps.tf`, `databases.tf`, and "
+"`firewall.tf`. Check each resource definition and ensure that the "
+"configuration is correct."
+msgstr ""
+
+#: ../../infra/troubleshooting.md:17
+msgid "Verify External Scripts and Files"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:19
+msgid ""
+"If any external scripts or files are required by the project, ensure that"
+" they have been correctly configured and placed in the `external` "
+"directory. Verify that the permissions and ownerships of any files in "
+"this directory are correctly set."
+msgstr ""
+
+#: ../../infra/troubleshooting.md:21
+msgid "Check Logs and Error Messages"
+msgstr ""
+
+#: ../../infra/troubleshooting.md:23
+msgid ""
+"If you are still experiencing issues after trying the above "
+"troubleshooting steps, check the logs and error messages for any specific"
+" issues or errors that need to be addressed. You can use the `terraform "
+"plan` and `terraform apply` commands with the `-debug` flag to get more "
+"detailed logging information."
+msgstr ""
+
+#: ../../infra/troubleshooting.md:25
+msgid ""
+"If you are unable to resolve the issues after reviewing the logs and "
+"error messages, consult the Terraform documentation or seek help from the"
+" Terraform community forums."
+msgstr ""
+

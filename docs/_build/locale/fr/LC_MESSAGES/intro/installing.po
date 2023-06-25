@@ -1,0 +1,124 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../intro/installing.md:1
+msgid "Installation"
+msgstr "Installation"
+
+#: ../../intro/installing.md:3
+msgid "Requirements"
+msgstr "Requis"
+
+#: ../../intro/installing.md:5
+msgid "Openstack"
+msgstr "OpenStack"
+
+#: ../../intro/installing.md:7
+msgid ""
+"For deployment purposes, we need access to an OpenStack provider.  The "
+"provider is responsible for managing the connection between your project "
+"and the OpenStack environment."
+msgstr ""
+"Pour les déploiements, nous avons besoin d'un accès à un fournisseur "
+"OpenStack. Le fournisseur est responsable de la gestion de la connexion "
+"entre votre projet et l'environnement OpenStack."
+
+#: ../../intro/installing.md:10
+msgid "Authentication"
+msgstr "Authentification"
+
+#: ../../intro/installing.md:12
+msgid ""
+"To authenticate with an OpenStack provider, you should configure your "
+"authentication using [Keystone][#keystone]. We can configure "
+"authentication with [Keystone credentials][#keystone_creds] using either "
+"the [clouds.yaml][#clouds_yaml] or [environment variables][#envvars]."
+msgstr ""
+"Pour vous authentifier avec un fournisseur OpenStack, vous devez "
+"configurer votre authentification en utilisant [Keystone][#keystone]. "
+"Nous pouvons configurer l'authentification avec [les informations "
+"d'identification Keystone][#keystone_creds] en utilisant soit le fichier "
+"[clouds.yaml][#clouds_yaml] soit les [variables "
+"d'environnement][#envvars]."
+
+#: ../../intro/installing.md:14
+msgid ""
+"The [clouds.yaml][#clouds_yaml] file is used to store your OpenStack "
+"configuration information. This file should be located in your home "
+"directory under the .config/openstack directory."
+msgstr ""
+"Le fichier [clouds.yaml][#clouds_yaml] est utilisé pour stocker les "
+"informations de configuration de votre OpenStack. Ce fichier doit être "
+"situé dans votre répertoire personnel sous le répertoire "
+".config/openstack."
+
+#: ../../intro/installing.md:16
+msgid ""
+"Alternatively, you can configure authentication using [environment "
+"variables][#envvars]. This file is typically sourced within your shell "
+"environment."
+msgstr ""
+"Alternativement, vous pouvez configurer l'authentification en utilisant "
+"[les variables d'environnement][#envvars]. Ce fichier est généralement "
+"sourcé dans l'environnement de votre terminal."
+
+#: ../../intro/installing.md:19
+msgid ""
+"In either case, it is important to ensure that authentication is properly"
+" configured so that the OpenStack provider is accessible and secure."
+msgstr ""
+"Dans les deux cas, il est important de veiller à ce que "
+"l'authentification soit correctement configurée afin que le fournisseur "
+"OpenStack soit accessible et sécurisé."
+
+#: ../../intro/installing.md:22
+msgid "Terraform"
+msgstr "Terraform"
+
+#: ../../intro/installing.md:24
+msgid ""
+"Find up-to-date instructions for your operating system on [Install "
+"Terraform][#install_terraform]"
+msgstr ""
+"Trouvez des instructions à jour pour votre système d'exploitation sur "
+"[Install Terraform][#install_terraform]"
+
+#: ../../intro/installing.md:26
+msgid "Workspaces"
+msgstr "Espaces de travail"
+
+#: ../../intro/installing.md:29 ../../intro/installing.md:45
+msgid "This section requires attention"
+msgstr "Cette section nécessite une attention particulière"
+
+#: ../../intro/installing.md:36
+msgid "Created and switched to workspace \"myworkspace\"!"
+msgstr "Espace de travail \"myworkspace\" créé et activé !"
+
+#: ../../intro/installing.md:38
+msgid ""
+"You're now on a new, empty workspace. Workspaces isolate their state, so "
+"if you run \"terraform plan\" Terraform will not see any existing state "
+"for this configuration."
+msgstr ""
+"Vous êtes maintenant dans un nouvel espace de travail vide. Les espaces "
+"de travail isolent leur état, donc si vous exécutez \"terraform plan\", "
+"Terraform ne verra aucun état existant pour cette configuration."
+
+#: ../../intro/installing.md:42
+msgid "Deployments"
+msgstr "Déploiements"
+

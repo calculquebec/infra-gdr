@@ -1,0 +1,171 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-23 14:42-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../infra/backups.md:1
+msgid "Backups"
+msgstr "Sauvegardes"
+
+#: ../../infra/backups.md:3
+msgid ""
+"Backing up data is a crucial aspect of data management, and it ensures "
+"that we can recover important files in case of data loss, hardware "
+"failure, or other disasters."
+msgstr ""
+"Sauvegarder les données est un aspect crucial de la gestion des données, "
+"et cela garantit que nous pouvons récupérer les fichiers importants en "
+"cas de perte de données, de panne matériel ou d'autres catastrophes."
+
+#: ../../infra/backups.md:5
+msgid ""
+"For that purpose, we use [Restic][#restic] which is a fast and secure "
+"backup program that allows you to easily backup and restore files from "
+"various sources, including local directories, remote servers, and cloud "
+"storage platforms."
+msgstr ""
+"À cette fin, nous utilisons [Restic][#restic], qui est un programme de "
+"sauvegarde rapide et sécurisé qui vous permet de sauvegarder et de "
+"restaurer facilement des fichiers à partir de différentes sources, y "
+"compris des répertoires locaux, des serveurs distants et des plateformes "
+"de stockage en nuage."
+
+#: ../../infra/backups.md:7
+msgid ""
+"In this section, we will explore how to create data backups, manage "
+"multiple backup repositories, and automate backup tasks using "
+"[systemd][#systemd]."
+msgstr ""
+"Dans cette section, nous explorerons comment créer des sauvegardes de "
+"données, gérer plusieurs référentiels de sauvegarde et automatiser les "
+"tâches de sauvegarde en utilisant [systemd][#systemd]."
+
+#: ../../infra/backups.md:9
+msgid ""
+"We will also cover some best practices for backup storage and security, "
+"including encryption and password management. Whether you are a beginner "
+"or an experienced user, this documentation will guide you through the "
+"process of setting up and maintaining a reliable backup strategy."
+msgstr ""
+"Nous aborderons également quelques bonnes pratiques pour le stockage et "
+"la sécurité des sauvegardes, y compris le chiffrement et la gestion des "
+"mots de passe. Que vous soyez débutant ou utilisateur expérimenté, cette "
+"documentation vous guidera à travers le processus de configuration et de "
+"maintenance d'une stratégie de sauvegarde fiable."
+
+#: ../../infra/backups.md:11
+msgid "Scheduling"
+msgstr "Planification"
+
+#: ../../infra/backups.md:13
+msgid ""
+"Scheduling backup jobs with [systemd][#systemd] is a convenient and "
+"reliable way to automate your backup process."
+msgstr ""
+"La planification des tâches de sauvegarde avec [systemd][#systemd] est un"
+" moyen pratique et fiable d'automatiser votre processus de sauvegarde."
+
+#: ../../infra/backups.md:15
+msgid ""
+"Systemd is a modern system and service manager that is available on most "
+"Linux distributions, and it provides a powerful and flexible interface "
+"for managing background services and scheduled tasks."
+msgstr ""
+"Systemd est un gestionnaire de système et de services moderne disponible "
+"sur la plupart des distributions Linux, et il offre une interface "
+"puissante et flexible pour la gestion des services en arrière-plan et des"
+" tâches planifiées."
+
+#: ../../infra/backups.md:17
+msgid ""
+"Let's say a volume is mounted on `/media/myconf`, then we could use "
+"[restic-systemd][#restic-systemd] as follows:"
+msgstr ""
+"Supposons qu'un volume soit monté sur `/media/myconf`, alors nous "
+"pourrions utiliser [restic-systemd][#restic-systemd] de la manière "
+"suivante :"
+
+#: ../../infra/backups.md:24
+msgid "This will initialize a repository for our volume in our container."
+msgstr "Cela initialisera un référentiel pour notre volume dans notre conteneur."
+
+#: ../../infra/backups.md:30
+msgid ""
+"This will perform a secure backup job hourly and keep snapshots for last "
+"**7 days**."
+msgstr ""
+"Cela effectuera une tâche de sauvegarde sécurisée toutes les heures et "
+"conservera des instantanés pendant les **7 derniers jours**."
+
+#: ../../infra/backups.md:33
+msgid ""
+"Overall, using systemd to schedule restic backups is a robust and "
+"efficient way to ensure that your data is always backed up and protected."
+msgstr ""
+"En général, utiliser systemd pour planifier les sauvegardes restic est un"
+" moyen robuste et efficace de garantir que vos données sont toujours "
+"sauvegardées et protégées."
+
+#: ../../infra/backups.md:36 ../../infra/databases.md:1
+msgid "Databases"
+msgstr "Bases de données"
+
+#: ../../infra/backups.md:39
+msgid ""
+"Secure backups of application databases are taken daily in a secure and "
+"reliable manner with a retention policy of **7 days**."
+msgstr ""
+"Des sauvegardes sécurisées des bases de données d'application sont "
+"effectuées quotidiennement de manière sécurisée et fiable avec une "
+"politique de rétention de **7 jours**."
+
+#: ../../infra/backups.md:41
+msgid "This protects against potential data loss and enable disaster recovery."
+msgstr ""
+"Cela protège contre une perte potentielle de données et permet la "
+"récupération après sinistre."
+
+#: ../../infra/backups.md:44
+msgid ""
+"In summary, this procedure consists of using `repmgr standby pause`, "
+"performing a backup from the paused **standby** server and resuming "
+"replication."
+msgstr ""
+"En résumé, cette procédure consiste à utiliser `repmgr standby pause`, "
+"effectuer une sauvegarde à partir du serveur **standby** en pause et "
+"reprendre la réplication."
+
+#: ../../infra/backups.md:55
+msgid ""
+"This will stop the **standby** server from replaying the backlog of WAL "
+"records from the primary server, allowing us to perform *risks-free* "
+"backups and/or other maintenance tasks."
+msgstr ""
+"Cela empêchera le serveur **standby** de rejouer le flux en attente des "
+"enregistrements WAL du serveur primaire, nous permettant d'effectuer des "
+"sauvegardes sans risque et/ou d'autres tâches de maintenance."
+
+#: ../../infra/backups.md:58
+msgid ""
+"An extra **standby** server would allow a server to be promoted in case "
+"of a primary server failure during the backup job."
+msgstr ""
+"Un serveur **standby** supplémentaire permettrait à un serveur d'être "
+"promu en cas d'une défaillance du serveur primaire pendant la sauvegarde."

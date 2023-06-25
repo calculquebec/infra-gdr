@@ -2,12 +2,6 @@
 
 This project is aimed at providing an easy-to-use tool for researchers to manage their research data effectively. 
 
-```{admonition} Notes
-:class: note
-
-The tool will help researchers to organize their data, create backups, and collaborate with other researchers.
-```
-
 ## Summary
 
 ```{toctree}
