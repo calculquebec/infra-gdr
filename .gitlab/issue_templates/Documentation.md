@@ -35,4 +35,4 @@ and verify the issue you're about to submit isn't a duplicate.
 <!-- e.g. related gitlab issues/mrs -->
 
 /cc @opsocket
-/label ~"type::documentation"
+/label ~documentation

@@ -29,5 +29,5 @@ and verify the issue you're about to submit isn't a duplicate.
 
 <!-- Add links to lines of code, examples, guides, tools, specifications or documents that are directly related to the request -->
 
-/label ~"type::feature"
+/label ~feature
 /cc @opsocket
