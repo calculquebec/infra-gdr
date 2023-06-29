@@ -169,7 +169,7 @@ provision:
 
 ## documentation
 
-documentation:
+pages:
   stage: documentation
   image: python:3.10
   before_script:
