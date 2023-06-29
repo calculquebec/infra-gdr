@@ -10,7 +10,7 @@
       <dt>{{ _('Languages') }}</dt>
       {% for code, name in languages %}
         <dd {% if code == language %}class="rtd-current-item"{% endif %}>
-          <a href="{% if code != languages.0.0 %}/{{ code }}{% endif %}/{{ pagename }}.html">{{ name }}</a>
+          <a href="{% if code != languages.0.0 %}{{ code }}/{% endif %}{{ pagename }}.html">{{ name }}</a>
         </dd>
       {% endfor %}
     </dl>
@@ -19,14 +19,14 @@
       <dt>{{ _('Versions') }}</dt>
         <dd><a href="{{ pathto('', 1) }}">main</a></dd>
         {% for slug, url in versions %}
-        <dd><a href="{{ url }}">{{ slug }}</a></dd>
+        <dd><a href="{{ pathto(url, 1) }}">{{ slug }}</a></dd>
         {% endfor %}
     </dl>
     {% if downloads %}
     <dl>
       <dt>{{ _('Downloads') }}</dt>
       {% for type, url in downloads %}
-        <dd><a href="{{ url }}">{{ type }}</a></dd>
+        <dd><a href="{{ pathto(url, 1) }}">{{ type }}</a></dd>
       {% endfor %}
     </dl>
     {% endif %}
@@ -34,7 +34,7 @@
       <dt>{{ _('Links') }}</dt>
         {% for name, url in links %}
         <dd>
-          <a href="{{ url }}">{{ name }}</a>
+          <a href="{{ pathto(url, 1) }}">{{ name }}</a>
         </dd>
         {% endfor %}
     </dl>
