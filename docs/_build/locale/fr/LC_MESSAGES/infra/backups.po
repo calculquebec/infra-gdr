@@ -35,21 +35,19 @@ msgstr ""
 "cas de perte de données, de panne matériel ou d'autres catastrophes."
 
 #: ../../infra/backups.md:5
-#, fuzzy
 msgid ""
 "For that purpose, we use [Restic](https://restic.net) which is a fast and"
 " secure backup program that allows you to easily backup and restore files"
 " from various sources, including local directories, remote servers, and "
 "cloud storage platforms."
 msgstr ""
-"À cette fin, nous utilisons [Restic][#restic], qui est un programme de "
+"À cette fin, nous utilisons [Restic](https://restic.net), qui est un programme de "
 "sauvegarde rapide et sécurisé qui vous permet de sauvegarder et de "
 "restaurer facilement des fichiers à partir de différentes sources, y "
 "compris des répertoires locaux, des serveurs distants et des plateformes "
 "de stockage en nuage."
 
 #: ../../infra/backups.md:7
-#, fuzzy
 msgid ""
 "In this section, we will explore how to create data backups, manage "
 "multiple backup repositories, and automate backup tasks using "
@@ -57,7 +55,7 @@ msgid ""
 msgstr ""
 "Dans cette section, nous explorerons comment créer des sauvegardes de "
 "données, gérer plusieurs référentiels de sauvegarde et automatiser les "
-"tâches de sauvegarde en utilisant [systemd][#systemd]."
+"tâches de sauvegarde en utilisant [systemd](https://systemd.io)."
 
 #: ../../infra/backups.md:9
 msgid ""
@@ -77,12 +75,11 @@ msgid "Scheduling"
 msgstr "Planification"
 
 #: ../../infra/backups.md:13
-#, fuzzy
 msgid ""
 "Scheduling backup jobs with [systemd](https://systemd.io) is a convenient"
 " and reliable way to automate your backup process."
 msgstr ""
-"La planification des tâches de sauvegarde avec [systemd][#systemd] est un"
+"La planification des tâches de sauvegarde avec [systemd](https://systemd.io) est un"
 " moyen pratique et fiable d'automatiser votre processus de sauvegarde."
 
 #: ../../infra/backups.md:15
@@ -97,18 +94,17 @@ msgstr ""
 " tâches planifiées."
 
 #: ../../infra/backups.md:17
-#, fuzzy
 msgid ""
 "Let's say a volume is mounted on `/media/myconf`, then we could use "
 "[restic-systemd](https://gitlab.com/opsocket/restic-systemd) as follows:"
 msgstr ""
 "Supposons qu'un volume soit monté sur `/media/myconf`, alors nous "
-"pourrions utiliser [restic-systemd][#restic-systemd] de la manière "
+"pourrions utiliser [restic-systemd](https://gitlab.com/opsocket/restic-systemd) de la manière "
 "suivante :"
 
 #: ../../infra/backups.md:24
 msgid "This will initialize a repository for our volume in our container."
-msgstr "Cela initialisera un référentiel pour notre volume dans notre conteneur."
+msgstr "Cela initialisera un répertoire pour notre volume dans notre conteneur."
 
 #: ../../infra/backups.md:30
 msgid ""
@@ -143,7 +139,7 @@ msgstr ""
 #: ../../infra/backups.md:41
 msgid "This protects against potential data loss and enable disaster recovery."
 msgstr ""
-"Cela protège contre une perte potentielle de données et permet la "
+"Cela protège contre une perte potentielle de données et permet une "
 "récupération après sinistre."
 
 #: ../../infra/backups.md:44

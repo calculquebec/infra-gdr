@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-25 17:36-0400\n"
+"POT-Creation-Date: 2023-06-29 18:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -41,7 +41,6 @@ msgid "Authentication"
 msgstr "Authentification"
 
 #: ../../intro/installing.md:12
-#, fuzzy
 msgid ""
 "To authenticate with an OpenStack provider, you should configure your "
 "authentication using "
@@ -54,11 +53,14 @@ msgid ""
 "openstackclient/pike/cli/man/openstack.html#environment-variables)."
 msgstr ""
 "Pour vous authentifier avec un fournisseur OpenStack, vous devez "
-"configurer votre authentification en utilisant [Keystone][#keystone]. "
-"Nous pouvons configurer l'authentification avec [les informations "
-"d'identification Keystone][#keystone_creds] en utilisant soit le fichier "
-"[clouds.yaml][#clouds_yaml] soit les [variables "
-"d'environnement][#envvars]."
+"configurer votre authentification en utilisant "
+"[Keystone](https://docs.openstack.org/keystone/latest). Nous pouvons "
+"configurer l'authentification avec les [informations d'identification "
+"Keystone](https://docs.openstack.org/keystone/latest/user/application_credentials.html)"
+" en utilisant le fichier [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) ou les "
+"[variables d'environnement](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables)"
 
 #: ../../intro/installing.md:14
 #, fuzzy
@@ -66,15 +68,14 @@ msgid ""
 "The [clouds.yaml](https://docs.openstack.org/python-"
 "openstackclient/pike/configuration/index.html#clouds-yaml) file is used "
 "to store your OpenStack configuration information. This file should be "
-"located in your home directory under the .config/openstack directory."
+"located in your home directory under the `.config/openstack` directory."
 msgstr ""
-"Le fichier [clouds.yaml][#clouds_yaml] est utilisé pour stocker les "
-"informations de configuration de votre OpenStack. Ce fichier doit être "
-"situé dans votre répertoire personnel sous le répertoire "
-".config/openstack."
+"Le fichier [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) est utilisé "
+"pour stocker les informations de configuration OpenStack. Ce fichier doit"
+" être situé dans votre dossier personnel sous `.config/openstack`."
 
 #: ../../intro/installing.md:16
-#, fuzzy
 msgid ""
 "Alternatively, you can configure authentication using [environment "
 "variables](https://docs.openstack.org/python-"
@@ -82,15 +83,16 @@ msgid ""
 "file is typically sourced within your shell environment."
 msgstr ""
 "Alternativement, vous pouvez configurer l'authentification en utilisant "
-"[les variables d'environnement][#envvars]. Ce fichier est généralement "
-"sourcé dans l'environnement de votre terminal."
+"les [variables d'environnement](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables). Ce "
+"fichier est généralement sourcé dans l'environnement de votre terminal."
 
 #: ../../intro/installing.md:19
 msgid ""
 "In either case, it is important to ensure that authentication is properly"
 " configured so that the OpenStack provider is accessible and secure."
 msgstr ""
-"Dans les deux cas, il est important de veiller à ce que "
+"Dans l'un ou l'autre des cas, il est important de veiller à ce que "
 "l'authentification soit correctement configurée afin que le fournisseur "
 "OpenStack soit accessible et sécurisé."
 
@@ -99,13 +101,12 @@ msgid "Terraform"
 msgstr "Terraform"
 
 #: ../../intro/installing.md:24
-#, fuzzy
 msgid ""
 "Find up-to-date instructions for your operating system on [Install "
 "Terraform](https://developer.hashicorp.com/terraform/downloads)"
 msgstr ""
 "Trouvez des instructions à jour pour votre système d'exploitation sur "
-"[Install Terraform][#install_terraform]"
+"[Install Terraform](https://developer.hashicorp.com/terraform/downloads)"
 
 #: ../../intro/installing.md:26
 msgid "Deployments"
@@ -113,4 +114,5 @@ msgstr "Déploiements"
 
 #: ../../intro/installing.md:29
 msgid "This section requires attention"
-msgstr "Cette section nécessite une attention particulière"
+msgstr "Cette section nécessite de l'attention"
+

@@ -67,7 +67,7 @@ msgstr "Installer les dépendances requises"
 
 #: ../../community/contributing.md:30
 msgid "Building the Documentation"
-msgstr "Génération de la Documentation"
+msgstr "Construire la documentation"
 
 #: ../../community/contributing.md:32
 msgid ""
