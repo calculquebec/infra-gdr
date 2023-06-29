@@ -14,8 +14,8 @@ variables:
 stages:
   - validate
   - test
-  - plan
   - documentation
+  - plan
   - apply
   - destroy
   - provision
