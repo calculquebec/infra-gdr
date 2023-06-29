@@ -11,19 +11,18 @@
       {% for code, name in languages %}
         {% if code == language %}
           <dd class="rtd-current-item">
-            <a href="{{ pagename }}.html">{{ name }}</a>
+            <a href="{{ pathto(pagename + '.html', 1) }}">{{ name }}</a>
           </dd>
         {% else %}
           {% if language != languages.0.0 %}
             <dd>
-              <a href="../{{ pagename }}.html">{{ name }}</a>
+              <a href="{{ pathto('../' + pagename + '.html', 1) }}">{{ name }}</a>
             </dd>
           {% else %}
             <dd>
-              <a href="{{ code }}/{{ pagename }}.html">{{ name }}</a>
+              <a href="{{ pathto(code + '/' + pagename + '.html', 1) }}">{{ name }}</a>
             </dd>
           {% endif %}
-              
         {% endif %}
       {% endfor %}
     </dl>
