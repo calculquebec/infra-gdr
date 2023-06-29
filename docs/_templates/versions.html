@@ -9,9 +9,22 @@
     <dl>
       <dt>{{ _('Languages') }}</dt>
       {% for code, name in languages %}
-        <dd {% if code == language %}class="rtd-current-item"{% endif %}>
-          <a href="{% if code != languages.0.0 %}../{{ code }}/{% endif %}{{ pagename }}.html">{{ name }}</a>
-        </dd>
+        {% if code == language %}
+          <dd class="rtd-current-item">
+            <a href="{{ pagename }}.html">{{ name }}</a>
+          </dd>
+        {% else %}
+          {% if language != languages.0.0 %}
+            <dd>
+              <a href="../{{ pagename }}.html">{{ name }}</a>
+            </dd>
+          {% else %}
+            <dd>
+              <a href="{{ code }}/{{ pagename }}.html">{{ name }}</a>
+            </dd>
+          {% endif %}
+              
+        {% endif %}
       {% endfor %}
     </dl>
     {% endif %}

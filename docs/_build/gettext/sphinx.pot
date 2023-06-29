@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-29 13:02-0400\n"
+"POT-Creation-Date: 2023-06-29 16:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Mobile navigation menu"
 msgstr ""
 
-#: ../../_templates/versions.html:1 ../../_templates/versions.html:19
+#: ../../_templates/versions.html:1 ../../_templates/versions.html:32
 msgid "Versions"
 msgstr ""
 
@@ -60,26 +60,26 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
-#: ../../_templates/versions.html:27
+#: ../../_templates/versions.html:40
 msgid "Downloads"
 msgstr ""
 
-#: ../../_templates/versions.html:34
+#: ../../_templates/versions.html:47
 msgid "Links"
 msgstr ""
 
-#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:28
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:27
 msgid "Research Data Management (RDM)"
 msgstr ""
 
-#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:87
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:86
 msgid "English"
 msgstr ""
 
-#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:88
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:87
 msgid "French"
 msgstr ""
 
-#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:133
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:132
 msgid "Repository"
 msgstr ""
