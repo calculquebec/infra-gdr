@@ -1,15 +1,4 @@
-  # Overview
-
-- `apps.tf`: Terraform configuration for deploying the research data management services.
-- `databases.tf`: Terraform configuration for deploying the databases required by the services.
-- `external`: Directory containing external scripts and files required by the project.
-  - `databases/setup.sh`: Shell script for setting up the databases.
-  - `keystone.py`: Python script for authenticating with the Keystone identity service.
-- `firewall.tf`: Terraform configuration for setting up the firewall rules.
-- `outputs.tf`: Terraform configuration for defining the output variables.
-- `providers.tf`: Terraform configuration for defining the provider information.
-- `variables.tf`: Terraform configuration for defining the input variables.
-- `versions.tf`: Terraform configuration for defining the required Terraform version.
+# Overview
 
 ## Providers
 
@@ -39,7 +28,7 @@ Here's the breakdown:
 
 ## LXD Containers
 
-LXD stands for [Linux Container Daemon][#lxd]. It is an open-source container management system that provides a user-friendly interface and command-line tools to manage Linux containers. 
+LXD stands for [Linux Container Daemon](https://linuxcontainers.org). It is an open-source container management system that provides a user-friendly interface and command-line tools to manage Linux containers. 
 
 LXD allows users to create and manage lightweight, secure, and fast virtualized environments that can be used for a wide range of purposes, such as development, testing, and production workloads. 
 
@@ -51,12 +40,10 @@ In this case, a publicly available container image registry is hosted at https:/
 
 These public images are maintained by the registry owners and are available for anyone to use. To launch a public image, users can simply pull the image from the registry and run it in their own container environment. 
 
-For example, we might use these commands to start an instance of [nextcloud][#nextcloud]:
+For example, we might use these commands to start an instance of [nextcloud](https://nextcloud.com):
 
 ```shell
 lxc init --auto
 lxc remote add opimgs https://images.opsocket.com
 lxc launch opimgs:nextcloud n1
 ```
-
-[#lxd]: https://linuxcontainers.org

@@ -1,14 +1,15 @@
+*.mo
 .bkp
 .terraform
 __pycache__
-docs/_templates/_page.html
 env
 errored.tfstate
 external
 mkdocs
 plan
-public
 run.py
 terraform.tfstate*
 tf.plan
 tmp
+docs/_build/doctrees
+public

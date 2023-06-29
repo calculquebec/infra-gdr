@@ -175,7 +175,7 @@ documentation:
   before_script:
     - pip install -r docs/requirements.txt
   script:
-    - sphinx-build docs public
+    - python3 docs/build.py
   artifacts:
     paths: ['public']
   only:

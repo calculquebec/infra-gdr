@@ -2,19 +2,19 @@
 
 Backing up data is a crucial aspect of data management, and it ensures that we can recover important files in case of data loss, hardware failure, or other disasters.
 
-> For that purpose, we use [Restic][#restic] which is a fast and secure backup program that allows you to easily backup and restore files from various sources, including local directories, remote servers, and cloud storage platforms. 
+> For that purpose, we use [Restic](https://restic.net) which is a fast and secure backup program that allows you to easily backup and restore files from various sources, including local directories, remote servers, and cloud storage platforms. 
 
-In this section, we will explore how to create data backups, manage multiple backup repositories, and automate backup tasks using [systemd][#systemd]. 
+In this section, we will explore how to create data backups, manage multiple backup repositories, and automate backup tasks using [systemd](https://systemd.io). 
 
 We will also cover some best practices for backup storage and security, including encryption and password management. Whether you are a beginner or an experienced user, this documentation will guide you through the process of setting up and maintaining a reliable backup strategy.
 
 ## Scheduling
 
-Scheduling backup jobs with [systemd][#systemd] is a convenient and reliable way to automate your backup process. 
+Scheduling backup jobs with [systemd](https://systemd.io) is a convenient and reliable way to automate your backup process. 
 
 > Systemd is a modern system and service manager that is available on most Linux distributions, and it provides a powerful and flexible interface for managing background services and scheduled tasks.
 
-Let's say a volume is mounted on `/media/myconf`, then we could use [restic-systemd][#restic-systemd] as follows: 
+Let's say a volume is mounted on `/media/myconf`, then we could use [restic-systemd](https://gitlab.com/opsocket/restic-systemd) as follows: 
 
 ```shell
 while read -r line; do export "${line}"; done < /etc/restic/myconf.conf
@@ -57,7 +57,3 @@ This will stop the **standby** server from replaying the backlog of WAL records 
 ```{tip}
 An extra **standby** server would allow a server to be promoted in case of a primary server failure during the backup job. 
 ```
-
-[#restic]: https://restic.net
-[#systemd]: https://systemd.io
-[#restic-systemd]: https://git.computecanada.ca/opsocket/restic-systemd

@@ -1,0 +1,239 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 17:40-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../infra/overview.md:1
+msgid "Overview"
+msgstr "Aperçu"
+
+#: ../../infra/overview.md:3
+msgid "Providers"
+msgstr "Fournisseurs"
+
+#: ../../infra/overview.md:5
+msgid "Openstack"
+msgstr "Openstack"
+
+#: ../../infra/overview.md:7
+msgid "Quotas"
+msgstr "Quotas"
+
+#: ../../infra/overview.md:9
+msgid ""
+"Deploying a single instance of the cluster requires at least having these"
+" resources available up front in the target Openstack project:"
+msgstr ""
+"Le déploiement d'une seule instance d'un agrégat nécessite au moins "
+"d'avoir ces ressources disponibles au préalable dans le projet OpenStack "
+"cible :"
+
+#: ../../infra/overview.md
+msgid "Resource"
+msgstr "Ressource"
+
+#: ../../infra/overview.md
+msgid "Amount"
+msgstr "Quantité"
+
+#: ../../infra/overview.md
+msgid "instances"
+msgstr "instances"
+
+#: ../../infra/overview.md
+msgid "5"
+msgstr "5"
+
+#: ../../infra/overview.md
+msgid "vcpus"
+msgstr "vcpus"
+
+#: ../../infra/overview.md
+msgid "12"
+msgstr "12"
+
+#: ../../infra/overview.md
+msgid "ram"
+msgstr "RAM"
+
+#: ../../infra/overview.md
+msgid "23Go"
+msgstr "23 Go"
+
+#: ../../infra/overview.md
+msgid "volumes SSD"
+msgstr "volumes SSD"
+
+#: ../../infra/overview.md
+msgid "130Go"
+msgstr "130 Go"
+
+#: ../../infra/overview.md
+msgid "volumes HDD"
+msgstr "volumes HDD"
+
+#: ../../infra/overview.md
+msgid "🤔"
+msgstr "🤔"
+
+#: ../../infra/overview.md:19
+msgid "Here's the breakdown:"
+msgstr "Voici la répartition :"
+
+#: ../../infra/overview.md
+msgid "Server"
+msgstr "Serveur"
+
+#: ../../infra/overview.md
+msgid "VCPUs"
+msgstr "VCPUs"
+
+#: ../../infra/overview.md
+msgid "RAM"
+msgstr "RAM"
+
+#: ../../infra/overview.md
+msgid "SSD"
+msgstr "SSD"
+
+#: ../../infra/overview.md
+msgid "HDD"
+msgstr "HDD"
+
+#: ../../infra/overview.md
+msgid "apps"
+msgstr "apps"
+
+#: ../../infra/overview.md
+msgid "8"
+msgstr "8"
+
+#: ../../infra/overview.md
+msgid "15Gb"
+msgstr "15 Go"
+
+#: ../../infra/overview.md
+msgid "32Gb (+32Gb snapshot)"
+msgstr "32 Go (+32 Go pour un instantané)"
+
+#: ../../infra/overview.md
+msgid "150Gb"
+msgstr "150 Go"
+
+#: ../../infra/overview.md
+msgid "psql-0"
+msgstr "psql-0"
+
+#: ../../infra/overview.md
+msgid "1"
+msgstr "1"
+
+#: ../../infra/overview.md
+msgid "2Gb"
+msgstr "2 Go"
+
+#: ../../infra/overview.md
+msgid "16gb"
+msgstr "16 Go"
+
+#: ../../infra/overview.md
+msgid "0"
+msgstr "0"
+
+#: ../../infra/overview.md
+msgid "psql-1"
+msgstr "psql-1"
+
+#: ../../infra/overview.md
+msgid "psql-2"
+msgstr "psql-2"
+
+#: ../../infra/overview.md
+msgid "psql-3"
+msgstr "psql-3"
+
+#: ../../infra/overview.md:29
+msgid "LXD Containers"
+msgstr "Conteneurs LXD"
+
+#: ../../infra/overview.md:31
+msgid ""
+"LXD stands for [Linux Container Daemon](https://linuxcontainers.org). It "
+"is an open-source container management system that provides a user-"
+"friendly interface and command-line tools to manage Linux containers."
+msgstr ""
+"LXD signifie [Linux Container Daemon](https://linuxcontainers.org). Il "
+"s'agit d'un système libre de gestion de conteneurs qui fournit une "
+"interface conviviale et des outils en ligne de commande pour gérer les "
+"conteneurs Linux."
+
+#: ../../infra/overview.md:33
+msgid ""
+"LXD allows users to create and manage lightweight, secure, and fast "
+"virtualized environments that can be used for a wide range of purposes, "
+"such as development, testing, and production workloads."
+msgstr ""
+"LXD permet aux utilisateurs de créer et de gérer des environnements "
+"virtualisés légers, sécurisés et rapides qui peuvent être utilisés pour "
+"une large gamme d'applications, comme le développement, les tests et les "
+"charges de production."
+
+#: ../../infra/overview.md:35
+msgid "Images"
+msgstr "Images"
+
+#: ../../infra/overview.md:37
+msgid ""
+"A container image registry is a centralized location where container "
+"images can be stored, managed, and distributed."
+msgstr ""
+"Un registre d'images de conteneur est un emplacement centralisé où les "
+"images de conteneur peuvent être stockées, gérées et distribuées."
+
+#: ../../infra/overview.md:39
+msgid ""
+"In this case, a publicly available container image registry is hosted at "
+"https://images.opsocket.com. Users can access this registry to download "
+"and launch public container images that are stored on it."
+msgstr ""
+"Dans ce cas, un registre d'images de conteneur disponible publiquement "
+"est hébergé sur https://images.opsocket.com. Les utilisateurs peuvent "
+"accéder à ce registre pour télécharger et lancer des images de conteneur "
+"publiques qui y sont stockées."
+
+#: ../../infra/overview.md:41
+msgid ""
+"These public images are maintained by the registry owners and are "
+"available for anyone to use. To launch a public image, users can simply "
+"pull the image from the registry and run it in their own container "
+"environment."
+msgstr ""
+"Les images publiques sont maintenues par les propriétaires du registre et"
+" sont disponibles pour tous. Pour lancer une image publique, les "
+"utilisateurs peuvent simplement extraire l'image du registre et "
+"l'exécuter dans leur propre environnement de conteneur."
+
+#: ../../infra/overview.md:43
+msgid ""
+"For example, we might use these commands to start an instance of "
+"[nextcloud](https://nextcloud.com):"
+msgstr ""
+"Par exemple, nous pourrions utiliser ces commandes pour démarrer une "
+"instance de [nextcloud](https://nextcloud.com):"

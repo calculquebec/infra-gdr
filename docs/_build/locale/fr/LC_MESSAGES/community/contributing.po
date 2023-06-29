@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 18:16-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../community/contributing.md:1
+msgid "Contributing"
+msgstr "Contribuer"
+
+#: ../../community/contributing.md:3
+msgid "Documentation"
+msgstr "Documentation"
+
+#: ../../community/contributing.md:5
+msgid ""
+"This repository uses [Sphinx](https://www.sphinx-doc.org), a powerful "
+"documentation generator, to create high-quality documentation. It enables"
+" you to write documentation in reStructuredText (reST) format or markdown"
+" (MyST) and provides tools for complex documentation and publishing "
+"workflows."
+msgstr ""
+"Ce dépôt utilise [Sphinx](https://www.sphinx-doc.org), un puissant générateur "
+"de documentation, pour créer une documentation de haute qualité. Il vous permet "
+"d'écrire de la documentation au format reStructuredText (reST) ou au format markdown"
+" (MyST) et fournit des outils pour des flux de travail complexes de documentation et de publication."
+
+#: ../../community/contributing.md:7
+msgid "Prerequisities"
+msgstr "Pré-requis"
+
+#: ../../community/contributing.md:9
+msgid ""
+"To set up the development environment and build the documentation, follow"
+" these steps inside the cloned repository:"
+msgstr ""
+"Pour configurer l'environnement de développement et générer la documentation, suivez"
+" ces étapes à l'intérieur du dépôt cloné:"
+
+#: ../../community/contributing.md:12
+msgid "Create a virtual environment"
+msgstr "Créer un environnement virtuel"
+
+#: ../../community/contributing.md:18
+msgid "Activate the virtual environment"
+msgstr "Activer l'environnement virtuel"
+
+#: ../../community/contributing.md:24
+msgid "Install the required dependencies"
+msgstr "Installer les dépendances requises"
+
+#: ../../community/contributing.md:30
+msgid "Building the Documentation"
+msgstr "Génération de la Documentation"
+
+#: ../../community/contributing.md:32
+msgid ""
+"Since we have to support many languages, a meta build system "
+"`docs/build.py` has been added to support internationalized builds for "
+"any configured language."
+msgstr ""
+"Étant donné que nous devons prendre en charge de nombreuses langues, un système de génération "
+"`docs/build.py` a été ajouté pour prendre en charge les génération internationalisées pour "
+"toute langue configurée."
+
+#: ../../community/contributing.md:34
+msgid "Therefore, building the documentation is as simple as:"
+msgstr "Ainsi, générer la documentation est aussi simple que:"
+
+#: ../../community/contributing.md:40
+msgid "Which will produce an **HTML** output in the `public` folder."
+msgstr "Ce qui produira une sortie HTML dans le dossier `public`."
+
+#: ../../community/contributing.md:42
+msgid "Internationalization (i18n)"
+msgstr "Internationalisation (i18n)"
+
+#: ../../community/contributing.md:44
+msgid "https://github.com/sphinx-doc/sphinx-intl"
+msgstr ""
+
+#: ../../community/contributing.md:46
+msgid ""
+"`sphinx-intl` is a utility tool that provides several features that make "
+"it easy to translate and to apply translation to **Sphinx** generated "
+"document."
+msgstr ""
+"sphinx-intl est un outil qui propose plusieurs fonctionnalités facilitant"
+" la traduction et l'application de traduction aux documents générés par "
+"Sphinx."
+

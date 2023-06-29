@@ -1,0 +1,117 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 17:41-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../infra/troubleshooting.md:1
+msgid "Troubleshooting"
+msgstr "Dépannage"
+
+#: ../../infra/troubleshooting.md:3
+msgid ""
+"If you encounter issues with deploying the research data management "
+"services, please try the following troubleshooting steps:"
+msgstr ""
+"Si vous rencontrez des problèmes lors du déploiement des services de "
+"gestion des données de recherche, veuillez suivre les étapes de dépannage"
+" suivantes:"
+
+#: ../../infra/troubleshooting.md:5
+msgid "Verify Input Variables"
+msgstr "Vérifier les variables d'entrée"
+
+#: ../../infra/troubleshooting.md:7
+msgid ""
+"If you are experiencing issues with deploying the services, it may be "
+"because of incorrectly defined input variables. Ensure that all the "
+"required input variables have been correctly defined in `variables.tf`. "
+"Review the documentation for each input variable and verify that the "
+"values provided for them are correct."
+msgstr ""
+"Si vous rencontrez des problèmes lors du déploiement des services, cela "
+"peut être dû à des variables d'entrée incorrectement définies. Assurez-"
+"vous que toutes les variables d'entrée requises ont été correctement "
+"définies dans `variables.tf`. Revoyez la documentation pour chaque "
+"variable d'entrée et vérifiez que les valeurs qui leur sont attribuées "
+"sont correctes."
+
+#: ../../infra/troubleshooting.md:9
+msgid "Check Provider Versions"
+msgstr "Vérifier les versions du fournisseur"
+
+#: ../../infra/troubleshooting.md:11
+msgid ""
+"Terraform providers have their own versioning and compatibility "
+"requirements. Ensure that the required provider versions have been "
+"correctly defined in `providers.tf` and `versions.tf`. You can check the "
+"documentation for each provider to verify the specific versions required."
+msgstr ""
+"Les fournisseurs Terraform ont leurs propres exigences de versionnement "
+"et de compatibilité. Assurez-vous que les versions du fournisseur "
+"requises ont été correctement définies dans `providers.tf` et "
+"`versions.tf`. Vous pouvez consulter la documentation de chaque "
+"fournisseur pour vérifier les versions spécifiques requises."
+
+#: ../../infra/troubleshooting.md:13
+msgid "Verify Infrastructure Resources"
+msgstr "Vérifier les ressources d'infrastructure"
+
+#: ../../infra/troubleshooting.md:15
+msgid ""
+"If the input variables and provider versions have been correctly defined,"
+" the next step is to verify that the required infrastructure resources "
+"have been correctly defined in `apps.tf`, `databases.tf`, and "
+"`firewall.tf`. Check each resource definition and ensure that the "
+"configuration is correct."
+msgstr ""
+"Si les variables d'entrée et les versions du fournisseur ont été "
+"correctement définies, l'étape suivante consiste à vérifier que les "
+"ressources d'infrastructure requises ont été correctement définies dans "
+"`apps.tf`, `databases.tf` et `firewall.tf`. Vérifiez chaque définition de"
+" ressource et assurez-vous que la configuration est correcte."
+
+#: ../../infra/troubleshooting.md:17
+msgid "Check Logs and Error Messages"
+msgstr "Vérifier les journaux et les messages d'erreur"
+
+#: ../../infra/troubleshooting.md:19
+msgid ""
+"If you are still experiencing issues after trying the above "
+"troubleshooting steps, check the logs and error messages for any specific"
+" issues or errors that need to be addressed. You can use the `terraform "
+"plan` and `terraform apply` commands with the `-debug` flag to get more "
+"detailed logging information."
+msgstr ""
+"Si vous rencontrez toujours des problèmes après avoir suivi les étapes de"
+" dépannage ci-dessus, vérifiez les journaux et les messages d'erreur pour"
+" identifier les problèmes ou les erreurs spécifiques qui doivent être "
+"résolus. Vous pouvez utiliser les commandes `terraform plan` et "
+"`terraform apply` avec l'option `-debug` pour obtenir des informations de"
+" journalisation plus détaillées."
+
+#: ../../infra/troubleshooting.md:21
+msgid ""
+"If you are unable to resolve the issues after reviewing the logs and "
+"error messages, consult the Terraform documentation or seek help from the"
+" Terraform community forums."
+msgstr ""
+"Si vous ne parvenez pas à résoudre les problèmes après avoir examiné les "
+"journaux et les messages d'erreur, consultez la documentation Terraform "
+"ou demandez de l'aide sur les forums communautaires Terraform."
