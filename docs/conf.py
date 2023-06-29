@@ -22,6 +22,7 @@ trans = gettext.translation('sphinx', (BASE_DIR / "_build" / "locale").as_posix(
 
 _ = trans.gettext
 
+
 # --
 
 project = _('Research Data Management (RDM)')

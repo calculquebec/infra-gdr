@@ -12,4 +12,4 @@ terraform.tfstate*
 tf.plan
 tmp
 docs/_build/doctrees
-docs/_build/gettext
+public
