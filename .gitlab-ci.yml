@@ -173,6 +173,7 @@ documentation:
   stage: documentation
   image: python:3.10
   before_script:
+    - sudo apt install gettext
     - pip install -r docs/requirements.txt
   script:
     - python3 docs/build.py
