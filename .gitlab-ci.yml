@@ -171,8 +171,9 @@ provision:
 
 documentation:
   stage: documentation
-  image: ubuntu:22.04
+  image: python:3.10
   before_script:
+    - apt update
     - apt install gettext
     - pip install -r docs/requirements.txt
   script:
