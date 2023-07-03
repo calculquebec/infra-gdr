@@ -29,6 +29,7 @@ stages:
         - reso-t
         - pspn
         - abdela
+        - staging
   resource_group: $TF_STATE_NAME
   cache:
     key: $TF_STATE_NAME
