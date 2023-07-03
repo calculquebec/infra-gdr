@@ -20,12 +20,12 @@ https://github.com/mattermost/docs/blob/master/source/install/installing-matterm
 
 > Minimum system requirements:
 > 
->   - [x] Hardware: 1 vCPU/core with 2GB RAM (support for up to 1,000 users)
->   - [x] Database: PostgreSQL v11+
->   - [-] Network ports required:
->     - [x] Application ports 80/443, TLS, TCP Inbound
->     - [ ] Administrator Console port 8065, TLS, TCP Inbound
->     - [ ] SMTP port 10025, TCP/UDP Outbound
+>   - Hardware: 1 vCPU/core with 2GB RAM (support for up to 1,000 users)
+>   - Database: PostgreSQL v11+
+>   - Network ports required:
+>     - Application ports 80/443, TLS, TCP Inbound
+>     - Administrator Console port 8065, TLS, TCP Inbound
+>     - SMTP port 10025, TCP/UDP Outbound
 
 ## Nextcloud
 

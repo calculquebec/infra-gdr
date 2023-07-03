@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 17:36-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+# #: ../../infra/apps.md:1
+#: ../../infra/apps.md:1
+msgid "Applications"
+msgstr "Applications"
+
+#: ../../infra/apps.md:3 ../../infra/apps.md:12 ../../infra/apps.md:32
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+"veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "
+"commodo consequat. Duis aute irure dolor in reprehenderit in voluptate "
+"velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint "
+"occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
+"mollit anim id est laborum."
+msgstr ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim "
+"veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "
+"commodo consequat. Duis aute irure dolor in reprehenderit in voluptate "
+"velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint "
+"occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
+"mollit anim id est laborum."
+
+#: ../../infra/apps.md:10
+msgid "Mattermost"
+msgstr "Mattermost"
+
+#: ../../infra/apps.md:19
+msgid ""
+"https://github.com/mattermost/docs/blob/master/source/install/installing-"
+"mattermost-omnibus.rst"
+msgstr ""
+"https://github.com/mattermost/docs/blob/master/source/install/installing-"
+"mattermost-omnibus.rst"
+
+#: ../../infra/apps.md:21
+msgid "Minimum system requirements:"
+msgstr "Configuration système minimale :"
+
+#: ../../infra/apps.md:23
+msgid "Hardware: 1 vCPU/core with 2GB RAM (support for up to 1,000 users)"
+msgstr ""
+"Matériel : 1 vCPU/core avec 2 Go de RAM (prise en charge jusqu'à 1 000 "
+"utilisateurs)"
+
+#: ../../infra/apps.md:24
+msgid "Database: PostgreSQL v11+"
+msgstr "Base de données : PostgreSQL v11+"
+
+#: ../../infra/apps.md:25
+#, fuzzy
+msgid "Network ports required:"
+msgstr "[-] Ports réseau requis :"
+
+#: ../../infra/apps.md:26
+msgid "Application ports 80/443, TLS, TCP Inbound"
+msgstr "Ports d'application 80/443, TLS, TCP entrant"
+
+#: ../../infra/apps.md:27
+msgid "Administrator Console port 8065, TLS, TCP Inbound"
+msgstr "Port de la console d'administration 8065, TLS, TCP entrant"
+
+#: ../../infra/apps.md:28
+msgid "SMTP port 10025, TCP/UDP Outbound"
+msgstr "Port SMTP 10025, TCP/UDP sortant"
+
+#: ../../infra/apps.md:30
+msgid "Nextcloud"
+msgstr "Nextcloud"
+

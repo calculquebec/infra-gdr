@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 17:04-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../_templates/layout.html:97
+#, python-format
+msgid "Search within %(docstitle)s"
+msgstr "Rechercher dans %(docstitle)s"
+
+#: ../../_templates/layout.html:105
+msgid "About these documents"
+msgstr "À propos de ces documents"
+
+#: ../../_templates/layout.html:108
+msgid "Index"
+msgstr "Index"
+
+#: ../../_templates/layout.html:111
+msgid "Search"
+msgstr "Recherche"
+
+#: ../../_templates/layout.html:114
+msgid "Copyright"
+msgstr "Droits d'auteur"
+
+#: ../../_templates/layout.html:143
+msgid "Logo"
+msgstr "Logo"
+
+#: ../../_templates/layout.html:166
+msgid "Navigation menu"
+msgstr "Menu de navigation"
+
+#: ../../_templates/layout.html:188
+msgid "Mobile navigation menu"
+msgstr "Menu de navigation mobile"
+
+#: ../../_templates/versions.html:1 ../../_templates/versions.html:19
+msgid "Versions"
+msgstr "Versions"
+
+#: ../../_templates/versions.html:3
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../../_templates/versions.html:10
+msgid "Languages"
+msgstr "Langues"
+
+#: ../../_templates/versions.html:27
+msgid "Downloads"
+msgstr "Téléchargements"
+
+#: ../../_templates/versions.html:34
+msgid "Links"
+msgstr "Liens"
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:25
+msgid "Research Data Management (RDM)"
+msgstr "Gestion des Données de Recherche (GDR)"
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:84
+msgid "English"
+msgstr ""
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:85
+msgid "French"
+msgstr "Français"
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:130
+msgid "Repository"
+msgstr "Répertoire"
+
+#~ msgid "%(project)s"
+#~ msgstr "Gestion des Données de Recherche (GDR)"
+

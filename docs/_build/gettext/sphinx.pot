@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-29 18:45-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../_templates/layout.html:97
+msgid "Search within %(docstitle)s"
+msgstr ""
+
+#: ../../_templates/layout.html:105
+msgid "About these documents"
+msgstr ""
+
+#: ../../_templates/layout.html:108
+msgid "Index"
+msgstr ""
+
+#: ../../_templates/layout.html:111
+msgid "Search"
+msgstr ""
+
+#: ../../_templates/layout.html:114
+msgid "Copyright"
+msgstr ""
+
+#: ../../_templates/layout.html:143
+msgid "Logo"
+msgstr ""
+
+#: ../../_templates/layout.html:166
+msgid "Navigation menu"
+msgstr ""
+
+#: ../../_templates/layout.html:188
+msgid "Mobile navigation menu"
+msgstr ""
+
+#: ../../_templates/versions.html:1 ../../_templates/versions.html:31
+msgid "Versions"
+msgstr ""
+
+#: ../../_templates/versions.html:3
+msgid "Settings"
+msgstr ""
+
+#: ../../_templates/versions.html:10
+msgid "Languages"
+msgstr ""
+
+#: ../../_templates/versions.html:39
+msgid "Downloads"
+msgstr ""
+
+#: ../../_templates/versions.html:46
+msgid "Links"
+msgstr ""
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:27
+msgid "Research Data Management (RDM)"
+msgstr ""
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:86
+msgid "English"
+msgstr ""
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:87
+msgid "French"
+msgstr ""
+
+#: /home/opsocket/git/cq/infra-gdr/docs/conf.py:132
+msgid "Repository"
+msgstr ""

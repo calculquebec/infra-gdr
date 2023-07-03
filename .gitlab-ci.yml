@@ -14,8 +14,8 @@ variables:
 stages:
   - validate
   - test
-  - plan
   - documentation
+  - plan
   - apply
   - destroy
   - provision
@@ -169,13 +169,15 @@ provision:
 
 ## documentation
 
-documentation:
+pages:
   stage: documentation
   image: python:3.10
   before_script:
+    - apt update
+    - apt install gettext -y
     - pip install -r docs/requirements.txt
   script:
-    - sphinx-build docs public
+    - python3 docs/build.py
   artifacts:
     paths: ['public']
   only:

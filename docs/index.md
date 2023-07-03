@@ -2,12 +2,6 @@
 
 This project is aimed at providing an easy-to-use tool for researchers to manage their research data effectively. 
 
-```{admonition} Notes
-:class: note
-
-The tool will help researchers to organize their data, create backups, and collaborate with other researchers.
-```
-
 ## Summary
 
 ```{toctree}
@@ -19,7 +13,7 @@ self
 intro/installing.md
 ```
 
->  {doc}`✨ Getting started <intro/installing>`
+> {doc}`✨ Getting started <intro/installing>`
 >
 > This section provides detailed steps to set up and configure the software for your environment.
 >
@@ -39,16 +33,15 @@ infra/security.md
 infra/troubleshooting.md
 ```
 
->  {doc}`🌌 Infrastructure <infra/overview>`
+> {doc}`🌌 Infrastructure <infra/overview>`
 >
->  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
->  tempor incididunt ut labore et dolore magna aliqua.
->
->  - {doc}`infra/overview`
->  - {doc}`infra/apps`
->  - {doc}`infra/databases`
->  - {doc}`infra/backups`
->  - {doc}`infra/security`
+> This section acts as a comprehensive knowledge base providing in-depth information and resources for various aspects of the system architecture.
+> 
+> - {doc}`infra/overview`
+> - {doc}`infra/apps`
+> - {doc}`infra/databases`
+> - {doc}`infra/backups`
+> - {doc}`infra/security`
 
 ```{toctree}
 :caption: 🫂 Community
@@ -59,13 +52,16 @@ community/contributing.md
 community/license.md
 ```
 
->  {doc}`🫂Community <community/contributing>`
+> {doc}`🫂Community <community/contributing>`
 >
->  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
->  tempor incididunt ut labore et dolore magna aliqua.
+> Join our diverse community of passionate individuals thriving to make a difference !
+> 
+> Learn how you can contribute to the project and make a meaningful impact or
+> gain insights into the open-source nature of our work and the
+> permissions / restrictions associated with our project's license.
 >
->  - {doc}`community/contributing`
->  - {doc}`community/license`
+> - {doc}`community/contributing`
+> - {doc}`community/license`
 
 ## Features
 
@@ -81,5 +77,3 @@ Please see the {doc}`contributing <community/contributing>` section for more inf
 
 # License
 This project is licensed under the [AGPLv3 License](https://www.gnu.org/licenses/agpl-3.0.html) - see the {doc}`license <community/license>` section for details.
-
-[#sphinx]: https://www.sphinx-doc.org

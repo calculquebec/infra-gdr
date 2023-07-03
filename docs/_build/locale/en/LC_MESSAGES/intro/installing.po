@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-29 18:44-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../intro/installing.md:1
+msgid "Installation"
+msgstr ""
+
+#: ../../intro/installing.md:3
+msgid "Requirements"
+msgstr ""
+
+#: ../../intro/installing.md:5
+msgid "Openstack"
+msgstr ""
+
+#: ../../intro/installing.md:7
+msgid ""
+"For deployment purposes, we need access to an OpenStack provider.  The "
+"provider is responsible for managing the connection between your project "
+"and the OpenStack environment."
+msgstr ""
+
+#: ../../intro/installing.md:10
+msgid "Authentication"
+msgstr ""
+
+#: ../../intro/installing.md:12
+msgid ""
+"To authenticate with an OpenStack provider, you should configure your "
+"authentication using "
+"[Keystone](https://docs.openstack.org/keystone/latest). We can configure "
+"authentication with [Keystone "
+"credentials](https://docs.openstack.org/keystone/latest/user/application_credentials.html)"
+" using either the [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) or "
+"[environment variables](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables)."
+msgstr ""
+
+#: ../../intro/installing.md:14
+msgid ""
+"The [clouds.yaml](https://docs.openstack.org/python-"
+"openstackclient/pike/configuration/index.html#clouds-yaml) file is used "
+"to store your OpenStack configuration information. This file should be "
+"located in your home directory under the `.config/openstack` directory."
+msgstr ""
+
+#: ../../intro/installing.md:16
+msgid ""
+"Alternatively, you can configure authentication using [environment "
+"variables](https://docs.openstack.org/python-"
+"openstackclient/pike/cli/man/openstack.html#environment-variables). This "
+"file is typically sourced within your shell environment."
+msgstr ""
+
+#: ../../intro/installing.md:19
+msgid ""
+"In either case, it is important to ensure that authentication is properly"
+" configured so that the OpenStack provider is accessible and secure."
+msgstr ""
+
+#: ../../intro/installing.md:22
+msgid "Terraform"
+msgstr ""
+
+#: ../../intro/installing.md:24
+msgid ""
+"Find up-to-date instructions for your operating system on [Install "
+"Terraform](https://developer.hashicorp.com/terraform/downloads)"
+msgstr ""
+
+#: ../../intro/installing.md:26
+msgid "Deployments"
+msgstr ""
+
+#: ../../intro/installing.md:29
+msgid "This section requires attention"
+msgstr ""
+
+#~ msgid ""
+#~ "The [clouds.yaml](https://docs.openstack.org/python-"
+#~ "openstackclient/pike/configuration/index.html#clouds-yaml) "
+#~ "file is used to store your "
+#~ "OpenStack configuration information. This file"
+#~ " should be located in your home "
+#~ "directory under the .config/openstack "
+#~ "directory."
+#~ msgstr ""
+

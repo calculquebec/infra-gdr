@@ -1,0 +1,216 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, opsocket
+# This file is distributed under the same license as the Research Data
+# Management (RDM) package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-25 17:40-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: ../../infra/overview.md:1
+msgid "Overview"
+msgstr ""
+
+#: ../../infra/overview.md:3
+msgid "Providers"
+msgstr ""
+
+#: ../../infra/overview.md:5
+msgid "Openstack"
+msgstr ""
+
+#: ../../infra/overview.md:7
+msgid "Quotas"
+msgstr ""
+
+#: ../../infra/overview.md:9
+msgid ""
+"Deploying a single instance of the cluster requires at least having these"
+" resources available up front in the target Openstack project:"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "Resource"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "Amount"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "instances"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "5"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "vcpus"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "12"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "ram"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "23Go"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "volumes SSD"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "130Go"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "volumes HDD"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "🤔"
+msgstr ""
+
+#: ../../infra/overview.md:19
+msgid "Here's the breakdown:"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "Server"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "VCPUs"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "RAM"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "SSD"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "HDD"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "apps"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "8"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "15Gb"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "32Gb (+32Gb snapshot)"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "150Gb"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "psql-0"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "1"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "2Gb"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "16gb"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "0"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "psql-1"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "psql-2"
+msgstr ""
+
+#: ../../infra/overview.md
+msgid "psql-3"
+msgstr ""
+
+#: ../../infra/overview.md:29
+msgid "LXD Containers"
+msgstr ""
+
+#: ../../infra/overview.md:31
+msgid ""
+"LXD stands for [Linux Container Daemon](https://linuxcontainers.org). It "
+"is an open-source container management system that provides a user-"
+"friendly interface and command-line tools to manage Linux containers."
+msgstr ""
+
+#: ../../infra/overview.md:33
+msgid ""
+"LXD allows users to create and manage lightweight, secure, and fast "
+"virtualized environments that can be used for a wide range of purposes, "
+"such as development, testing, and production workloads."
+msgstr ""
+
+#: ../../infra/overview.md:35
+msgid "Images"
+msgstr ""
+
+#: ../../infra/overview.md:37
+msgid ""
+"A container image registry is a centralized location where container "
+"images can be stored, managed, and distributed."
+msgstr ""
+
+#: ../../infra/overview.md:39
+msgid ""
+"In this case, a publicly available container image registry is hosted at "
+"https://images.opsocket.com. Users can access this registry to download "
+"and launch public container images that are stored on it."
+msgstr ""
+
+#: ../../infra/overview.md:41
+msgid ""
+"These public images are maintained by the registry owners and are "
+"available for anyone to use. To launch a public image, users can simply "
+"pull the image from the registry and run it in their own container "
+"environment."
+msgstr ""
+
+#: ../../infra/overview.md:43
+msgid ""
+"For example, we might use these commands to start an instance of "
+"[nextcloud](https://nextcloud.com):"
+msgstr ""
