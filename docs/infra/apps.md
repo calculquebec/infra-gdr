@@ -41,25 +41,20 @@ Nextcloud is a powerful and flexible self-hosted cloud storage and collaboration
 
 ### Updates
 
-By default, Nextcloud is configured to use the [updatedirectory][#updatedirectory] setting for storing update files. However, if the [updatedirectory][#updatedirectory] is not explicitly set, Nextcloud falls back to using the [datadirectory][#datadirectory] for updates. 
+By default, Nextcloud is configured to use the [updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory) setting for storing update files. However, if the [updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory) is not explicitly set, Nextcloud falls back to using the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) for updates. 
 
 #### Handling Full Data Partition
 
-In such situation, when the data partition where the [datadirectory][#datadirectory] is located becomes full, it can lead to issues when performing updates. The update process requires free space to download and extract update packages, and a full data partition can prevent the update from completing successfully.
+In such situation, when the data partition where the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) is located becomes full, it can lead to issues when performing updates. The update process requires free space to download and extract update packages, and a full data partition can prevent the update from completing successfully.
 
-To avoid such issues, it is recommended to set the [updatedirectory][#updatedirectory] explicitly to a separate location that has sufficient free space, independent of the [datadirectory][#datadirectory].
+To avoid such issues, it is recommended to set the [updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory) explicitly to a separate location that has sufficient free space, independent of the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory).
 
 ```php
 'updatedirectory' => '/var/lib/nextcloud-updates',
 ```
 
 ```{important}
-Make sure the specified [updatedirectory][#updatedirectory] exists and is writable by the web server (i.e. `www-data`) user so that Nextcloud can store the update packages in that location.
+Make sure the specified [updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory) exists and is writable by the web server (i.e. `www-data`) user so that Nextcloud can store the update packages in that location.
 ```
 
 By specifying a dedicated directory for update files, we ensure that updates can be performed even if the data partition is full.
-
-
-
-[#updatedirectory]: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory
-[#datadirectory]: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory

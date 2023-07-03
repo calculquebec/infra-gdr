@@ -88,7 +88,3 @@ msgstr "Français"
 #: /home/opsocket/git/cq/infra-gdr/docs/conf.py:130
 msgid "Repository"
 msgstr "Répertoire"
-
-#~ msgid "%(project)s"
-#~ msgstr "Gestion des Données de Recherche (GDR)"
-
