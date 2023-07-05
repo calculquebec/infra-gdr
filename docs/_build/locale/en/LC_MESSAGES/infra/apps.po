@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 12:03-0400\n"
+"POT-Creation-Date: 2023-07-05 18:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -147,13 +147,17 @@ msgstr ""
 msgid ""
 "In such situation, when the data partition where the "
 "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)"
-" is located becomes full, it can lead to issues when performing updates. "
+" is located becomes full, it can lead to issues when performing updates."
+msgstr ""
+
+#: ../../infra/apps.md:50
+msgid ""
 "The update process requires free space to download and extract update "
 "packages, and a full data partition can prevent the update from "
 "completing successfully."
 msgstr ""
 
-#: ../../infra/apps.md:50
+#: ../../infra/apps.md:52
 msgid ""
 "To avoid such issues, it is recommended to set the "
 "[updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory)"
@@ -162,7 +166,7 @@ msgid ""
 "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
 msgstr ""
 
-#: ../../infra/apps.md:57
+#: ../../infra/apps.md:59
 msgid ""
 "Make sure the specified "
 "[updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory)"
@@ -170,10 +174,59 @@ msgid ""
 "Nextcloud can store the update packages in that location."
 msgstr ""
 
-#: ../../infra/apps.md:60
+#: ../../infra/apps.md:62
 msgid ""
 "By specifying a dedicated directory for update files, we ensure that "
 "updates can be performed even if the data partition is full."
+msgstr ""
+
+#: ../../infra/apps.md:64
+msgid "Logging"
+msgstr ""
+
+#: ../../infra/apps.md:66
+msgid "All log information are written to a separate log file."
+msgstr ""
+
+#: ../../infra/apps.md:68
+msgid ""
+"By default, this file is named `nextcloud.log` and will be created in the"
+" directory which has been configured by the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)"
+" parameter in `config/config.php`."
+msgstr ""
+
+#: ../../infra/apps.md:70
+msgid "Preventing accessibility issues to files"
+msgstr ""
+
+#: ../../infra/apps.md:72
+msgid ""
+"In certain scenarios, it is advisable to configure the `logfile` key to "
+"an absolute location on a separate partition from the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
+msgstr ""
+
+#: ../../infra/apps.md:74
+msgid "A quite standard location is `/var/log/nextcloud.log`."
+msgstr ""
+
+#: ../../infra/apps.md:76
+msgid ""
+"Since the `www-data` user does not have write access within the "
+"`/var/log` directory, we need to create the file as follows"
+msgstr ""
+
+#: ../../infra/apps.md:83
+msgid "Then we can configure the `logfile` key within `config/config.php`"
+msgstr ""
+
+#: ../../infra/apps.md:89
+msgid ""
+"This configuration can help prevent accessibility issues with the "
+"**files** app, which logs accesses to the `logfile` whenever directories "
+"or files are read within the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
 msgstr ""
 
 #~ msgid "[-] Network ports required:"
@@ -217,5 +270,31 @@ msgstr ""
 #~ "`www-data`) user so that Nextcloud "
 #~ "can store the update packages in "
 #~ "that location."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In such situation, when the data "
+#~ "partition where the "
+#~ "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)"
+#~ " is located becomes full, it can "
+#~ "lead to issues when performing updates."
+#~ " The update process requires free "
+#~ "space to download and extract update "
+#~ "packages, and a full data partition "
+#~ "can prevent the update from completing"
+#~ " successfully."
+#~ msgstr ""
+
+#~ msgid "Preventing files accessibility issues"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Since the `www-data` user does not"
+#~ " have write access within the "
+#~ "`/var/log` directory, we need to create"
+#~ " the file as follows:"
+#~ msgstr ""
+
+#~ msgid "Then we can configure the `logfile` key within `config/config.php`:"
 #~ msgstr ""
 

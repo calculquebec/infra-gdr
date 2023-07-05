@@ -45,7 +45,9 @@ By default, Nextcloud is configured to use the [updatedirectory](https://docs.ne
 
 #### Handling Full Data Partition
 
-In such situation, when the data partition where the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) is located becomes full, it can lead to issues when performing updates. The update process requires free space to download and extract update packages, and a full data partition can prevent the update from completing successfully.
+In such situation, when the data partition where the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) is located becomes full, it can lead to issues when performing updates.
+
+The update process requires free space to download and extract update packages, and a full data partition can prevent the update from completing successfully.
 
 To avoid such issues, it is recommended to set the [updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory) explicitly to a separate location that has sufficient free space, independent of the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory).
 
@@ -58,3 +60,30 @@ Make sure the specified [updatedirectory](https://docs.nextcloud.com/server/late
 ```
 
 By specifying a dedicated directory for update files, we ensure that updates can be performed even if the data partition is full.
+
+### Logging
+
+All log information are written to a separate log file.
+
+By default, this file is named `nextcloud.log` and will be created in the directory which has been configured by the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) parameter in `config/config.php`.
+
+#### Preventing accessibility issues to files
+
+In certain scenarios, it is advisable to configure the `logfile` key to an absolute location on a separate partition from the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory). 
+
+A quite standard location is `/var/log/nextcloud.log`.
+
+Since the `www-data` user does not have write access within the `/var/log` directory, we need to create the file as follows
+
+```shell
+sudo touch /var/log/nextcloud.log
+sudo chown www-data. /var/log/nextcloud.log
+```
+
+Then we can configure the `logfile` key within `config/config.php`
+
+```php
+'logfile' => '/var/log/nextcloud.log',
+```
+
+This configuration can help prevent accessibility issues with the **files** app, which logs accesses to the `logfile` whenever directories or files are read within the [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory).

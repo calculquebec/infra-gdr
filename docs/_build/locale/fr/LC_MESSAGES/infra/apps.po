@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Research Data Management (RDM) 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 12:03-0400\n"
+"POT-Creation-Date: 2023-07-05 18:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -187,13 +187,11 @@ msgid "Handling Full Data Partition"
 msgstr "En cas de partition de données pleine"
 
 #: ../../infra/apps.md:48
+#, fuzzy
 msgid ""
 "In such situation, when the data partition where the "
 "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)"
-" is located becomes full, it can lead to issues when performing updates. "
-"The update process requires free space to download and extract update "
-"packages, and a full data partition can prevent the update from "
-"completing successfully."
+" is located becomes full, it can lead to issues when performing updates."
 msgstr ""
 "Dans une telle situation, lorsque la partition de données où se trouve le"
 " "
@@ -205,21 +203,27 @@ msgstr ""
 
 #: ../../infra/apps.md:50
 msgid ""
+"The update process requires free space to download and extract update "
+"packages, and a full data partition can prevent the update from "
+"completing successfully."
+msgstr ""
+
+#: ../../infra/apps.md:52
+msgid ""
 "To avoid such issues, it is recommended to set the "
 "[updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory)"
 " explicitly to a separate location that has sufficient free space, "
 "independent of the "
 "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
 msgstr ""
-"Pour éviter ce genre de problèmes, il est recommandé de définir explicitement"
-" le paramètre "
+"Pour éviter ce genre de problèmes, il est recommandé de définir "
+"explicitement le paramètre "
 "[updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory)"
 " sur un emplacement séparé disposant d'un espace libre suffisant, "
 "indépendamment du paramètre "
 "[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
 
-#: ../../infra/apps.md:57
-#, fuzzy
+#: ../../infra/apps.md:59
 msgid ""
 "Make sure the specified "
 "[updatedirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#updatedirectory)"
@@ -232,7 +236,7 @@ msgstr ""
 " `www-data`), afin que Nextcloud puisse y stocker les paquets de mise à "
 "jour."
 
-#: ../../infra/apps.md:60
+#: ../../infra/apps.md:62
 msgid ""
 "By specifying a dedicated directory for update files, we ensure that "
 "updates can be performed even if the data partition is full."
@@ -240,3 +244,66 @@ msgstr ""
 "En spécifiant un chemin dédié aux fichiers de mise à jour, nous nous "
 "assurons que les mises à jour puissent être effectuées même si la "
 "partition des données est pleine."
+
+#: ../../infra/apps.md:64
+msgid "Logging"
+msgstr "Journalisation"
+
+#: ../../infra/apps.md:66
+msgid "All log information are written to a separate log file."
+msgstr ""
+"Toutes les informations de journalisation sont écrites dans un fichier de"
+" journal séparé."
+
+#: ../../infra/apps.md:68
+msgid ""
+"By default, this file is named `nextcloud.log` and will be created in the"
+" directory which has been configured by the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)"
+" parameter in `config/config.php`."
+msgstr ""
+"Par défaut, ce fichier est nommé `nextcloud.log` et sera créé dans le "
+"répertoire configuré par le paramètre [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory) dans le fichier "
+"`config/config.php`."
+
+#: ../../infra/apps.md:70
+msgid "Preventing accessibility issues to files"
+msgstr "Prévention des problèmes d'accessibilité aux fichiers"
+
+#: ../../infra/apps.md:72
+msgid ""
+"In certain scenarios, it is advisable to configure the `logfile` key to "
+"an absolute location on a separate partition from the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
+msgstr ""
+"Dans certains scénarios, il est conseillé de configurer la clé `logfile` "
+"avec un emplacement absolu sur une partition distincte du "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
+
+#: ../../infra/apps.md:74
+msgid "A quite standard location is `/var/log/nextcloud.log`."
+msgstr "Un emplacement assez courant est `/var/log/nextcloud.log`."
+
+#: ../../infra/apps.md:76
+msgid ""
+"Since the `www-data` user does not have write access within the "
+"`/var/log` directory, we need to create the file as follows"
+msgstr ""
+"Comme l'utilisateur `www-data` n'a pas les droits d'écriture dans le "
+"dossier `/var/log`, nous devons créer le fichier de la manière suivante:"
+
+#: ../../infra/apps.md:83
+msgid "Then we can configure the `logfile` key within `config/config.php`"
+msgstr "Ensuite, nous pouvons configurer la clé `logfile` dans `config/config.php`"
+
+#: ../../infra/apps.md:89
+msgid ""
+"This configuration can help prevent accessibility issues with the "
+"**files** app, which logs accesses to the `logfile` whenever directories "
+"or files are read within the "
+"[datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
+msgstr ""
+"Cette configuration peut aider à prévenir les problèmes d'accessibilité "
+"avec l'application **files**, qui consigne les accès au logfile chaque fois "
+"que des dossiers ou des fichiers sont lus dans le [datadirectory](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#datadirectory)."
+
