@@ -122,22 +122,19 @@
 
 # configure nextcloud container
 
-- name: ensure `/var/lib/nextcloud-updates` exists
-  become: yes
-  file:
-    path: /var/lib/nextcloud-updates
-    state: directory
-    owner: www-data
-    group: www-data
-    mode: '0750'
-
-- name: ensure `/var/log/nextcloud.log` file exists
-  file:
-    path: /var/log/nextcloud.log
-    state: touch
-    owner: www-data
-    group: www-data
-    mode: "0640"
+- name: ensure required files and folders exists
+  become: true
+  tasks:
+    - name: ensure `/var/lib/nextcloud-updates` exists
+      shell: |
+        lxc exec nextcloud -- mkdir /var/lib/nextcloud-updates
+        lxc exec nextcloud -- chown -R www-data. /var/lib/nextcloud-updates
+        lxc exec nextcloud -- chmod -R 640 /var/lib/nextcloud-updates
+    - name: ensure `/var/log/nextcloud.log` file exists
+      shell: |
+        lxc exec nextcloud -- touch /var/log/nextcloud.log
+        lxc exec nextcloud -- chown www-data. /var/log/nextcloud.log
+        lxc exec nextcloud -- chmod 640 /var/log/nextcloud.log
 
 - name: enforce configuration
   block:
