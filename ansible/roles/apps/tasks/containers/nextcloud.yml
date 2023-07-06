@@ -129,7 +129,7 @@
       shell: |
         lxc exec nextcloud -- mkdir /var/lib/nextcloud-updates
         lxc exec nextcloud -- chown -R www-data. /var/lib/nextcloud-updates
-        lxc exec nextcloud -- chmod -R 640 /var/lib/nextcloud-updates
+        lxc exec nextcloud -- chmod 750 /var/lib/nextcloud-updates
     - name: ensure `/var/log/nextcloud.log` file exists
       shell: |
         lxc exec nextcloud -- touch /var/log/nextcloud.log
